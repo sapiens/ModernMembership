@@ -15,6 +15,7 @@ Apache 2.0
 - DDD support via Domain Events i.e every model change will generate (but not send) a domain event
 - Support for integrating with third party sites 
 - Storage agnostic. Persistence is abstracted via Repository or Services
+- Will support rights based authorization (besides role based, here called groups), including support for multi tenancy
 
 
 That's it for now :)
