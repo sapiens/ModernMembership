@@ -1,4 +1,5 @@
 ﻿using CavemanTools.Model.ValueObjects;
+using CavemanTools.Web;
 using ModernMembership;
 using ModernMembership.Events;
 using Xunit;
@@ -40,8 +41,19 @@ namespace Tests
         [Fact]
         public void email_change_generates_event()
         {
-            _sut.ChangeEmail(new Email("g@example.com"));
+            var email = new Email("g@example.com");
+            _sut.ChangeEmail(email);
+            _sut.Email.Should().Be(email);
             _sut.GetGeneratedEvents().First().Cast<MemberEmailChanged>().Email.Should().Be(_sut.Email.Value);
+        }
+
+        [Fact]
+        public void password_change_generates_event()
+        {
+            var pwd = new PasswordHash("newh");
+            _sut.ChangePassword(pwd);
+            _sut.Password.Should().Be(pwd);
+            _sut.GetGeneratedEvents().First().Cast<MemberPasswordChanged>().Should().NotBeNull();
         }
 
         protected void Write(object format, params object[] param)

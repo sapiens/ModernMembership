@@ -48,7 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\Extensions.cs" />
+    <Compile Include="Events\LocalMemberAdded.cs" />
     <Compile Include="Events\MemberEmailChanged.cs" />
+    <Compile Include="Events\MemberPasswordChanged.cs" />
     <Compile Include="ExternalMember.cs" />
     <Compile Include="IMembersRepository.cs" />
     <Compile Include="LocalMember.cs" />

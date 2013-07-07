@@ -10,23 +10,23 @@ namespace ModernMembership
     public class LocalMember:IGenerateEvents
     {
         private readonly Guid _id;
-        private LoginName _name;
+        private LoginName _loginId;
         private PasswordHash _password;
         private Email _email;
         private string _displayName;
 
-        public LocalMember(Guid id,LoginName name, PasswordHash password, Email email)
+        public LocalMember(Guid id,LoginName loginId, PasswordHash password, Email email)
         {
-            name.MustNotBeNull();
+            loginId.MustNotBeNull();
             password.MustNotBeNull();
             email.MustNotBeNull();
             _id = id;
-            _name = name;
+            _loginId = loginId;
             _password = password;
             _email = email;
             Status=MemberStatus.NeedsActivation;
             RegisteredOn = DateTime.UtcNow;
-            _displayName = name.Value;
+            _displayName = loginId.Value;
         }
         /// <summary>
         /// Registration date (GMT)
@@ -44,24 +44,16 @@ namespace ModernMembership
             }
         }
 
-        public LoginName Name
+        public LoginName LoginId
         {
-            get { return _name; }
-            //set
-            //{
-            //    value.MustNotBeNull();
-            //    _name = value;
-            //}
+            get { return _loginId; }
+          
         }
 
         public PasswordHash Password
         {
             get { return _password; }
-            //set
-            //{
-            //    value.MustNotBeNull();
-            //    _password = value;
-            //}
+           
         }
 
         public Email Email
@@ -73,7 +65,14 @@ namespace ModernMembership
         {
             email.MustNotBeNull();
             _email = email;
-            _events.Add(new MemberEmailChanged(Id,email.Value));
+            _events.Add(new MemberEmailChanged(Id,_email.Value));
+        }
+
+        public void ChangePassword(PasswordHash hash)
+        {
+            hash.MustNotBeNull();
+            _password = hash;
+            _events.Add(new MemberPasswordChanged(Id));
         }
 
         public MemberStatus Status { get; set; }
