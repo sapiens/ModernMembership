@@ -17,7 +17,7 @@ namespace Tests.LocalMemberT
         }
 
         [Fact]
-        public void uses_a_memento()
+        public void memento_contains_member_state()
         {
             var m = NewLocalMemberShould.CreateMember();
             var state = m.GetMemento();
@@ -40,7 +40,7 @@ namespace Tests.LocalMemberT
         }
 
         [Fact]
-        public void state_restored_by_a_memento()
+        public void restored_member_contains_all_memento_data()
         {
             var m = CreateMemento();
             var member = LocalMember.RestoreFrom(m);

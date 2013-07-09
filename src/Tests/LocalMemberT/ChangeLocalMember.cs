@@ -10,12 +10,12 @@ using System.Linq;
 
 namespace Tests.LocalMemberT
 {
-    public class ChangingLocalMember
+    public class ChangeLocalMember
     {
         private Stopwatch _t = new Stopwatch();
         private ModernMembership.LocalMember _sut;
 
-        public ChangingLocalMember()
+        public ChangeLocalMember()
         {
             _sut = NewLocalMemberShould.CreateMember();
         }
@@ -30,7 +30,7 @@ namespace Tests.LocalMemberT
         }
 
         [Fact]
-        public void display_name_change_generates_event()
+        public void changing_display_name_generates_event()
         {
             _sut.DisplayName = "hey";
             var events= _sut.GetGeneratedEvents();
@@ -38,7 +38,7 @@ namespace Tests.LocalMemberT
         }
 
         [Fact]
-        public void email_change_generates_event()
+        public void changing_email_generates_event()
         {
             var email = new Email("g@example.com");
             _sut.ChangeEmail(email);
@@ -47,7 +47,7 @@ namespace Tests.LocalMemberT
         }
 
         [Fact]
-        public void password_change_generates_event()
+        public void changing_password_generates_event()
         {
             var pwd = new PasswordHash("newh");
             _sut.ChangePassword(pwd);
