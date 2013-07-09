@@ -1,6 +1,5 @@
 ﻿using CavemanTools.Model.ValueObjects;
 using CavemanTools.Web;
-using ModernMembership;
 using ModernMembership.Events;
 using Xunit;
 using System;
@@ -9,12 +8,12 @@ using FluentAssertions;
 using Xunit.Extensions;
 using System.Linq;
 
-namespace Tests
+namespace Tests.LocalMemberT
 {
     public class ChangingLocalMember
     {
         private Stopwatch _t = new Stopwatch();
-        private LocalMember _sut;
+        private ModernMembership.LocalMember _sut;
 
         public ChangingLocalMember()
         {

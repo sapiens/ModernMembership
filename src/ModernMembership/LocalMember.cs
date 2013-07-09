@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CavemanTools;
 using CavemanTools.Model.ValueObjects;
 using CavemanTools.Web;
 using System;
@@ -7,9 +8,9 @@ using ModernMembership.Events;
 
 namespace ModernMembership
 {
-    public class LocalMember:IGenerateEvents
+    public class LocalMember:IGenerateEvents,ISupportMemento<LocalMemberMemento>
     {
-        private readonly Guid _id;
+        private Guid _id;
         private LoginName _loginId;
         private PasswordHash _password;
         private Email _email;
@@ -28,6 +29,7 @@ namespace ModernMembership
             RegisteredOn = DateTime.UtcNow;
             _displayName = loginId.Value;
         }
+
         /// <summary>
         /// Registration date (GMT)
         /// </summary>
@@ -75,7 +77,11 @@ namespace ModernMembership
             _events.Add(new MemberPasswordChanged(Id));
         }
 
-        public MemberStatus Status { get; set; }
+        public MemberStatus Status
+        {
+            get { return _status; }
+            set { _status = value; }
+        }
 
         public Guid Id
         {
@@ -83,10 +89,57 @@ namespace ModernMembership
         }
 
         List<MemberEvent> _events=new List<MemberEvent>();
+        private MemberStatus _status;
 
         public IEnumerable<IEvent> GetGeneratedEvents()
         {
             return _events;
         }
+
+        public void ClearEvents()
+        {
+            _events.Clear();
+        }
+
+        public LocalMemberMemento GetMemento()
+        {
+            var state = new LocalMemberMemento()
+                {
+                    DisplayName = DisplayName,Email = Email.Value,Id=Id,LoginId = LoginId.Value,Password = Password,RegisteredOn = RegisteredOn,Status = Status
+                };
+            return state;
+        }
+
+        internal LocalMember()
+        {
+            
+        }
+
+        public static LocalMember RestoreFrom(LocalMemberMemento state)
+        {
+            var member = new LocalMember();
+            member._id = state.Id;
+            member._email=new Email(state.Email);
+            member._password = state.Password;
+            member._displayName = state.DisplayName;
+            member.RegisteredOn = state.RegisteredOn;
+            member._loginId=new LoginName(state.LoginId);
+            member._status = state.Status;
+            return member;
+        }
+    }
+
+    public class LocalMemberMemento
+    {
+        public Guid Id;
+
+        public string LoginId;
+
+        public PasswordHash Password;
+
+        public string Email;
+        public MemberStatus Status;
+        public string DisplayName;
+        public DateTime RegisteredOn;
     }
 }
