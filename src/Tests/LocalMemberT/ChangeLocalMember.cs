@@ -24,17 +24,17 @@ namespace Tests.LocalMemberT
         [InlineData(null)]
         [InlineData("")]
         [InlineData("            ")]
-        public void display_name_needs_a_non_empty_value(string value)
+        public void display_name_accepts_empty_values(string value)
         {
-            _sut.Invoking(s => s.DisplayName = value).ShouldThrow<FormatException>();        
+            _sut.Invoking(s => s.DisplayName = value).ShouldNotThrow();
         }
 
         [Fact]
-        public void changing_display_name_generates_event()
+        public void changing_display_doesnt_generate_event()
         {
             _sut.DisplayName = "hey";
             var events= _sut.GetGeneratedEvents();
-            events.First().Cast<MemberNameChanged>().Name.Should().Be("hey");
+            events.Should().BeEmpty();
         }
 
         [Fact]

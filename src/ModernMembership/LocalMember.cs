@@ -28,8 +28,7 @@ namespace ModernMembership
             _memento.Password = password;
             _memento.Email = email;
             _memento.Status=MemberStatus.NeedsActivation;
-            _memento.RegisteredOn = DateTime.UtcNow;
-            _memento.DisplayName = loginId.Value;
+            _memento.RegisteredOn = DateTime.UtcNow;           
         }
 
         /// <summary>
@@ -40,14 +39,15 @@ namespace ModernMembership
             get { return _memento.RegisteredOn; }
         }
 
+        /// <summary>
+        /// Acts as a cache for a profile name. Convenience only
+        /// </summary>
         public string DisplayName
         {
             get { return _memento.DisplayName; }
             set
             {
-                value.MustNotBeEmpty();
-                _memento.DisplayName = value;
-                _events.Add(new MemberNameChanged(Id){Name = value});
+                _memento.DisplayName = value;                
             }
         }
 
