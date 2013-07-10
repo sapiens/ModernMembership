@@ -10,86 +10,91 @@ namespace ModernMembership
 {
     public class LocalMember:IGenerateEvents,ISupportMemento<LocalMemberMemento>
     {
-        private Guid _id;
-        private LoginName _loginId;
-        private PasswordHash _password;
-        private Email _email;
-        private string _displayName;
+        //private Guid _id;
+        //private LoginName _loginId;
+        //private PasswordHash _password;
+        //private Email _email;
+        //private string _displayName;
+
+        LocalMemberMemento _memento= new LocalMemberMemento();
 
         public LocalMember(Guid id,LoginName loginId, PasswordHash password, Email email)
         {
             loginId.MustNotBeNull();
             password.MustNotBeNull();
             email.MustNotBeNull();
-            _id = id;
-            _loginId = loginId;
-            _password = password;
-            _email = email;
-            Status=MemberStatus.NeedsActivation;
-            RegisteredOn = DateTime.UtcNow;
-            _displayName = loginId.Value;
+            _memento.Id = id;
+            _memento.LoginId = loginId;
+            _memento.Password = password;
+            _memento.Email = email;
+            _memento.Status=MemberStatus.NeedsActivation;
+            _memento.RegisteredOn = DateTime.UtcNow;
+            _memento.DisplayName = loginId.Value;
         }
 
         /// <summary>
         /// Registration date (GMT)
         /// </summary>
-        public DateTime RegisteredOn { get; private set; }
+        public DateTime RegisteredOn
+        {
+            get { return _memento.RegisteredOn; }
+        }
 
         public string DisplayName
         {
-            get { return _displayName; }
+            get { return _memento.DisplayName; }
             set
             {
                 value.MustNotBeEmpty();
-                _displayName = value;
+                _memento.DisplayName = value;
                 _events.Add(new MemberNameChanged(Id){Name = value});
             }
         }
 
         public LoginName LoginId
         {
-            get { return _loginId; }
+            get { return _memento.LoginId; }
           
         }
 
         public PasswordHash Password
         {
-            get { return _password; }
+            get { return _memento.Password; }
            
         }
 
         public Email Email
         {
-            get { return _email; }
+            get { return _memento.Email; }
         }
 
         public void ChangeEmail(Email email)
         {
             email.MustNotBeNull();
-            _email = email;
-            _events.Add(new MemberEmailChanged(Id,_email.Value));
+            _memento.Email = email;
+            _events.Add(new MemberEmailChanged(Id,_memento.Email.Value));
         }
 
         public void ChangePassword(PasswordHash hash)
         {
             hash.MustNotBeNull();
-            _password = hash;
+            _memento.Password = hash;
             _events.Add(new MemberPasswordChanged(Id));
         }
 
         public MemberStatus Status
         {
-            get { return _status; }
-            set { _status = value; }
+            get { return _memento.Status; }
+            set { _memento.Status = value; }
         }
 
         public Guid Id
         {
-            get { return _id; }
+            get { return _memento.Id; }
         }
 
         List<MemberEvent> _events=new List<MemberEvent>();
-        private MemberStatus _status;
+     //   private MemberStatus _status;
 
         public IEnumerable<IEvent> GetGeneratedEvents()
         {
@@ -103,34 +108,37 @@ namespace ModernMembership
 
         public LocalMemberMemento GetMemento()
         {
-            var state = new LocalMemberMemento()
-                {
-                    DisplayName = DisplayName,
-                    Email = Email,
-                    Id=Id,
-                    LoginId = LoginId,
-                    Password = Password,
-                    RegisteredOn = RegisteredOn,
-                    Status = Status
-                };
-            return state;
+            //var state = new LocalMemberMemento()
+            //    {
+            //        DisplayName = DisplayName,
+            //        Email = Email,
+            //        Id=Id,
+            //        LoginId = LoginId,
+            //        Password = Password,
+            //        RegisteredOn = RegisteredOn,
+            //        Status = Status
+            //    };
+            //return state;
+            return _memento;
         }
 
-        internal LocalMember()
+        protected LocalMember()
         {
             
         }
 
         public static LocalMember RestoreFrom(LocalMemberMemento state)
         {
+            state.MustNotBeNull();
             var member = new LocalMember();
-            member._id = state.Id;
-            member._email=state.Email;
-            member._password = state.Password;
-            member._displayName = state.DisplayName;
-            member.RegisteredOn = state.RegisteredOn;
-            member._loginId=state.LoginId;
-            member._status = state.Status;
+            member._memento = state;
+            //member._id = state.Id;
+            //member._email=state.Email;
+            //member._password = state.Password;
+            //member._displayName = state.DisplayName;
+            //member.RegisteredOn = state.RegisteredOn;
+            //member._loginId=state.LoginId;
+            //member._status = state.Status;
             return member;
         }
     }
