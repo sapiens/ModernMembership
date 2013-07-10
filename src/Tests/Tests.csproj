@@ -63,7 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LocalMemberT\ChangingLocalMember.cs" />
+    <Compile Include="LocalMemberT\ChangeLocalMember.cs" />
     <Compile Include="LocalMemberT\LocalMemberPersistence.cs" />
     <Compile Include="LocalMemberT\NewLocalMemberShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -105,7 +105,13 @@ namespace ModernMembership
         {
             var state = new LocalMemberMemento()
                 {
-                    DisplayName = DisplayName,Email = Email.Value,Id=Id,LoginId = LoginId.Value,Password = Password,RegisteredOn = RegisteredOn,Status = Status
+                    DisplayName = DisplayName,
+                    Email = Email,
+                    Id=Id,
+                    LoginId = LoginId,
+                    Password = Password,
+                    RegisteredOn = RegisteredOn,
+                    Status = Status
                 };
             return state;
         }
@@ -119,11 +125,11 @@ namespace ModernMembership
         {
             var member = new LocalMember();
             member._id = state.Id;
-            member._email=new Email(state.Email);
+            member._email=state.Email;
             member._password = state.Password;
             member._displayName = state.DisplayName;
             member.RegisteredOn = state.RegisteredOn;
-            member._loginId=new LoginName(state.LoginId);
+            member._loginId=state.LoginId;
             member._status = state.Status;
             return member;
         }
@@ -133,11 +139,11 @@ namespace ModernMembership
     {
         public Guid Id;
 
-        public string LoginId;
+        public LoginName LoginId;
 
         public PasswordHash Password;
 
-        public string Email;
+        public Email Email;
         public MemberStatus Status;
         public string DisplayName;
         public DateTime RegisteredOn;
