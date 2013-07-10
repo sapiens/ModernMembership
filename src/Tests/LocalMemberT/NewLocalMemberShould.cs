@@ -13,9 +13,17 @@ namespace Tests.LocalMemberT
         private Stopwatch _t = new Stopwatch();
 
       
-        public static LocalMember CreateMember()
+        public static LocalMember CreateMember(LocalMemberMemento init=null)
         {
-            var m = new LocalMember(Guid.NewGuid(),new LoginName("test"), new PasswordHash("bla"), new Email("bla@yahoo.com"));
+            LocalMember m;
+            if (init == null)
+            {
+                 m= new LocalMember(Guid.NewGuid(), new LoginName("test"), new PasswordHash("bla"), new Email("bla@yahoo.com"));
+            }
+            else
+            {
+                m = LocalMember.RestoreFrom(init);
+            }
             return m;
         }
 
@@ -41,6 +49,12 @@ namespace Tests.LocalMemberT
         {
             var m = CreateMember();
             m.DisplayName.Should().BeNullOrEmpty();
+        }
+
+        [Fact]
+        public void have_not_the_default_date()
+        {
+            CreateMember().RegisteredOn.Should().NotBe(new DateTime());
         }
 
         protected void Write(object format, params object[] param)

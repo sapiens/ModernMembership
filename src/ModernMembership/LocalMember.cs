@@ -14,8 +14,6 @@ namespace ModernMembership
         private LoginName _loginId;
         private PasswordHash _password;
         private Email _email;
-        private string _displayName;
-
         
 
         public LocalMember(Guid id,LoginName loginId, PasswordHash password, Email email)
@@ -27,7 +25,7 @@ namespace ModernMembership
             _loginId = loginId;
             _password = password;
             _email = email;
-            Status=MemberStatus.NeedsActivation;
+            _status=MemberStatus.NeedsActivation;
             RegisteredOn = DateTime.UtcNow;           
         }
 
@@ -72,7 +70,16 @@ namespace ModernMembership
             _events.Add(new MemberPasswordChanged(Id));
         }
 
-        public MemberStatus Status { get; set; }
+        public MemberStatus Status
+        {
+            get { return _status; }
+            set
+            {
+                if (value==MemberStatus.Undefined) throw new ArgumentException("Undefined is not an accepted value");
+                _status = value;
+                _events.Add(new MemberStatusChanged(Id,_status));
+            }
+        }
 
         public Guid Id
         {
@@ -80,8 +87,8 @@ namespace ModernMembership
         }
 
         List<MemberEvent> _events=new List<MemberEvent>();
-     //   private MemberStatus _status;
-
+        private MemberStatus _status;
+        
         public IEnumerable<IEvent> GetGeneratedEvents()
         {
             return _events;
@@ -112,9 +119,9 @@ namespace ModernMembership
         {
             state.MustNotBeNull();
             var member = new LocalMember(state.Id,state.LoginId,state.Password,state.Email);
-            member._displayName = state.DisplayName;
+            member.DisplayName = state.DisplayName;
             member.RegisteredOn = state.RegisteredOn;
-            member.Status = state.Status;
+            member._status = state.Status;
             return member;
         }
     }

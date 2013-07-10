@@ -1,5 +1,6 @@
 ﻿using CavemanTools.Model.ValueObjects;
 using CavemanTools.Web;
+using ModernMembership;
 using ModernMembership.Events;
 using Xunit;
 using System;
@@ -53,6 +54,19 @@ namespace Tests.LocalMemberT
             _sut.ChangePassword(pwd);
             _sut.Password.Should().Be(pwd);
             _sut.GetGeneratedEvents().First().Cast<MemberPasswordChanged>().Should().NotBeNull();
+        }
+
+        [Fact]
+        public void status_change_generates_corresponding_event()
+        {
+            _sut.Status=MemberStatus.Deleted;
+            _sut.GetGeneratedEvents().First().Cast<MemberStatusChanged>().Status.Should().Be(MemberStatus.Deleted);
+        }
+
+        [Fact]
+        public void status_cant_be_changed_to_undefined()
+        {
+            _sut.Invoking(sut => sut.Status = MemberStatus.Undefined).ShouldThrow<ArgumentException>();
         }
 
         protected void Write(object format, params object[] param)
