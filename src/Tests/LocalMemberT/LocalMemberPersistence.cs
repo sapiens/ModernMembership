@@ -1,4 +1,5 @@
 ﻿using CavemanTools.Model.ValueObjects;
+using CavemanTools.Web;
 using ModernMembership;
 using Ploeh.AutoFixture;
 using Xunit;
@@ -33,12 +34,12 @@ namespace Tests.LocalMemberT
 
         public static LocalMemberMemento CreateMemento()
         {
-            var m = new LocalMemberMemento();
-                //Setup.GetAutoFixture().Create<LocalMemberMemento>();
+            var m = new LocalMemberMemento();              
             m.Id = Guid.NewGuid();
             m.LoginId=new LoginName("valid-login-name");
             m.Status=MemberStatus.Locked;
             m.Email = new Email("bla@me.com");
+            m.Password=new PasswordHash("hash");
             return m;
         }
 
@@ -54,6 +55,14 @@ namespace Tests.LocalMemberT
             member.DisplayName.Should().Be(m.DisplayName);
             member.Status.Should().Be(m.Status);
             member.RegisteredOn.Should().Be(m.RegisteredOn);
+        }
+
+        [Fact]
+        public void restoring_fails_for_invalid_memento_data()
+        {
+            var memento = CreateMemento();
+            memento.Email = null;
+            Assert.Throws<ArgumentNullException>(() => LocalMember.RestoreFrom(memento));
         }
 
         [Fact]
