@@ -23,7 +23,7 @@ namespace ModernMembership
         /// <returns></returns>
         public static bool IsValid(string value)
         {
-            return !value.IsNullOrEmpty() && value.Length>3 && value.Length < 50 && Regex.IsMatch(value, @"^[a-z_]+[\w\-]+$",RegexOptions.IgnoreCase|RegexOptions.CultureInvariant);
+            return !value.IsNullOrEmpty() && value.Length>=3 && value.Length <= 50 && Regex.IsMatch(value, @"^[a-z_]+[\w\-]+$",RegexOptions.IgnoreCase|RegexOptions.CultureInvariant);
         }
     }
 }

@@ -48,9 +48,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authorization\Events\GroupNameChanged.cs" />
+    <Compile Include="Authorization\GroupName.cs" />
+    <Compile Include="ScopeId.cs" />
+    <Compile Include="Authorization\RightsGroup.cs" />
     <Compile Include="DuplicateEmailException.cs" />
     <Compile Include="DuplicateLoginIdException.cs" />
-    <Compile Include="DuplicateMemberId.cs" />
+    <Compile Include="DuplicateMemberIdException.cs" />
     <Compile Include="Events\Extensions.cs" />
     <Compile Include="Events\LocalMemberAdded.cs" />
     <Compile Include="Events\MemberEmailChanged.cs" />
