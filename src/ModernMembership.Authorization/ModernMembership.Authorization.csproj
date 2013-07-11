@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B254E7E0-3FD1-4CB3-B068-60EBED313C02}</ProjectGuid>
+    <ProjectGuid>{F3073B7C-8DE2-4DD7-AD86-94994D900B45}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ModernMembership</RootNamespace>
-    <AssemblyName>ModernMembership</AssemblyName>
+    <RootNamespace>ModernMembership.Authorization</RootNamespace>
+    <AssemblyName>ModernMembership.Authorization</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,13 +31,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CavemanTools">
-      <HintPath>packages\CavemanTools.dll</HintPath>
-    </Reference>
-    <Reference Include="CavemanTools.Web">
-      <HintPath>packages\CavemanTools.Web.dll</HintPath>
+      <HintPath>..\ModernMembership\packages\CavemanTools.dll</HintPath>
     </Reference>
     <Reference Include="DomainBus.Concepts">
-      <HintPath>packages\DomainBus.Concepts.dll</HintPath>
+      <HintPath>..\ModernMembership\packages\DomainBus.Concepts.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -48,21 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DuplicateEmailException.cs" />
-    <Compile Include="DuplicateLoginIdException.cs" />
-    <Compile Include="DuplicateMemberIdException.cs" />
-    <Compile Include="Events\Extensions.cs" />
-    <Compile Include="Events\LocalMemberAdded.cs" />
-    <Compile Include="Events\MemberEmailChanged.cs" />
-    <Compile Include="Events\MemberPasswordChanged.cs" />
-    <Compile Include="Events\MemberStatusChanged.cs" />
-    <Compile Include="ExternalMember.cs" />
-    <Compile Include="IMembersRepository.cs" />
-    <Compile Include="LocalMember.cs" />
-    <Compile Include="LoginName.cs" />
-    <Compile Include="Events\MemberEvent.cs" />
-    <Compile Include="MemberStatus.cs" />
+    <Compile Include="Events\GroupNameChanged.cs" />
+    <Compile Include="GroupName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RightsGroup.cs" />
+    <Compile Include="ScopeId.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

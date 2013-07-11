@@ -75,6 +75,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ModernMembership.Authorization\ModernMembership.Authorization.csproj">
+      <Project>{f3073b7c-8de2-4dd7-ad86-94994d900b45}</Project>
+      <Name>ModernMembership.Authorization</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ModernMembership\ModernMembership.csproj">
       <Project>{b254e7e0-3fd1-4cb3-b068-60ebed313c02}</Project>
       <Name>ModernMembership</Name>
