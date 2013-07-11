@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DuplicateEmailException.cs" />
+    <Compile Include="DuplicateLoginIdException.cs" />
+    <Compile Include="DuplicateMemberId.cs" />
     <Compile Include="Events\Extensions.cs" />
     <Compile Include="Events\LocalMemberAdded.cs" />
     <Compile Include="Events\MemberEmailChanged.cs" />
