@@ -32,9 +32,9 @@ namespace Tests.LocalMemberT
             state.RegisteredOn.Should().Be(m.RegisteredOn);
         }
 
-        public static LocalMemberMemento CreateMemento()
+        public static LocalMember.Memento CreateMemento()
         {
-            var m = new LocalMemberMemento();              
+            var m = new LocalMember.Memento();              
             m.Id = Guid.NewGuid();
             m.LoginId=new LoginName("valid-login-name");
             m.Status=MemberStatus.Locked;
@@ -47,7 +47,7 @@ namespace Tests.LocalMemberT
         public void restored_member_contains_all_memento_data()
         {
             var m = CreateMemento();
-            var member = LocalMember.RestoreFrom(m);
+            var member = new LocalMember(m);
             member.Id.Should().Be(m.Id);
             member.LoginId.Should().Be(m.LoginId);
             member.Password.Should().Be(m.Password);
@@ -62,13 +62,13 @@ namespace Tests.LocalMemberT
         {
             var memento = CreateMemento();
             memento.Email = null;
-            Assert.Throws<ArgumentNullException>(() => LocalMember.RestoreFrom(memento));
+            Assert.Throws<ArgumentNullException>(() => new LocalMember(memento));
         }
 
         [Fact]
         public void restoration_doesnt_generate_events()
         {
-            var m = LocalMember.RestoreFrom(CreateMemento());
+            var m = new LocalMember(CreateMemento());
             m.GetGeneratedEvents().Should().BeEmpty();
         }
 

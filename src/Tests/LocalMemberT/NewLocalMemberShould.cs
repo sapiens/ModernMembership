@@ -13,7 +13,7 @@ namespace Tests.LocalMemberT
         private Stopwatch _t = new Stopwatch();
 
       
-        public static LocalMember CreateMember(LocalMemberMemento init=null)
+        public static LocalMember CreateMember(LocalMember.Memento init=null)
         {
             LocalMember m;
             if (init == null)
@@ -22,7 +22,7 @@ namespace Tests.LocalMemberT
             }
             else
             {
-                m = LocalMember.RestoreFrom(init);
+                m = new LocalMember(init);
             }
             return m;
         }

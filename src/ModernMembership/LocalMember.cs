@@ -8,13 +8,21 @@ using ModernMembership.Events;
 
 namespace ModernMembership
 {
-    public class LocalMember:IGenerateEvents,ISupportMemento<LocalMemberMemento>
+    public class LocalMember:IGenerateEvents,ISupportMemento<LocalMember.Memento>
     {
         private Guid _id;
         private LoginName _loginId;
         private PasswordHash _password;
         private Email _email;
-        
+
+        public LocalMember(Memento state)
+            : this(state.Id, state.LoginId, state.Password, state.Email)
+        {
+            state.MustNotBeNull();
+            DisplayName = state.DisplayName;
+            RegisteredOn = state.RegisteredOn;
+            _status = state.Status;            
+        }
 
         public LocalMember(Guid id,LoginName loginId, PasswordHash password, Email email)
         {
@@ -99,9 +107,9 @@ namespace ModernMembership
             _events.Clear();
         }
 
-        public LocalMemberMemento GetMemento()
+        public Memento GetMemento()
         {
-            var state = new LocalMemberMemento()
+            var state = new Memento()
                 {
                     DisplayName = DisplayName,
                     Email = Email,
@@ -113,30 +121,21 @@ namespace ModernMembership
                 };
             return state;            
         }
-
-     
-        public static LocalMember RestoreFrom(LocalMemberMemento state)
+        
+        public class Memento
         {
-            state.MustNotBeNull();
-            var member = new LocalMember(state.Id,state.LoginId,state.Password,state.Email);
-            member.DisplayName = state.DisplayName;
-            member.RegisteredOn = state.RegisteredOn;
-            member._status = state.Status;
-            return member;
+            public Guid Id;
+
+            public LoginName LoginId;
+
+            public PasswordHash Password;
+
+            public Email Email;
+            public MemberStatus Status;
+            public string DisplayName;
+            public DateTime RegisteredOn;
         }
     }
 
-    public class LocalMemberMemento
-    {
-        public Guid Id;
-
-        public LoginName LoginId;
-
-        public PasswordHash Password;
-
-        public Email Email;
-        public MemberStatus Status;
-        public string DisplayName;
-        public DateTime RegisteredOn;        
-    }
+    
 }
