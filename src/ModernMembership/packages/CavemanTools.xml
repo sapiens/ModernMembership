@@ -690,6 +690,20 @@
             <param name="defValue">Value to return if dictionary doesn't contain the key</param>
             <returns></returns>
         </member>
+        <member name="M:CavemanTools.Model.ValueObjects.AbstractValueObject`1.#ctor(`0)">
+            <summary>
+            
+            </summary>
+            <exception cref="T:System.ArgumentException"></exception>
+            <param name="value"></param>
+        </member>
+        <member name="M:CavemanTools.Model.ValueObjects.AbstractValueObject`1.Validate(`0)">
+            <summary>
+            Is automatically invoked by the constructor
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
         <member name="T:CavemanTools.Model.ValueObjects.Email">
             <summary>
             

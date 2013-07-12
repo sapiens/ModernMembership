@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DuplicateEmailException.cs" />
+    <Compile Include="DuplicateExternalIdException.cs" />
     <Compile Include="DuplicateLoginIdException.cs" />
     <Compile Include="DuplicateMemberIdException.cs" />
     <Compile Include="Events\Extensions.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Events\MemberPasswordChanged.cs" />
     <Compile Include="Events\MemberStatusChanged.cs" />
     <Compile Include="ExternalMember.cs" />
+    <Compile Include="ExternalMemberId.cs" />
     <Compile Include="IMembersRepository.cs" />
     <Compile Include="LocalMember.cs" />
     <Compile Include="LoginName.cs" />

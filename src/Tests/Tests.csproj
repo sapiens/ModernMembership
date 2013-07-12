@@ -65,6 +65,8 @@
   <ItemGroup>
     <Compile Include="AuthorizationT\GroupNameTests.cs" />
     <Compile Include="AuthorizationT\RightsGroupT.cs" />
+    <Compile Include="ExternalMemberT\ExternalMemberIdTests.cs" />
+    <Compile Include="ExternalMemberT\ExternalMemberT.cs" />
     <Compile Include="LocalMemberT\ChangeLocalMember.cs" />
     <Compile Include="LocalMemberT\LocalMemberPersistence.cs" />
     <Compile Include="LocalMemberT\NewLocalMemberShould.cs" />
