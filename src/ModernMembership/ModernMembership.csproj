@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthenticationService.cs" />
     <Compile Include="DuplicateEmailException.cs" />
     <Compile Include="DuplicateExternalIdException.cs" />
     <Compile Include="DuplicateLoginIdException.cs" />
@@ -59,10 +60,15 @@
     <Compile Include="Events\MemberStatusChanged.cs" />
     <Compile Include="ExternalMember.cs" />
     <Compile Include="ExternalMemberId.cs" />
-    <Compile Include="IMembersRepository.cs" />
+    <Compile Include="IAuthenticationService.cs" />
+    <Compile Include="IExternalMembersRepository.cs" />
+    <Compile Include="IMembershipService.cs" />
+    <Compile Include="ILocalMembersRepository.cs" />
     <Compile Include="LocalMember.cs" />
     <Compile Include="LoginName.cs" />
     <Compile Include="Events\MemberEvent.cs" />
+    <Compile Include="MemberSessionInfo.cs" />
+    <Compile Include="MembershipCount.cs" />
     <Compile Include="MemberStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

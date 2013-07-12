@@ -646,11 +646,23 @@
             Gets underlying cookie
             </summary>
         </member>
+        <member name="T:CavemanTools.Web.HashedPassword">
+            <summary>
+            Hashed password class
+            </summary>
+        </member>
         <member name="M:CavemanTools.Web.PasswordHash.Matches(System.String)">
             <summary>
             True if the supplied argument matches hash
             </summary>
             <param name="otherHash"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CavemanTools.Web.PasswordHash.CreateCavemanHash(System.String)">
+            <summary>
+            Creates a SHA 512 password hash with a 16 char salt
+            </summary>
+            <param name="password"></param>
             <returns></returns>
         </member>
         <member name="P:CavemanTools.Web.PasswordHash.Hash">
@@ -661,11 +673,6 @@
         <member name="P:CavemanTools.Web.PasswordHash.Salt">
             <summary>
             Gets salt used for hashing
-            </summary>
-        </member>
-        <member name="T:CavemanTools.Web.HashedPassword">
-            <summary>
-            Hashed password class
             </summary>
         </member>
         <member name="T:CavemanTools.Web.Helpers.PaginationLinks">

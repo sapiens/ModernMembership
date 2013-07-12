@@ -1,6 +1,8 @@
-﻿using CavemanTools.Model.ValueObjects;
+﻿using System.Linq;
+using CavemanTools.Model.ValueObjects;
 using FluentAssertions;
 using ModernMembership;
+using ModernMembership.Events;
 using Ploeh.AutoFixture;
 using Xunit;
 using System;
@@ -36,6 +38,7 @@ namespace Tests.ExternalMemberT
         {
             var m = Create();
             m.DisplayName.Should().BeNull();
+            m.GetGeneratedEvents().Should().BeEmpty();
         }
 
 
@@ -44,6 +47,30 @@ namespace Tests.ExternalMemberT
         {
             var m = new ExternalMember(Guid.NewGuid(), Setup.GetAutoFixture().Create<ExternalMemberId>(),displayName:"hi");
             m.DisplayName.Should().Be("hi");
+        }
+
+        [Fact]
+        public void default_state_is_active()
+        {
+            var member = Create();
+            member.Status.Should().Be(MemberStatus.Active);
+        }
+
+        [Fact]
+        public void changing_state_generates_event()
+        {
+            var member = Create();
+            member.Status=MemberStatus.Banned;
+            member.GetGeneratedEvents().First().Cast<MemberStatusChanged>().Status.Should().Be(MemberStatus.Banned);
+        }
+
+
+        [Fact]
+        public void restore_member_doesnt_generates_events()
+        {
+            var member = new ExternalMember(Guid.NewGuid(), Setup.GetAutoFixture().Create<ExternalMemberId>(),
+                                            "display name", MemberStatus.Locked);
+            member.GetGeneratedEvents().Should().BeEmpty();
         }
 
         protected void Write(object format, params object[] param)

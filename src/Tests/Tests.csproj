@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authentication\AuthenticationServiceLocalMemberTests.cs" />
     <Compile Include="AuthorizationT\GroupNameTests.cs" />
     <Compile Include="AuthorizationT\RightsGroupT.cs" />
     <Compile Include="ExternalMemberT\ExternalMemberIdTests.cs" />
