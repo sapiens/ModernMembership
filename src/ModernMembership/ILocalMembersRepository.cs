@@ -14,6 +14,8 @@ namespace ModernMembership
         /// <param name="member"></param>
         void Add(LocalMember member);
 
+        void Save(LocalMember member);
+
         LocalMember GetMember(Guid id);
         LocalMember GetMember(Email email);
         LocalMember GetMember(LoginName id);

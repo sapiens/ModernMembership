@@ -21,16 +21,18 @@ namespace Tests.ExternalMemberT
 
         public static ExternalMember Create()
         {
-            return new ExternalMember(Guid.NewGuid(),new ExternalMemberId("fdb","23"));
+            return new ExternalMember(Guid.NewGuid(),new ExternalMemberId("fdb","23"), ScopeId.None);
         }
 
         [Fact]
-        public void to_be_created_requires_local_and_external_id()
+        public void to_be_created_requires_local_external_id_and_scope()
         {
             var id = Guid.NewGuid();
-            var member = new ExternalMember(id, new ExternalMemberId("fb", "12"));
+            var scopeId = new ScopeId(Guid.NewGuid());
+            var member = new ExternalMember(id, new ExternalMemberId("fb", "12"), scopeId);
             member.Id.Should().Be(id);
             member.ExternalId.Should().Be(new ExternalMemberId("fb", "12"));
+            member.Scope.Should().Be(scopeId);
         }
 
         [Fact]
@@ -45,7 +47,7 @@ namespace Tests.ExternalMemberT
         [Fact]
         public void can_accept_displayname_at_creation()
         {
-            var m = new ExternalMember(Guid.NewGuid(), Setup.GetAutoFixture().Create<ExternalMemberId>(),displayName:"hi");
+            var m = new ExternalMember(Guid.NewGuid(), Setup.GetAutoFixture().Create<ExternalMemberId>(), ScopeId.None,displayName: "hi");
             m.DisplayName.Should().Be("hi");
         }
 
@@ -68,8 +70,8 @@ namespace Tests.ExternalMemberT
         [Fact]
         public void restore_member_doesnt_generates_events()
         {
-            var member = new ExternalMember(Guid.NewGuid(), Setup.GetAutoFixture().Create<ExternalMemberId>(),
-                                            "display name", MemberStatus.Locked);
+            var member = new ExternalMember(Guid.NewGuid(), Setup.GetAutoFixture().Create<ExternalMemberId>(), ScopeId.None,
+                                            displayName: "display name", status: MemberStatus.Locked);
             member.GetGeneratedEvents().Should().BeEmpty();
         }
 

@@ -30,6 +30,7 @@ namespace Tests.LocalMemberT
             state.Status.Should().Be(m.Status);
             state.DisplayName.Should().Be(m.DisplayName);
             state.RegisteredOn.Should().Be(m.RegisteredOn);
+            state.Scope.Should().Be(m.Scope);
         }
 
         public static LocalMember.Memento CreateMemento()
@@ -55,6 +56,7 @@ namespace Tests.LocalMemberT
             member.DisplayName.Should().Be(m.DisplayName);
             member.Status.Should().Be(m.Status);
             member.RegisteredOn.Should().Be(m.RegisteredOn);
+            member.Scope.Should().Be(m.Scope);
         }
 
         [Fact]

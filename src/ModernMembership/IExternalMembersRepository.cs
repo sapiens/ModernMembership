@@ -10,6 +10,7 @@
         /// <param name="member"></param>
         void Add(ExternalMember member);
 
+        void Save(ExternalMember member);
         ExternalMember GetMember(ExternalMemberId id);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using CavemanTools.Web;
 using FakeItEasy;
 using ModernMembership;
+using ModernMembership.Authorization;
 using Ploeh.AutoFixture;
 using Xunit;
 using System;

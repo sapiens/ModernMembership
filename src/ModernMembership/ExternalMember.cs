@@ -10,13 +10,14 @@ namespace ModernMembership
         private readonly Guid _id;
         private readonly ExternalMemberId _externalId;
 
-        public ExternalMember(Guid id, ExternalMemberId externalId,string displayName=null,MemberStatus status=ModernMembership.MemberStatus.Active)
+        public ExternalMember(Guid id, ExternalMemberId externalId, ScopeId scope, string displayName = null, MemberStatus status = ModernMembership.MemberStatus.Active)
         {
            DisplayName = displayName;
             externalId.MustNotBeNull();
             _id = id;
             _externalId = externalId;
             _status = status;
+            Scope = scope;
         }
 
         public Guid Id
@@ -41,6 +42,8 @@ namespace ModernMembership
                 _events.Add(new MemberStatusChanged(Id,_status));
             }
         }
+
+        public ScopeId Scope { get; private set; }
 
         List<IEvent> _events =new List<IEvent>();
         private MemberStatus _status;

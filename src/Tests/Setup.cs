@@ -1,6 +1,7 @@
 ﻿using System;
 using CavemanTools.Model.ValueObjects;
 using CavemanTools.Web;
+using ModernMembership.Authorization;
 using Ploeh.AutoFixture;
 
 namespace Tests
@@ -29,6 +30,11 @@ namespace Tests
             {
                 return new SetupPassword();
             }
+        }
+
+        public static RightsGroup CreateRightsGroup()
+        {
+            return new RightsGroup(Guid.NewGuid(),new GroupName("test"));
         }
     }
 

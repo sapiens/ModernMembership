@@ -16,7 +16,7 @@ namespace ModernMembership
         private Email _email;
 
         public LocalMember(Memento state)
-            : this(state.Id, state.LoginId, state.Password, state.Email)
+            : this(state.Id, state.LoginId, state.Password, state.Email, state.Scope)
         {
             state.MustNotBeNull();
             DisplayName = state.DisplayName;
@@ -24,7 +24,7 @@ namespace ModernMembership
             _status = state.Status;            
         }
 
-        public LocalMember(Guid id,LoginName loginId, PasswordHash password, Email email)
+        public LocalMember(Guid id, LoginName loginId, PasswordHash password, Email email, ScopeId scopeId)
         {
             loginId.MustNotBeNull();
             password.MustNotBeNull();
@@ -34,7 +34,8 @@ namespace ModernMembership
             _password = password;
             _email = email;
             _status=MemberStatus.NeedsActivation;
-            RegisteredOn = DateTime.UtcNow;           
+            RegisteredOn = DateTime.UtcNow;
+            Scope = scopeId;
         }
 
         /// <summary>
@@ -94,6 +95,8 @@ namespace ModernMembership
             get { return _id; }
         }
 
+        public ScopeId Scope { get; private set; }
+
         List<MemberEvent> _events=new List<MemberEvent>();
         private MemberStatus _status;
         
@@ -117,7 +120,8 @@ namespace ModernMembership
                     LoginId = LoginId,
                     Password = Password,
                     RegisteredOn = RegisteredOn,
-                    Status = Status
+                    Status = Status,
+                    Scope = Scope
                 };
             return state;            
         }
@@ -134,6 +138,7 @@ namespace ModernMembership
             public MemberStatus Status;
             public string DisplayName;
             public DateTime RegisteredOn;
+            public ScopeId Scope;
         }
        
     }

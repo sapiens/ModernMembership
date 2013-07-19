@@ -33,6 +33,9 @@
     <Reference Include="CavemanTools">
       <HintPath>..\ModernMembership\packages\CavemanTools.dll</HintPath>
     </Reference>
+    <Reference Include="CavemanTools.Web">
+      <HintPath>..\ModernMembership\bin\Debug\CavemanTools.Web.dll</HintPath>
+    </Reference>
     <Reference Include="DomainBus.Concepts">
       <HintPath>..\ModernMembership\packages\DomainBus.Concepts.dll</HintPath>
     </Reference>
@@ -46,10 +49,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Events\GroupNameChanged.cs" />
+    <Compile Include="Events\UsersAddedToGroup.cs" />
+    <Compile Include="Events\UsersRemovedFromGroup.cs" />
     <Compile Include="GroupName.cs" />
+    <Compile Include="IManageUserRights.cs" />
+    <Compile Include="IRightGroupsRepository.cs" />
+    <Compile Include="IUserGroupsRepository.cs" />
+    <Compile Include="IUserRightsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RightsGroup.cs" />
-    <Compile Include="ScopeId.cs" />
+    <Compile Include="UserGroup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ModernMembership\ModernMembership.csproj">
+      <Project>{B254E7E0-3FD1-4CB3-B068-60EBED313C02}</Project>
+      <Name>ModernMembership</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

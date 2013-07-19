@@ -66,6 +66,7 @@
     <Compile Include="Authentication\AuthenticationServiceLocalMemberTests.cs" />
     <Compile Include="AuthorizationT\GroupNameTests.cs" />
     <Compile Include="AuthorizationT\RightsGroupT.cs" />
+    <Compile Include="AuthorizationT\UserGroupsT.cs" />
     <Compile Include="ExternalMemberT\ExternalMemberIdTests.cs" />
     <Compile Include="ExternalMemberT\ExternalMemberT.cs" />
     <Compile Include="LocalMemberT\ChangeLocalMember.cs" />

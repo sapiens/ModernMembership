@@ -78,5 +78,5 @@ namespace ModernMembership.Authorization
                     Id=Id,Name = Name,Rights = _rights.ToArray(),Scope = Scope
                 };
         }
-    }
+      }
 }
