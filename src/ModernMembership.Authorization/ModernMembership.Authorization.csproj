@@ -52,7 +52,7 @@
     <Compile Include="Events\UsersAddedToGroup.cs" />
     <Compile Include="Events\UsersRemovedFromGroup.cs" />
     <Compile Include="GroupName.cs" />
-    <Compile Include="IManageUserRights.cs" />
+    <Compile Include="UserRights.cs" />
     <Compile Include="IRightGroupsRepository.cs" />
     <Compile Include="IUserGroupsRepository.cs" />
     <Compile Include="IUserRightsService.cs" />

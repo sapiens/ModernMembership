@@ -1,6 +1,7 @@
 ﻿using System;
 using CavemanTools.Model.ValueObjects;
 using CavemanTools.Web;
+using ModernMembership;
 using ModernMembership.Authorization;
 using Ploeh.AutoFixture;
 
@@ -14,7 +15,9 @@ namespace Tests
             return _fixture;
         }
 
-        public static Guid Id=Guid.NewGuid();
+        public static Guid AnId=Guid.NewGuid();
+
+        public static ScopeId AScope=new ScopeId(Guid.NewGuid());
 
         public static Email SomeEmail
         {

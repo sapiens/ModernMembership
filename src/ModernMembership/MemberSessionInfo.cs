@@ -7,17 +7,25 @@ namespace ModernMembership
         private readonly Guid _id;
         private readonly string _displayName;
 
-        public MemberSessionInfo(Guid id,MemberSessionInfoStatus state,MemberStatus memberStatus)
+        public MemberSessionInfo(Guid id,MemberSessionInfoStatus state,MemberStatus memberStatus,ScopeId scope)
         {
             Status = state;
             _id = id;
             MemberStatus = memberStatus;
+            Scope = scope;
         }
 
-        public MemberSessionInfo(Guid id,string displayName)
+        /// <summary>
+        /// COnstructor for member authenticated
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="displayName"></param>
+        public MemberSessionInfo(Guid id,string displayName,ScopeId scope)
         {
+            Scope = scope;
             _id = id;
             _displayName = displayName;
+            MemberStatus=MemberStatus.Active;
         }
 
         public Guid Id
@@ -32,7 +40,7 @@ namespace ModernMembership
 
         public MemberSessionInfoStatus Status { get; private set; }
         public MemberStatus MemberStatus { get; private set; }
-
+        public ScopeId Scope { get; private set; }
     }
 
     public enum MemberSessionInfoStatus

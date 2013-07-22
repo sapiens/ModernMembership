@@ -1,4 +1,7 @@
-﻿namespace ModernMembership
+﻿using System;
+using CavemanTools.Model;
+
+namespace ModernMembership
 {
     public interface IExternalMembersRepository
     {
@@ -12,5 +15,8 @@
 
         void Save(ExternalMember member);
         ExternalMember GetMember(ExternalMemberId id);
+
+        PagedResult<ExternalMember> GetAll(int skip, int take);
+        void Delete(params Guid[] ids);
     }
 }

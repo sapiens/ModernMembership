@@ -10,7 +10,8 @@ namespace ModernMembership
         /// <param name="loginId"></param>
         /// <param name="pwd"></param>
         /// <param name="hasher">Default is CavemanHashStrategy</param>
+        /// <param name="scope">Use ScopeId.None for global scope</param>
         /// <returns></returns>
-        MemberSessionInfo Authenticate(string loginId, string pwd, IHashPassword hasher = null);
+        MemberSessionInfo Authenticate(string loginId, string pwd, IHashPassword hasher = null, ScopeId scope = null);
     }
 }

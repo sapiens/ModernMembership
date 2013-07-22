@@ -5,17 +5,19 @@ namespace ModernMembership.Authorization
 {
     public interface IUserGroupsRepository
     {
-        //void AddUsersToGroup(Guid grpId, params Guid[] userIds);
-        //void MakeUserPartOfGroups(Guid userId, params Guid[] groupIds);
-
-        //void RemoveUserFromGroup(Guid userId, Guid grpId);
+        void Add(UserGroup group);
         UserGroup Get(Guid groupId);
         void Save(params UserGroup[] group);
         void Delete(Guid grpId);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="skip"></param>
+        /// <param name="take"></param>
+        /// <param name="scope">Use ScopeId.None for global scope</param>
+        /// <returns></returns>
+        PagedResult<UserGroup> GetAll(int skip, int take, ScopeId scope);
     }
 
-    public interface IQueryUserGroups
-    {
-        //PagedResult<UserGroup> 
-    }
+   
 }

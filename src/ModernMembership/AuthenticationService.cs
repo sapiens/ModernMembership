@@ -11,9 +11,9 @@ namespace ModernMembership
             _repository = repository;
         }
 
-        public MemberSessionInfo Authenticate(string loginId, string pwd, IHashPassword hasher = null)
+        public MemberSessionInfo Authenticate(string loginId, string pwd, IHashPassword hasher = null, ScopeId scope = null)
         {
-            var member = _repository.GetMember(new LoginName(loginId));
+            var member = _repository.GetMember(new LoginName(loginId),scope);
             if (member == null)
             {
                 return null;
@@ -23,15 +23,15 @@ namespace ModernMembership
             var hash = hasher.Hash(pwd, member.Password.Salt);
             if (!member.Password.Matches(hash))
             {
-                return new MemberSessionInfo(member.Id,MemberSessionInfoStatus.PasswordFailed,member.Status);
+                return new MemberSessionInfo(member.Id,MemberSessionInfoStatus.PasswordFailed,member.Status,scope);
             }
 
             if (member.Status != MemberStatus.Active)
             {
-                return new MemberSessionInfo(member.Id,MemberSessionInfoStatus.MemberInactive,member.Status);
+                return new MemberSessionInfo(member.Id,MemberSessionInfoStatus.MemberInactive,member.Status,scope);
             }
 
-            return new MemberSessionInfo(member.Id,member.DisplayName);
+            return new MemberSessionInfo(member.Id,member.DisplayName,scope);
         }
     }
 }

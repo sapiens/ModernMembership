@@ -14,13 +14,33 @@ namespace ModernMembership
         /// <param name="member"></param>
         void Add(LocalMember member);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="DuplicateEmailException"></exception>
+        /// <param name="member"></param>
         void Save(LocalMember member);
 
         LocalMember GetMember(Guid id);
         LocalMember GetMember(Email email);
-        LocalMember GetMember(LoginName id);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="scope">Use ScopeId.None for global scope</param>
+        /// <returns></returns>
+        LocalMember GetMember(LoginName id, ScopeId scope);
 
-        PagedResult<LocalMember> GetMembers(long skip,int take);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="skip"></param>
+        /// <param name="take"></param>
+        /// <param name="scope">Use ScopeId.None for global scope</param>
+        /// <returns></returns>
+        PagedResult<LocalMember> GetMembers(long skip,int take,ScopeId scope);
+
+        void Delete(params Guid[] ids);
     }
     
 }
