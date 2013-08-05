@@ -28,6 +28,7 @@ namespace ModernMembership.Authorization
             _name = name;
             _rights = new List<short>();
             Scope = scope;
+            _events.Add(new RightsGroupCreated(this));
         }
 
         public Guid Id

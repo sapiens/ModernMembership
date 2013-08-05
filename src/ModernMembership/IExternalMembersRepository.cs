@@ -16,7 +16,7 @@ namespace ModernMembership
         void Save(ExternalMember member);
         ExternalMember GetMember(ExternalMemberId id);
 
-        PagedResult<ExternalMember> GetAll(int skip, int take);
+        PagedResult<ExternalMember> GetMembers(int skip, int take);
         void Delete(params Guid[] ids);
     }
 }

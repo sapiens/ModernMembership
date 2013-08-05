@@ -54,7 +54,9 @@
     <Compile Include="DuplicateLoginIdException.cs" />
     <Compile Include="DuplicateMemberIdException.cs" />
     <Compile Include="Events\Extensions.cs" />
+    <Compile Include="Events\ExternalMemberDeleted.cs" />
     <Compile Include="Events\LocalMemberAdded.cs" />
+    <Compile Include="Events\LocalMemberDeleted.cs" />
     <Compile Include="Events\MemberEmailChanged.cs" />
     <Compile Include="Events\MemberPasswordChanged.cs" />
     <Compile Include="Events\MemberStatusChanged.cs" />

@@ -48,7 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventHandlers\MemberAndGroupsIntegration.cs" />
+    <Compile Include="EventHandlers\RightsUserGroupsIntegrator.cs" />
     <Compile Include="Events\GroupNameChanged.cs" />
+    <Compile Include="Events\RightsGroupCreated.cs" />
     <Compile Include="Events\UsersAddedToGroup.cs" />
     <Compile Include="Events\UsersRemovedFromGroup.cs" />
     <Compile Include="GroupName.cs" />

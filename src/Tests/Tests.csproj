@@ -67,12 +67,17 @@
     <Compile Include="AuthorizationT\GroupNameTests.cs" />
     <Compile Include="AuthorizationT\RightsGroupT.cs" />
     <Compile Include="AuthorizationT\UserGroupsT.cs" />
+    <Compile Include="EventHandlers\WhenRightGroupIsDeleted.cs" />
+    <Compile Include="EventHandlers\WhenRightsGroupIsCreated.cs" />
+    <Compile Include="EventHandlers\WhenUserIsDeleted.cs" />
     <Compile Include="ExternalMemberT\ExternalMemberIdTests.cs" />
     <Compile Include="ExternalMemberT\ExternalMemberT.cs" />
     <Compile Include="LocalMemberT\ChangeLocalMember.cs" />
     <Compile Include="LocalMemberT\LocalMemberPersistence.cs" />
     <Compile Include="LocalMemberT\NewLocalMemberShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VirtualScenarios\MembershipScenarios.cs" />
+    <Compile Include="VirtualScenarios\UserGroupsScenarios.cs" />
     <Compile Include="Setup.cs" />
   </ItemGroup>
   <ItemGroup>
