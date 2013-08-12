@@ -48,7 +48,7 @@ namespace Tests.AuthorizationT
         [Fact]
         public void name_change_generates_proper_event()
         {
-            var grp = Setup.CreateRightsGroup();
+            var grp = Setup.CreateExistingRightsGroup();
             grp.Name=new GroupName("bla");
             var evnt = grp.GetGeneratedEvents().First().Cast<GroupNameChanged>();
             evnt.Id.Should().Be(grp.Id);

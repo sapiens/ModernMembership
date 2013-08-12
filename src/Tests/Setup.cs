@@ -39,6 +39,14 @@ namespace Tests
         {
             return new RightsGroup(Guid.NewGuid(),new GroupName("test"));
         }
+
+        public static RightsGroup CreateExistingRightsGroup()
+        {
+            return new RightsGroup(new RightsGroup.Memento()
+                {
+                    Id=Guid.NewGuid(),Name = new GroupName("test")
+                });
+        }
     }
 
     public class SetupPassword

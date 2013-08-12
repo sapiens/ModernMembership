@@ -18,6 +18,7 @@ namespace ModernMembership.Authorization
             {
                 _rights.AddRange(init.Rights);
             }
+            _events.Clear();
         }
 
         public RightsGroup(Guid id, GroupName name,ScopeId scope=null)

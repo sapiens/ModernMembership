@@ -23,14 +23,4 @@ namespace ModernMembership.Authorization.Events
 
         public GroupName Name { get; set; }
     }
-
-    public class RightsGroupDeleted:AbstractEvent
-    {
-        public Guid GroupId { get; set; }
-
-        public RightsGroupDeleted(Guid groupId)
-        {
-            GroupId = groupId;
-        }
-    }
 }

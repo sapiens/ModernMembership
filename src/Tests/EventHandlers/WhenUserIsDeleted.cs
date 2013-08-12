@@ -42,9 +42,9 @@ namespace Tests.EventHandlers
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
-        public void is_removed_from_groups(bool local)
+        public void is_removed_from_groups(bool localMember)
         {
-            if (local)
+            if (localMember)
             {
                 _sut.Handle(new LocalMemberDeleted(_userId));
             }
@@ -63,9 +63,9 @@ namespace Tests.EventHandlers
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
-        public void user_removal_events_are_published(bool local)
+        public void user_removal_events_are_published(bool localMember)
         {
-            if (local)
+            if (localMember)
             {
                 _sut.Handle(new LocalMemberDeleted(_userId));
             }
