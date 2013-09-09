@@ -5,7 +5,7 @@ namespace ModernMembership
 {
     public class ScopeId:AbstractValueObject<Guid>,IEquatable<ScopeId>
     {
-        public static ScopeId None = null;
+        public static ScopeId Global = new ScopeId(Guid.Empty);
 
         public ScopeId(Guid value) : base(value)
         {
@@ -28,5 +28,20 @@ namespace ModernMembership
             if (other == null) return false;
             return _value == other._value;
         }
+
+        public override bool Equals(object obj)
+        {
+            return Equals((ScopeId) obj);
+        }
+
+        //public static bool operator ==(ScopeId scope1,ScopeId scope2)
+        //{
+        //    return scope1.Equals(scope2);
+        //}
+
+        //public static bool operator !=(ScopeId scope1, ScopeId scope2)
+        //{
+        //    return !(scope1 == scope2);
+        //}
     }
 }

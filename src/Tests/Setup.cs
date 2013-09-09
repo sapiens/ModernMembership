@@ -3,6 +3,7 @@ using CavemanTools.Model.ValueObjects;
 using CavemanTools.Web;
 using ModernMembership;
 using ModernMembership.Authorization;
+using ModernMembership.Web;
 using Ploeh.AutoFixture;
 
 namespace Tests
@@ -18,6 +19,20 @@ namespace Tests
         public static Guid AnId=Guid.NewGuid();
 
         public static ScopeId AScope=new ScopeId(Guid.NewGuid());
+
+
+        public static CavemanMemberSession AnonymousMemberSession()
+        {
+            return new CavemanMemberSession();
+        }
+
+        static SetupUserRights userRights=new SetupUserRights();
+
+
+        public static SetupUserRights UserRights
+        {
+            get { return userRights; }
+        }
 
         public static Email SomeEmail
         {
@@ -48,6 +63,19 @@ namespace Tests
                 });
         }
     }
+
+    public class SetupUserRights
+    {
+        public ScopedRights GlobalAdminRights=new ScopedRights(ScopeId.Global,new[]{ScopedRights.GlobalAdmin});
+        
+        public ScopedRights ScopedAdminRights=new ScopedRights(Setup.AScope,new[]{ScopedRights.ScopedAdmin});
+        public const short Right1 = 1;
+        public const short Right2 = 3;
+        public ScopedRights SomeRights= new ScopedRights(new ScopeId(Setup.AnId), new short[]{Right1,Right2});
+        
+    }
+
+
 
     public class SetupPassword
     {

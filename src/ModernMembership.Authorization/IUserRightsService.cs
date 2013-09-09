@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ModernMembership.Authorization
 {
     public interface IUserRightsService
     {
-        IUserRights GetRights(Guid userId,ScopeId scope);        
+        IEnumerable<ScopedRights> GetRights(Guid userId);        
     }
 }

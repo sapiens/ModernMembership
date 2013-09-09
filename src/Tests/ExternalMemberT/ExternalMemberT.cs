@@ -21,7 +21,7 @@ namespace Tests.ExternalMemberT
 
         public static ExternalMember Create()
         {
-            return new ExternalMember(Guid.NewGuid(),new ExternalMemberId("fdb","23"), ScopeId.None);
+            return new ExternalMember(Guid.NewGuid(),new ExternalMemberId("fdb","23"), ScopeId.Global);
         }
 
         [Fact]
@@ -47,7 +47,7 @@ namespace Tests.ExternalMemberT
         [Fact]
         public void can_accept_displayname_at_creation()
         {
-            var m = new ExternalMember(Guid.NewGuid(), Setup.GetAutoFixture().Create<ExternalMemberId>(), ScopeId.None,displayName: "hi");
+            var m = new ExternalMember(Guid.NewGuid(), Setup.GetAutoFixture().Create<ExternalMemberId>(), ScopeId.Global,displayName: "hi");
             m.DisplayName.Should().Be("hi");
         }
 
@@ -70,7 +70,7 @@ namespace Tests.ExternalMemberT
         [Fact]
         public void restore_member_doesnt_generates_events()
         {
-            var member = new ExternalMember(Guid.NewGuid(), Setup.GetAutoFixture().Create<ExternalMemberId>(), ScopeId.None,
+            var member = new ExternalMember(Guid.NewGuid(), Setup.GetAutoFixture().Create<ExternalMemberId>(), ScopeId.Global,
                                             displayName: "display name", status: MemberStatus.Locked);
             member.GetGeneratedEvents().Should().BeEmpty();
         }

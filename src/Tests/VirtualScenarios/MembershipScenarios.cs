@@ -38,7 +38,7 @@ namespace Tests.VirtualScenarios
         
         public void can_get_paged_list_of_local_members()
         {
-            _localRepo.GetMembers(10, 15, ScopeId.None);//can be scoped
+            _localRepo.GetMembers(10, 15, ScopeId.Global);//can be scoped
         }
         
         public void can_get_paged_list_of_external_members()

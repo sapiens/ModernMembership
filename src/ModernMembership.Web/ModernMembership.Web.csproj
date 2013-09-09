@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F3073B7C-8DE2-4DD7-AD86-94994D900B45}</ProjectGuid>
+    <ProjectGuid>{DC623004-BEED-438D-BD36-F60ACC8D0FC0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ModernMembership.Authorization</RootNamespace>
-    <AssemblyName>ModernMembership.Authorization</AssemblyName>
+    <RootNamespace>ModernMembership.Web</RootNamespace>
+    <AssemblyName>ModernMembership.Web</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,12 +33,6 @@
     <Reference Include="CavemanTools">
       <HintPath>..\ModernMembership\packages\CavemanTools.dll</HintPath>
     </Reference>
-    <Reference Include="CavemanTools.Web">
-      <HintPath>..\ModernMembership\bin\Debug\CavemanTools.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="DomainBus.Concepts">
-      <HintPath>..\ModernMembership\packages\DomainBus.Concepts.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,25 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EventHandlers\MemberAndGroupsIntegration.cs" />
-    <Compile Include="EventHandlers\RightsUserGroupsIntegrator.cs" />
-    <Compile Include="Events\GroupNameChanged.cs" />
-    <Compile Include="Events\RightsGroupCreated.cs" />
-    <Compile Include="Events\RightsGroupDeleted.cs" />
-    <Compile Include="Events\UsersAddedToGroup.cs" />
-    <Compile Include="Events\UsersRemovedFromGroup.cs" />
-    <Compile Include="GroupName.cs" />
-    <Compile Include="ScopedRights.cs" />
-    <Compile Include="IRightGroupsRepository.cs" />
-    <Compile Include="IUserGroupsRepository.cs" />
-    <Compile Include="IUserRightsService.cs" />
+    <Compile Include="IMemberSessionsService.cs" />
+    <Compile Include="CavemanMemberSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RightsGroup.cs" />
-    <Compile Include="UserGroup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ModernMembership.Authorization\ModernMembership.Authorization.csproj">
+      <Project>{f3073b7c-8de2-4dd7-ad86-94994d900b45}</Project>
+      <Name>ModernMembership.Authorization</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ModernMembership\ModernMembership.csproj">
-      <Project>{B254E7E0-3FD1-4CB3-B068-60EBED313C02}</Project>
+      <Project>{b254e7e0-3fd1-4cb3-b068-60ebed313c02}</Project>
       <Name>ModernMembership</Name>
     </ProjectReference>
   </ItemGroup>

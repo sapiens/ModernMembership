@@ -20,7 +20,7 @@ namespace Tests.Authentication
         {
             _repo = A.Fake<ILocalMembersRepository>();
             _sut = new AuthenticationService(_repo);
-            A.CallTo(() => _repo.GetMember(new LoginName("existent"), ScopeId.None)).Returns(SetupMember("existent"));
+            A.CallTo(() => _repo.GetMember(new LoginName("existent"), ScopeId.Global)).Returns(SetupMember("existent"));
         }
 
         LocalMember SetupMember(string name,MemberStatus state=MemberStatus.Active,ScopeId scope=null)
@@ -45,7 +45,7 @@ namespace Tests.Authentication
             result.Status.Should().Be(MemberSessionInfoStatus.Authenticated);
             result.DisplayName.Should().Be("existent display");
             result.MemberStatus.Should().Be(MemberStatus.Active);
-            result.Scope.Should().Be(ScopeId.None);
+            result.Scope.Should().Be(ScopeId.Global);
         }
 
 
@@ -60,7 +60,7 @@ namespace Tests.Authentication
         [Fact]
         public void authenticating_an_existing_non_active_member_returns_inactive_session()
         {
-            A.CallTo(() => _repo.GetMember(new LoginName("existent"),ScopeId.None)).Returns(SetupMember("existent",MemberStatus.Locked));
+            A.CallTo(() => _repo.GetMember(new LoginName("existent"),ScopeId.Global)).Returns(SetupMember("existent",MemberStatus.Locked));
             var result=_sut.Authenticate("existent", Setup.APassword.Value);
             result.Status.Should().Be(MemberSessionInfoStatus.MemberInactive);
             result.MemberStatus.Should().Be(MemberStatus.Locked);
@@ -94,7 +94,7 @@ namespace Tests.Authentication
         public void authenticating_a_scoped_user_in_global_scope_returns_null()
         {
             A.CallTo(() => _repo.GetMember(new LoginName("scoped"), Setup.AScope)).Returns(SetupMember("scoped", scope: Setup.AScope));
-            _sut.Authenticate("scoped", Setup.APassword.Value, scope:ScopeId.None).Should().BeNull();
+            _sut.Authenticate("scoped", Setup.APassword.Value, scope:ScopeId.Global).Should().BeNull();
         }
 
 

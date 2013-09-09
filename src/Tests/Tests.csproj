@@ -66,6 +66,7 @@
     <Compile Include="Authentication\AuthenticationServiceLocalMemberTests.cs" />
     <Compile Include="AuthorizationT\GroupNameTests.cs" />
     <Compile Include="AuthorizationT\RightsGroupT.cs" />
+    <Compile Include="AuthorizationT\ScopedRightsTests.cs" />
     <Compile Include="AuthorizationT\UserGroupsT.cs" />
     <Compile Include="EventHandlers\WhenRightGroupIsDeleted.cs" />
     <Compile Include="EventHandlers\WhenRightsGroupIsCreated.cs" />
@@ -79,6 +80,8 @@
     <Compile Include="VirtualScenarios\MembershipScenarios.cs" />
     <Compile Include="VirtualScenarios\UserGroupsScenarios.cs" />
     <Compile Include="Setup.cs" />
+    <Compile Include="Web\AnonymousMemberSessionTests.cs" />
+    <Compile Include="Web\MemberSessionT.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -87,6 +90,10 @@
     <ProjectReference Include="..\ModernMembership.Authorization\ModernMembership.Authorization.csproj">
       <Project>{f3073b7c-8de2-4dd7-ad86-94994d900b45}</Project>
       <Name>ModernMembership.Authorization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ModernMembership.Web\ModernMembership.Web.csproj">
+      <Project>{dc623004-beed-438d-bd36-f60acc8d0fc0}</Project>
+      <Name>ModernMembership.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\ModernMembership\ModernMembership.csproj">
       <Project>{b254e7e0-3fd1-4cb3-b068-60ebed313c02}</Project>
