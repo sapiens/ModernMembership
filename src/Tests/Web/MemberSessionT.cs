@@ -16,7 +16,17 @@ namespace Tests.Web
 
         public MemberSessionT()
         {
-            _sut = new CavemanMemberSession(Setup.AnId, Setup.AnId, "name", new[] { new ScopedRights(Setup.AScope, new short[] { SetupUserRights.Right1, SetupUserRights.Right2 }) });
+            var data = new SessionStorageData()
+                {
+                    Id = Setup.AnId,
+                    MemberInfo = new MemberSessionData()
+                        {
+                            MemberId = Setup.AnId,
+                            MemberName = "name",
+                            Rights = new[] { new ScopedRights(Setup.AScope, new short[] { SetupUserRights.Right1, SetupUserRights.Right2 }) }
+                        }
+                };
+            _sut = new CavemanMemberSession(data);
         }
 
         [Fact]
@@ -28,7 +38,7 @@ namespace Tests.Web
         [Fact]
         public void session_has_unique_id()
         {
-            _sut.SessionId.Should().Be(Setup.AnId);
+            _sut.Info.Id.Should().Be(Setup.AnId);
         }
 
         [Fact]
@@ -40,7 +50,7 @@ namespace Tests.Web
         [Fact]
         public void user_id_is_set()
         {
-            _sut.UserId.Should().Be(Setup.AnId);
+            _sut.MemberId.Should().Be(Setup.AnId);
         }
 
         [Fact]
@@ -97,9 +107,19 @@ namespace Tests.Web
                 sut.HasRight(4, 2).Should().BeFalse();
             }
 
-            CavemanMemberSession GetSut(IEnumerable<ScopedRights> rights)
+            public static CavemanMemberSession GetSut(IEnumerable<ScopedRights> rights)
             {
-                return new CavemanMemberSession(Guid.NewGuid(), Guid.NewGuid(), "bla",rights);
+                var data = new SessionStorageData()
+                {
+                    Id = Setup.AnId,
+                    MemberInfo = new MemberSessionData()
+                    {
+                        MemberId = Setup.AnId,
+                        MemberName = "name",
+                        Rights = rights
+                    }
+                };
+                return new CavemanMemberSession(data);
             }
         }
     }

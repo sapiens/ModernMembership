@@ -27,7 +27,7 @@ namespace ModernMembership
         /// 
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="scope">Use ScopeId.None for global scope</param>
+        /// <param name="scope">Use ScopeId.Global for global scope</param>
         /// <returns></returns>
         LocalMember GetMember(LoginName id, ScopeId scope);
 
@@ -36,7 +36,7 @@ namespace ModernMembership
         /// </summary>
         /// <param name="skip"></param>
         /// <param name="take"></param>
-        /// <param name="scope">Use ScopeId.None for global scope</param>
+        /// <param name="scope">Use ScopeId.Global for global scope</param>
         /// <returns></returns>
         PagedResult<LocalMember> GetMembers(long skip,int take,ScopeId scope);
 

@@ -9,8 +9,9 @@ namespace ModernMembership.Web
     public class CavemanMemberSession:IIdentity
     {
         private readonly IEnumerable<ScopedRights> _rights=new ScopedRights[0];
-        public Guid SessionId { get; private set; }
-        public Guid UserId { get; private set; }
+        public Guid MemberId { get; private set; }
+
+        public SessionData Info { get; private set; }
 
         /// <summary>
         /// Authentication type
@@ -26,14 +27,15 @@ namespace ModernMembership.Web
             Scope = ScopeId.Global;
         }
 
-        public CavemanMemberSession(Guid sessionId,Guid userId,string name,IEnumerable<ScopedRights> rights)
+        
+        public CavemanMemberSession(SessionStorageData session)
         {
-            rights.MustNotBeNull();
-            name.MustNotBeEmpty();
-            _rights = rights;
-            SessionId = sessionId;
-            UserId = userId;
-            Name = name;
+            session.MustNotBeNull();
+            Info = session;
+            _rights = session.MemberInfo.Rights;
+           
+            MemberId = session.MemberInfo.MemberId;
+            Name = session.MemberInfo.MemberName;
             IsAuthenticated = true;
             Scope = ScopeId.Global;
         }

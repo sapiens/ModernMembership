@@ -5,7 +5,7 @@ namespace ModernMembership
 {
     public class ScopeId:AbstractValueObject<Guid>,IEquatable<ScopeId>
     {
-        public static ScopeId Global = new ScopeId(Guid.Empty);
+        public static readonly ScopeId Global = new ScopeId(Guid.Empty);
 
         public ScopeId(Guid value) : base(value)
         {

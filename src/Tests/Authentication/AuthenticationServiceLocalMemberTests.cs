@@ -33,7 +33,7 @@ namespace Tests.Authentication
                     ,Password = Setup.APassword.Hash
                     ,DisplayName = name+" display"
                     ,Status = state
-                    ,Scope = scope
+                    ,Scope = scope??ScopeId.Global
                 };
             return new LocalMember(init);
         }

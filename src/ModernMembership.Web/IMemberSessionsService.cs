@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Security.Principal;
 
 namespace ModernMembership.Web
 {
@@ -10,15 +9,16 @@ namespace ModernMembership.Web
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        IIdentity Get(Guid id);
+        CavemanMemberSession Get(Guid id);
 
         /// <summary>
         /// Returns the login session id
         /// </summary>
         /// <param name="data"></param>
-        /// <param name="valability">Duration of the session</param>
+        /// <param name="duration">Duration of the session</param>
+        /// <param name="sliding">True to automatically extend session when it's close to the end</param>
         /// <returns></returns>
-     //   Guid StartSession(AuthenticationData data, TimeSpan valability);
+        Guid StartSession(MemberSessionData data, TimeSpan duration,bool sliding=true);
         /// <summary>
         /// Logout
         /// </summary>

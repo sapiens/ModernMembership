@@ -29,13 +29,13 @@ namespace Tests.Web
         [Fact]
         public void user_id_is_empty()
         {
-            _sut.UserId.Should().Be(Guid.Empty);
+            _sut.MemberId.Should().Be(Guid.Empty);
         }
 
         [Fact]
         public void session_id_is_empty()
         {
-            _sut.SessionId.Should().Be(Guid.Empty);
+            _sut.Info.Should().BeNull();
         }
 
 

@@ -13,6 +13,7 @@ namespace ModernMembership
 
         public MemberSessionInfo Authenticate(string loginId, string pwd, IHashPassword hasher = null, ScopeId scope = null)
         {
+            if (scope == null) scope = ScopeId.Global;
             var member = _repository.GetMember(new LoginName(loginId),scope);
             if (member == null)
             {
