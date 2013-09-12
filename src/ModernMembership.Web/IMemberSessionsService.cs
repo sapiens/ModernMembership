@@ -9,7 +9,7 @@ namespace ModernMembership.Web
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        CavemanMemberSession Get(Guid id);
+        MemberSessionPrincipal Get(Guid id);
 
         /// <summary>
         /// Returns the login session id

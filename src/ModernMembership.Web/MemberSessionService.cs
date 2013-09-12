@@ -21,7 +21,7 @@ namespace ModernMembership.Web
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public CavemanMemberSession Get(Guid id)
+        public MemberSessionPrincipal Get(Guid id)
         {
             var key = GenerateCacheKey(id);
             //var expiration = DateTimeOffset.Now.Add(CacheDuration);
@@ -50,7 +50,7 @@ namespace ModernMembership.Web
                 _storage.Update(session);
             }
 
-            return new CavemanMemberSession(session);
+            return new MemberSessionPrincipal(session);
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace ModernMembership.Web
             var id = Guid.NewGuid();
             var sessionData = new SessionStorageData()
                 {
-                    MemberInfo = data,Duration = duration, Id = id,Sliding = sliding,ExpiresOn = DateTime.UtcNow.Add(duration)
+                    MemberInfo = data,Duration = duration, Id = id,IsSliding = sliding,ExpiresOn = DateTime.UtcNow.Add(duration)
                 };
             _storage.Add(sessionData);
             return id;

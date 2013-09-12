@@ -7,11 +7,11 @@ namespace Tests.Web
 {
     public class AnonymousMemberSessionTests
     {
-        private CavemanMemberSession _sut;
+        private MemberSessionPrincipal _sut;
 
         public AnonymousMemberSessionTests()
         {
-            _sut = new CavemanMemberSession();
+            _sut = new MemberSessionPrincipal();
         }
 
         [Fact]

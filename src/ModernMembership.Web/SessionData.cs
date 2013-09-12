@@ -6,7 +6,8 @@ namespace ModernMembership.Web
     {
         public Guid Id { get; set; }
         public TimeSpan Duration { get; set; }
-        public bool Sliding { get; set; }
+        public bool IsSliding { get; set; }
         public DateTime ExpiresOn { get; set; }
+        
     }
 }

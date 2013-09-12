@@ -6,7 +6,7 @@ using ModernMembership.Authorization;
 
 namespace ModernMembership.Web
 {
-    public class CavemanMemberSession:IIdentity
+    public class MemberSessionPrincipal:IIdentity
     {
         private readonly IEnumerable<ScopedRights> _rights=new ScopedRights[0];
         public Guid MemberId { get; private set; }
@@ -21,14 +21,14 @@ namespace ModernMembership.Web
         /// <summary>
         /// Creates an anonymous session
         /// </summary>
-        public CavemanMemberSession()
+        public MemberSessionPrincipal()
         {
             IsAuthenticated = false;
             Scope = ScopeId.Global;
         }
 
         
-        public CavemanMemberSession(SessionStorageData session)
+        public MemberSessionPrincipal(SessionStorageData session)
         {
             session.MustNotBeNull();
             Info = session;

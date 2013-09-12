@@ -12,7 +12,7 @@ namespace Tests.Web
     public class MemberSessionT
     {
         private Stopwatch _t = new Stopwatch();
-        private CavemanMemberSession _sut;
+        private MemberSessionPrincipal _sut;
 
         public MemberSessionT()
         {
@@ -26,7 +26,7 @@ namespace Tests.Web
                             Rights = new[] { new ScopedRights(Setup.AScope, new short[] { SetupUserRights.Right1, SetupUserRights.Right2 }) }
                         }
                 };
-            _sut = new CavemanMemberSession(data);
+            _sut = new MemberSessionPrincipal(data);
         }
 
         [Fact]
@@ -107,7 +107,7 @@ namespace Tests.Web
                 sut.HasRight(4, 2).Should().BeFalse();
             }
 
-            public static CavemanMemberSession GetSut(IEnumerable<ScopedRights> rights)
+            public static MemberSessionPrincipal GetSut(IEnumerable<ScopedRights> rights)
             {
                 var data = new SessionStorageData()
                 {
@@ -119,7 +119,7 @@ namespace Tests.Web
                         Rights = rights
                     }
                 };
-                return new CavemanMemberSession(data);
+                return new MemberSessionPrincipal(data);
             }
         }
     }

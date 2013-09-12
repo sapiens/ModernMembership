@@ -13,7 +13,7 @@ namespace ModernMembership.Web
 
         public bool ShouldBeExtended()
         {
-            return Sliding && (ExpiresOn.Subtract(DateTime.UtcNow) < Duration.Multiply(.5f));
+            return IsSliding && (ExpiresOn.Subtract(DateTime.UtcNow) < Duration.Multiply(.5f));
         }
 
         public void ExtendDuration()

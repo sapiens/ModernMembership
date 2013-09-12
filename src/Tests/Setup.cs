@@ -21,9 +21,9 @@ namespace Tests
         public static ScopeId AScope=new ScopeId(Guid.NewGuid());
 
 
-        public static CavemanMemberSession AnonymousMemberSession()
+        public static MemberSessionPrincipal AnonymousMemberSession()
         {
-            return new CavemanMemberSession();
+            return new MemberSessionPrincipal();
         }
 
         static SetupUserRights userRights=new SetupUserRights();
