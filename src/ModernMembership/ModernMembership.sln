@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModernMembership.Authorizat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModernMembership.Web", "..\ModernMembership.Web\ModernMembership.Web.csproj", "{DC623004-BEED-438D-BD36-F60ACC8D0FC0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModernMembership.Web.Mvc", "..\ModernMembership.Web.Mvc\ModernMembership.Web.Mvc.csproj", "{2CDEFFA5-329C-4F4B-B9F7-F5FC191D0502}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{DC623004-BEED-438D-BD36-F60ACC8D0FC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC623004-BEED-438D-BD36-F60ACC8D0FC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC623004-BEED-438D-BD36-F60ACC8D0FC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CDEFFA5-329C-4F4B-B9F7-F5FC191D0502}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CDEFFA5-329C-4F4B-B9F7-F5FC191D0502}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CDEFFA5-329C-4F4B-B9F7-F5FC191D0502}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CDEFFA5-329C-4F4B-B9F7-F5FC191D0502}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
