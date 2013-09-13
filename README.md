@@ -23,7 +23,7 @@ Apache 2.0
 ## Is It For You?
 
 Only if you are comfortable with
--  Message driven architecture (including a service bus)
+-  Message driven architecture (including using a service bus)
 -  Eventual consistency
 -  Autonomus components architecture (based on what Udi Dahan calls  ABC - Autonomous Business Components)
 -  CQRS
