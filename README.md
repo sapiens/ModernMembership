@@ -14,9 +14,18 @@ Apache 2.0
 - Developed using TDD
 - DDD support via Domain Events i.e every model change will generate (but not send) a domain event
 - Designed with CQRS in mind. For easy querying use events to generate the read model specific to your app needs.
-- Support for integrating with third party sites 
+- Backend support for integrating with third party sites (but not actual integration)
 - Storage agnostic. Persistence is abstracted via Repository or Services
-- Will support rights based authorization (besides role based, here called groups), including support for multi tenancy
+- Supports rights based authorization, including support for multi tenancy (rights are global or tenant scoped)
+- Members can be global or locally scoped (multi tenant scenario)
 
+
+## Is It For You?
+
+Only if you are comfortable with
+-  Message driven architecture (including a service bus)
+-  Eventual consistency
+-  Autonomus components architecture (based on what Udi Dahan calls  ABC - Autonomous Business Components)
+-  CQRS
 
 That's it for now :)
