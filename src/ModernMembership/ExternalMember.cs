@@ -14,6 +14,7 @@ namespace ModernMembership
         {
            DisplayName = displayName;
             externalId.MustNotBeNull();
+            scope.MustNotBeNull();
             _id = id;
             _externalId = externalId;
             _status = status;

@@ -1,6 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using CavemanTools.Model.ValueObjects;
 using System;
+using System.Linq;
 
 namespace ModernMembership
 {
@@ -11,6 +12,11 @@ namespace ModernMembership
         }
         public const int MaxLength = 50;
         
+        public static LoginName CreateRandomTestValue()
+        {
+            return new LoginName("test" + Guid.NewGuid().ToString().Substring(4));
+        }
+
         protected override bool Validate(string value)
         {
             return IsValid(value);

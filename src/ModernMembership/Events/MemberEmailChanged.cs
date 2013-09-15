@@ -4,10 +4,10 @@ namespace ModernMembership.Events
 {
     public class MemberEmailChanged:MemberEvent
     {
-        public string Email;
+        public string NewEmail;
         public MemberEmailChanged(Guid id,string email) : base(id)
         {
-            Email = email;
+            NewEmail = email;
         }
     }
 }

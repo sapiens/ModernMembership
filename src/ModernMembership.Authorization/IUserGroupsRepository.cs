@@ -15,9 +15,9 @@ namespace ModernMembership.Authorization
         /// </summary>
         /// <param name="skip"></param>
         /// <param name="take"></param>
-        /// <param name="scope">Use ScopeId.None for global scope</param>
+        /// <param name="scope">use null to ignore scope</param>
         /// <returns></returns>
-        PagedResult<UserGroup> GetPaged(int skip, int take, ScopeId scope);
+        PagedResult<UserGroup> GetPaged(int skip, int take, ScopeId scope=null);
 
         IEnumerable<UserGroup> GetGroups(IEnumerable<Guid> ids);
         IEnumerable<UserGroup> GetGroupsForUser(Guid userId);

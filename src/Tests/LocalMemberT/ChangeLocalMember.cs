@@ -39,12 +39,22 @@ namespace Tests.LocalMemberT
         }
 
         [Fact]
+        public void changing_name_generates_event()
+        {
+            var name = new LoginName("chaged1");
+            _sut.ChangeName(name);
+            _sut.Name.Should().Be(name);
+            _sut.GetGeneratedEvents().First().Cast<MemberLoginNameChanged>().NewName.Should().Be(_sut.Name.Value);
+        }
+
+
+        [Fact]
         public void changing_email_generates_event()
         {
             var email = new Email("g@example.com");
             _sut.ChangeEmail(email);
             _sut.Email.Should().Be(email);
-            _sut.GetGeneratedEvents().First().Cast<MemberEmailChanged>().Email.Should().Be(_sut.Email.Value);
+            _sut.GetGeneratedEvents().First().Cast<MemberEmailChanged>().NewEmail.Should().Be(_sut.Email.Value);
         }
 
         [Fact]

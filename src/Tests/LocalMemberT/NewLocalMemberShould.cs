@@ -31,8 +31,8 @@ namespace Tests.LocalMemberT
         [Fact]
         public void require_name_password_emailand_scope()
         {
-            var m = new LocalMember(Guid.NewGuid(),new LoginName("test"), new PasswordHash("bla"), new Email("bla@yahoo.com"),new ScopeId(Guid.NewGuid()));
-            m.LoginId.Should().NotBeNull();
+            var m = new LocalMember(Guid.NewGuid(),new LoginName("test12"), new PasswordHash("bla"), new Email("bla@yahoo.com"),new ScopeId(Guid.NewGuid()));
+            m.Name.Should().NotBeNull();
             m.Password.Should().NotBeNull();
             m.Email.Should().NotBeNull();
             m.Scope.Should().NotBeNull();

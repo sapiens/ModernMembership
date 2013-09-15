@@ -21,6 +21,15 @@ namespace Tests
         public static ScopeId AScope=new ScopeId(Guid.NewGuid());
 
 
+        public static LocalMember ALocalMember(bool globalScope=true,string name="")
+        {
+            if (name.IsNullOrEmpty())
+            {
+                name = "test"+Guid.NewGuid().ToString().Substring(4);
+            }
+            return new LocalMember(Guid.NewGuid(), new LoginName(name), new PasswordHash("bla"), new Email("bla{0}@yahoo.com".ToFormat(Guid.NewGuid().ToString().Substring(4))), globalScope ? ScopeId.Global : new ScopeId(Guid.NewGuid()));
+        }
+
         public static MemberSessionPrincipal AnonymousMemberSession()
         {
             return new MemberSessionPrincipal();

@@ -2,7 +2,7 @@
 
 namespace ModernMembership
 {
-    public class DuplicateLoginIdException : Exception
+    public class DuplicateLoginNameException : Exception
     {
     }
 }

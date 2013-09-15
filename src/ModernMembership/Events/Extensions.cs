@@ -7,7 +7,7 @@
              var evnt = new LocalMemberAdded(m.Id)
                  {
                      DisplayName = m.DisplayName,
-                     LoginId = m.LoginId.Value,
+                     LoginId = m.Name.Value,
                      Email = m.Email.Value,
                      Status = m.Status
                  };

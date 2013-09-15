@@ -8,7 +8,7 @@ using ModernMembership.Events;
 
 namespace ModernMembership
 {
-    public class LocalMember:IGenerateEvents,ISupportMemento<LocalMember.Memento>
+    public class LocalMember : IGenerateEvents, ISupportMemento<LocalMember.Memento>
     {
         private Guid _id;
         private LoginName _loginId;
@@ -21,7 +21,7 @@ namespace ModernMembership
             state.MustNotBeNull();
             DisplayName = state.DisplayName;
             RegisteredOn = state.RegisteredOn;
-            _status = state.Status;            
+            _status = state.Status;
         }
 
         public LocalMember(Guid id, LoginName loginId, PasswordHash password, Email email, ScopeId scopeId)
@@ -29,11 +29,12 @@ namespace ModernMembership
             loginId.MustNotBeNull();
             password.MustNotBeNull();
             email.MustNotBeNull();
+            scopeId.MustNotBeNull();
             _id = id;
             _loginId = loginId;
             _password = password;
             _email = email;
-            _status=MemberStatus.NeedsActivation;
+            _status = MemberStatus.NeedsActivation;
             RegisteredOn = DateTime.UtcNow;
             Scope = scopeId;
         }
@@ -48,22 +49,30 @@ namespace ModernMembership
         /// </summary>
         public string DisplayName { get; set; }
 
-        public LoginName LoginId
+        public LoginName Name
         {
             get { return _loginId; }
-          
+
         }
 
         public PasswordHash Password
         {
             get { return _password; }
-           
+
         }
 
         public Email Email
         {
             get { return _email; }
         }
+
+        public void ChangeName(LoginName name)
+        {
+            name.MustNotBeNull();
+            _loginId = name;
+            _events.Add(new MemberLoginNameChanged(Id,name.Value));
+        }
+
 
         public void ChangeEmail(Email email)
         {
@@ -117,7 +126,7 @@ namespace ModernMembership
                     DisplayName = DisplayName,
                     Email = Email,
                     Id = Id,
-                    LoginId = LoginId,
+                    LoginId = Name,
                     Password = Password,
                     RegisteredOn = RegisteredOn,
                     Status = Status,

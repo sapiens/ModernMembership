@@ -24,7 +24,7 @@ namespace Tests.LocalMemberT
             var m = NewLocalMemberShould.CreateMember();
             var state = m.GetMemento();
             state.Id.Should().Be(m.Id);
-            state.LoginId.Should().Be(m.LoginId);
+            state.LoginId.Should().Be(m.Name);
             state.Password.Should().Be(m.Password);
             state.Email.Should().Be(m.Email);
             state.Status.Should().Be(m.Status);
@@ -50,7 +50,7 @@ namespace Tests.LocalMemberT
             var m = CreateMemento();
             var member = new LocalMember(m);
             member.Id.Should().Be(m.Id);
-            member.LoginId.Should().Be(m.LoginId);
+            member.Name.Should().Be(m.LoginId);
             member.Password.Should().Be(m.Password);
             member.Email.Should().Be(m.Email);
             member.DisplayName.Should().Be(m.DisplayName);
