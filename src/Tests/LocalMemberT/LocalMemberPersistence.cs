@@ -41,6 +41,7 @@ namespace Tests.LocalMemberT
             m.Status=MemberStatus.Locked;
             m.Email = new Email("bla@me.com");
             m.Password=new PasswordHash("hash");
+            m.Scope = ScopeId.Global;
             return m;
         }
 

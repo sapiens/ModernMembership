@@ -134,6 +134,29 @@ namespace ModernMembership
         }
 
         /// <summary>
+        /// Deletes local members who didn't activate their account in the specified period
+        /// </summary>
+        /// <param name="interval"></param>
+        public void PurgeUnactivatedMembers(TimeSpan interval)
+        {
+            lock (_sync)
+            {
+                var now = DateTime.UtcNow;
+                var to_delete =
+                    _members.Values.Where(
+                        d => d.Status == MemberStatus.NeedsActivation && (now.Subtract(d.RegisteredOn) > interval))
+                        .Select(d=>d.Id)
+                        .ToArray();
+                to_delete.ForEach(d=>_members.Remove(d));
+            }
+        }
+
+        public IDictionary<MemberStatus, int> GetStats()
+        {
+            return _members.Values.GroupBy(d => d.Status).ToDictionary(d => d.Key, d => d.Count());
+        }
+
+        /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
         public void Dispose()

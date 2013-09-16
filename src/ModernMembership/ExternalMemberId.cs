@@ -20,6 +20,11 @@ namespace ModernMembership
             Value = userId;
         }
 
+        public static ExternalMemberId RandomTestValue()
+        {
+            return new ExternalMemberId("tw",Guid.NewGuid().ToString());
+        }
+
         /// <summary>
         /// Indicates whether the current object is equal to another object of the same type.
         /// </summary>

@@ -64,17 +64,20 @@
     <Compile Include="Events\MemberStatusChanged.cs" />
     <Compile Include="ExternalMember.cs" />
     <Compile Include="ExternalMemberId.cs" />
+    <Compile Include="ExternalMembersMemoryRepository.cs" />
     <Compile Include="IAuthenticationService.cs" />
     <Compile Include="IExternalMembersRepository.cs" />
     <Compile Include="IMembershipService.cs" />
     <Compile Include="ILocalMembersRepository.cs" />
+    <Compile Include="IMembershipStats.cs" />
     <Compile Include="LocalMember.cs" />
     <Compile Include="LoginName.cs" />
     <Compile Include="Events\MemberEvent.cs" />
     <Compile Include="MemberSessionInfo.cs" />
     <Compile Include="MembershipCount.cs" />
+    <Compile Include="MembershipService.cs" />
     <Compile Include="MemberStatus.cs" />
-    <Compile Include="MemoryLocalMembership.cs" />
+    <Compile Include="LocalMembersMemoryRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScopeId.cs" />
   </ItemGroup>

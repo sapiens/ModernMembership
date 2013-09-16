@@ -14,7 +14,7 @@ namespace ModernMembership
         private LoginName _loginId;
         private PasswordHash _password;
         private Email _email;
-
+        public const MemberStatus DefaultStatus=MemberStatus.NeedsActivation;
         public LocalMember(Memento state)
             : this(state.Id, state.LoginId, state.Password, state.Email, state.Scope)
         {
@@ -34,7 +34,7 @@ namespace ModernMembership
             _loginId = loginId;
             _password = password;
             _email = email;
-            _status = MemberStatus.NeedsActivation;
+            _status = DefaultStatus;
             RegisteredOn = DateTime.UtcNow;
             Scope = scopeId;
         }

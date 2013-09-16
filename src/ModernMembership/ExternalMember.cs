@@ -9,8 +9,8 @@ namespace ModernMembership
     {
         private readonly Guid _id;
         private readonly ExternalMemberId _externalId;
-
-        public ExternalMember(Guid id, ExternalMemberId externalId, ScopeId scope, string displayName = null, MemberStatus status = ModernMembership.MemberStatus.Active)
+        public const MemberStatus DefaultStatus=MemberStatus.Active;
+        public ExternalMember(Guid id, ExternalMemberId externalId, ScopeId scope, string displayName = null, MemberStatus status = DefaultStatus)
         {
            DisplayName = displayName;
             externalId.MustNotBeNull();

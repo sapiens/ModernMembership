@@ -203,7 +203,19 @@ namespace Tests.Repositories
             _sut.Invoking(s => s.Save(old)).ShouldThrow<DuplicateEmailException>();
         }
 
+        [Fact]
+        public void get_stats()
+        {
+            var member = Setup.ALocalMember();
+            var member2 = Setup.ALocalMember();
+            member2.Status=MemberStatus.Deleted;
+            _sut.Add(member);
+            _sut.Add(member2);
 
+            var stats = _sut.GetStats();
+            stats[LocalMember.DefaultStatus].Should().Be(1);
+            stats[MemberStatus.Deleted].Should().Be(1);
+        }
 
         protected void Write(object format, params object[] param)
         {

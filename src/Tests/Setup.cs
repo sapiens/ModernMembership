@@ -21,6 +21,12 @@ namespace Tests
         public static ScopeId AScope=new ScopeId(Guid.NewGuid());
 
 
+        public static ExternalMember AnExternalMember()
+        {
+            return new ExternalMember(Guid.NewGuid(), new ExternalMemberId("fdb", Guid.NewGuid().ToString()), ScopeId.Global);
+        }
+
+
         public static LocalMember ALocalMember(bool globalScope=true,string name="")
         {
             if (name.IsNullOrEmpty())

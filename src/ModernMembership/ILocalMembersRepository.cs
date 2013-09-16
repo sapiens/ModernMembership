@@ -4,7 +4,7 @@ using CavemanTools.Model.ValueObjects;
 
 namespace ModernMembership
 {
-    public interface ILocalMembersRepository
+    public interface ILocalMembersRepository : IMembershipStats
     {
         /// <summary>
         /// </summary>
@@ -42,6 +42,12 @@ namespace ModernMembership
         PagedResult<LocalMember> GetMembers(long skip,int take,ScopeId scope=null);
 
         void Delete(params Guid[] ids);
+
+        /// <summary>
+        /// Deletes local members who didn't activate their account in the specified period
+        /// </summary>
+        /// <param name="interval"></param>
+        void PurgeUnactivatedMembers(TimeSpan interval);
     }
     
 }

@@ -3,7 +3,7 @@ using CavemanTools.Model;
 
 namespace ModernMembership
 {
-    public interface IExternalMembersRepository
+    public interface IExternalMembersRepository:IMembershipStats
     {
         /// <summary>
         /// 
@@ -14,9 +14,20 @@ namespace ModernMembership
         void Add(ExternalMember member);
 
         void Save(ExternalMember member);
+
+        ExternalMember GetMember(Guid id);
         ExternalMember GetMember(ExternalMemberId id);
 
-        PagedResult<ExternalMember> GetMembers(int skip, int take);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="skip"></param>
+        /// <param name="take"></param>
+        /// <param name="scope">Use null to ignore scope</param>
+        /// <returns></returns>
+        PagedResult<ExternalMember> GetMembers(long skip, int take, ScopeId scope = null);
         void Delete(params Guid[] ids);
+
+     
     }
 }
