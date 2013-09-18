@@ -20,8 +20,14 @@ namespace Tests.AuthorizationT
             var id = Guid.NewGuid();
             var group = new RightsGroup(id, new GroupName("test"));
             group.Id.Should().Be(id);
-            group.Name.Value.Should().Be("test");
-            group.Scope.Should().BeNull();
+            group.Name.Value.Should().Be("test");            
+        }
+
+        [Fact]
+        public void default_scope_is_global()
+        {
+            var grp = new RightsGroup(Guid.NewGuid(), new GroupName("test"));
+            grp.Scope.Should().Be(ScopeId.Global);
         }
 
         [Fact]

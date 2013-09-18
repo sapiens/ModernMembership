@@ -54,6 +54,7 @@ namespace Tests.Repositories
         [Fact]
         public void get_scoped_rights()
         {
+            SetupRights();
             var scoped=_sut.GetRights(Setup.AFixedId);
             scoped.Count().Should().Be(1);
             var rights = scoped.First();

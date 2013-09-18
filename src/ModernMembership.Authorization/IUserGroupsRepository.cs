@@ -5,6 +5,10 @@ namespace ModernMembership.Authorization
 {
     public interface IUserGroupsRepository
     {
+        /// <summary>
+        /// Duplicate id should be ignored
+        /// </summary>
+        /// <param name="group"></param>
         void Add(UserGroup group);
         UserGroup GetUserGroup(Guid groupId);
         void Save(params UserGroup[] group);

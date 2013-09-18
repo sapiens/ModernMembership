@@ -11,21 +11,30 @@ namespace ModernMembership.Authorization
         List<UserGroup> _users=new List<UserGroup>();
         
         private object _syncR = new Object();
+        private object _syncU=new Object();
 
         public void Add(UserGroup @group)
         {
-            throw new NotImplementedException();
+            lock (_syncU)
+            {
+               if (_users.Any(d=>d.Id==@group.Id)) return;
+                _users.Add(@group);
+            }
             
         }
 
         public UserGroup GetUserGroup(Guid groupId)
         {
-            throw new NotImplementedException();
+            return _users.Find(d => d.Id == groupId);
         }
 
         public void Save(params UserGroup[] @group)
         {
-            throw new NotImplementedException();
+            lock (_syncU)
+            {
+                _users.RemoveAll(u => @group.Any(g=>u.Id==g.Id));
+                _users.AddRange(@group);
+            }
         }
 
         /// <summary>
@@ -77,7 +86,9 @@ namespace ModernMembership.Authorization
 
         public IEnumerable<RightsGroup> GetRightsGroupsForUser(Guid userId)
         {
-            throw new NotImplementedException();
+
+            var ids = _users.Where(d => d.Users.Contains(userId)).Select(u => u.Id);
+            return _rights.Where(r => ids.Contains(r.Id)).ToArray();
         }
 
         public IEnumerable<RightsGroup> GetRightsGroups(IEnumerable<Guid> ids)
@@ -90,6 +101,11 @@ namespace ModernMembership.Authorization
             lock (_syncR)
             {
                 _rights.RemoveAll(d => d.Id == id);
+            }
+
+            lock (_syncU)
+            {
+                _users.RemoveAll(d => d.Id == id);
             }
         }
 
@@ -115,12 +131,28 @@ namespace ModernMembership.Authorization
 
         public IEnumerable<UserGroup> GetGroupsForUser(Guid userId)
         {
-            throw new NotImplementedException();
+            return _users.Where(d => d.Users.Contains(userId)).ToArray();
+            
         }
 
         public IEnumerable<ScopedRights> GetRights(Guid userId)
         {
-            throw new NotImplementedException();
+            var scoped = new Dictionary<ScopeId, List<short>>();
+            foreach (var grp in GetRightsGroupsForUser(userId))
+            {
+                List<short> cRights;
+                if (!scoped.TryGetValue(grp.Scope, out cRights))
+                {
+                    cRights=new List<short>();
+                    scoped[grp.Scope] = cRights;
+                }
+                cRights.AddRange(grp.Rights);
+            }
+
+            foreach (var sr in scoped)
+            {
+                yield return new ScopedRights(sr.Key,sr.Value);
+            }
         }
     }
 }
