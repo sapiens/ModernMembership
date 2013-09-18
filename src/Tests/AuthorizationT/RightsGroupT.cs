@@ -27,7 +27,7 @@ namespace Tests.AuthorizationT
         [Fact]
         public void new_group_has_no_rights()
         {
-            var group = Setup.CreateRightsGroup();
+            var group = Setup.SomeRightsGroup();
             group.Rights.Should().BeEmpty();
         }
 
@@ -41,14 +41,14 @@ namespace Tests.AuthorizationT
         [Fact]
         public void name_change_doesnt_accept_null()
         {
-            var grp = Setup.CreateRightsGroup();
+            var grp = Setup.SomeRightsGroup();
             grp.Invoking(g => g.Name = null).ShouldThrow<ArgumentNullException>();
         }
 
         [Fact]
         public void name_change_generates_proper_event()
         {
-            var grp = Setup.CreateExistingRightsGroup();
+            var grp = Setup.RightsGroupFromMemento();
             grp.Name=new GroupName("bla");
             var evnt = grp.GetGeneratedEvents().First().Cast<GroupNameChanged>();
             evnt.Id.Should().Be(grp.Id);
@@ -84,7 +84,7 @@ namespace Tests.AuthorizationT
         [Fact]
         public void memento_object_contains_group_properties_with_public_getters()
         {
-            var grp = Setup.CreateRightsGroup();
+            var grp = Setup.SomeRightsGroup();
             var memento = grp.GetMemento();
             memento.Id.Should().Be(grp.Id);
             memento.Name.Should().Be(grp.Name);

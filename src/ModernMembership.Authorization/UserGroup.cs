@@ -7,6 +7,11 @@ namespace ModernMembership.Authorization
 {
     public class UserGroup:IGenerateEvents
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="grpId">Right group id</param>
+        /// <param name="users"></param>
         public UserGroup(Guid grpId,IEnumerable<Guid> users=null)
         {
             Id = grpId;
@@ -15,6 +20,9 @@ namespace ModernMembership.Authorization
                 _users.AddRange(users);
             }
         }
+        /// <summary>
+        /// Same id as the right group
+        /// </summary>
         public Guid Id { get; private set; }
 
         List<Guid> _users=new List<Guid>();

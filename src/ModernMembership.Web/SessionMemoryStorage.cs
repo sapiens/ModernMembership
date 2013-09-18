@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ModernMembership.Web
 {
-    public class MemorySessionStorage:IMemberSessionStorage
+    public class SessionMemoryStorage:IMemberSessionStorage
     {
         private static object sync = new Object();
 
@@ -25,7 +25,10 @@ namespace ModernMembership.Web
 
         public void Update(SessionStorageData data)
         {
-            
+            lock (sync)
+            {
+                _list[data.Id] = data;
+            }
         }
 
         public void Delete(Guid id)

@@ -29,8 +29,8 @@ namespace Tests.Authentication
                 {
                     Id = Guid.NewGuid()
                     ,LoginId = new LoginName(name)
-                    ,Email = Setup.SomeEmail
-                    ,Password = Setup.APassword.Hash
+                    ,Email = Setup.AFixedEmail
+                    ,Password = Setup.APassword.FixedHash
                     ,DisplayName = name+" display"
                     ,Status = state
                     ,Scope = scope??ScopeId.Global
@@ -41,7 +41,7 @@ namespace Tests.Authentication
         [Fact]
         public void authenticating_an_existing_active_member_returns_active_session()
         {
-            var result = _sut.Authenticate("existent", Setup.APassword.Value);
+            var result = _sut.Authenticate("existent", Setup.APassword.FixedValue);
             result.Status.Should().Be(MemberSessionInfoStatus.Authenticated);
             result.DisplayName.Should().Be("existent display");
             result.MemberStatus.Should().Be(MemberStatus.Active);
@@ -61,7 +61,7 @@ namespace Tests.Authentication
         public void authenticating_an_existing_non_active_member_returns_inactive_session()
         {
             A.CallTo(() => _repo.GetMember(new LoginName("existent"),ScopeId.Global)).Returns(SetupMember("existent",MemberStatus.Locked));
-            var result=_sut.Authenticate("existent", Setup.APassword.Value);
+            var result=_sut.Authenticate("existent", Setup.APassword.FixedValue);
             result.Status.Should().Be(MemberSessionInfoStatus.MemberInactive);
             result.MemberStatus.Should().Be(MemberStatus.Locked);
         }
@@ -70,7 +70,7 @@ namespace Tests.Authentication
         [Fact]
         public void authenticating_a_non_existing_member_returns_null()
         {
-            _sut.Authenticate("someone", Setup.APassword.Value).Should().BeNull();
+            _sut.Authenticate("someone", Setup.APassword.FixedValue).Should().BeNull();
         }
 
         [Fact]
@@ -78,7 +78,7 @@ namespace Tests.Authentication
         {
             var scope = Setup.GetAutoFixture().Create<ScopeId>();
             A.CallTo(() => _repo.GetMember(new LoginName("scoped"), scope)).Returns(SetupMember("scoped", scope:scope));
-            var info = _sut.Authenticate("scoped", Setup.APassword.Value, scope: scope);
+            var info = _sut.Authenticate("scoped", Setup.APassword.FixedValue, scope: scope);
             info.Status.Should().Be(MemberSessionInfoStatus.Authenticated);
             info.MemberStatus.Should().Be(MemberStatus.Active);
             info.Scope.Should().Be(scope);
@@ -87,14 +87,14 @@ namespace Tests.Authentication
         [Fact]
         public void authenticating_a_global_user_within_scope_returns_null()
         {
-            _sut.Authenticate("existent", Setup.APassword.Value, scope: Setup.AScope).Should().BeNull();
+            _sut.Authenticate("existent", Setup.APassword.FixedValue, scope: Setup.ARandomScope).Should().BeNull();
         }
         
         [Fact]
         public void authenticating_a_scoped_user_in_global_scope_returns_null()
         {
-            A.CallTo(() => _repo.GetMember(new LoginName("scoped"), Setup.AScope)).Returns(SetupMember("scoped", scope: Setup.AScope));
-            _sut.Authenticate("scoped", Setup.APassword.Value, scope:ScopeId.Global).Should().BeNull();
+            A.CallTo(() => _repo.GetMember(new LoginName("scoped"), Setup.ARandomScope)).Returns(SetupMember("scoped", scope: Setup.ARandomScope));
+            _sut.Authenticate("scoped", Setup.APassword.FixedValue, scope:ScopeId.Global).Should().BeNull();
         }
 
 

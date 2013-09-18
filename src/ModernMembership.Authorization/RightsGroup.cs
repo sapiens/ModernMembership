@@ -25,6 +25,7 @@ namespace ModernMembership.Authorization
         {
             id.MustComplyWith(i=>i!=Guid.Empty,"Invalid guid");
             name.MustNotBeNull();
+            if (scope == null) scope = ScopeId.Global;
             _id = id;
             _name = name;
             _rights = new List<short>();

@@ -79,6 +79,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ExternalMembership.cs" />
     <Compile Include="Repositories\LocalMembershipActions.cs" />
+    <Compile Include="Repositories\RightsGroups.cs" />
+    <Compile Include="Repositories\UserGroups.cs" />
+    <Compile Include="Repositories\UserRightsService.cs" />
     <Compile Include="VirtualScenarios\MembershipScenarios.cs" />
     <Compile Include="VirtualScenarios\UserGroupsScenarios.cs" />
     <Compile Include="Setup.cs" />

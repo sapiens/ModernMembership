@@ -95,7 +95,7 @@ namespace Tests.Repositories
         public void get_members()
         {
             _sut.Add(Setup.AnExternalMember());
-            _sut.Add(new ExternalMember(Guid.NewGuid(), ExternalMemberId.RandomTestValue(), Setup.AScope));
+            _sut.Add(new ExternalMember(Guid.NewGuid(), ExternalMemberId.RandomTestValue(), Setup.ARandomScope));
             var member = Setup.AnExternalMember();
             _sut.Add(member);
             var data = _sut.GetMembers(1, 6);
@@ -108,7 +108,7 @@ namespace Tests.Repositories
         {
             _sut.Add(Setup.AnExternalMember());
             _sut.Add(Setup.AnExternalMember()); 
-            _sut.Add(new ExternalMember(Guid.NewGuid(),ExternalMemberId.RandomTestValue(),Setup.AScope));
+            _sut.Add(new ExternalMember(Guid.NewGuid(),ExternalMemberId.RandomTestValue(),Setup.ARandomScope));
 
             var all = _sut.GetMembers(0, 10, ScopeId.Global);
             all.Count.Should().Be(2);
@@ -131,7 +131,7 @@ namespace Tests.Repositories
         {
             _sut.Add(Setup.AnExternalMember());
             _sut.Add(Setup.AnExternalMember());
-            _sut.Add(new ExternalMember(Guid.NewGuid(), ExternalMemberId.RandomTestValue(), Setup.AScope,status:MemberStatus.Locked));
+            _sut.Add(new ExternalMember(Guid.NewGuid(), ExternalMemberId.RandomTestValue(), Setup.ARandomScope,status:MemberStatus.Locked));
 
             var result = new Dictionary<MemberStatus,int>(_sut.GetStats());
             result[ExternalMember.DefaultStatus].Should().Be(2);

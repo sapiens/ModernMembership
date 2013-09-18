@@ -16,9 +16,9 @@ namespace Tests
             return _fixture;
         }
 
-        public static Guid AnId=Guid.NewGuid();
+        public static Guid AFixedId=Guid.NewGuid();
 
-        public static ScopeId AScope=new ScopeId(Guid.NewGuid());
+        public static ScopeId ARandomScope=new ScopeId(Guid.NewGuid());
 
 
         public static ExternalMember AnExternalMember()
@@ -49,7 +49,7 @@ namespace Tests
             get { return userRights; }
         }
 
-        public static Email SomeEmail
+        public static Email AFixedEmail
         {
             get
             {
@@ -65,12 +65,12 @@ namespace Tests
             }
         }
 
-        public static RightsGroup CreateRightsGroup()
+        public static RightsGroup SomeRightsGroup(string name="test")
         {
-            return new RightsGroup(Guid.NewGuid(),new GroupName("test"));
+            return new RightsGroup(Guid.NewGuid(),new GroupName(name));
         }
 
-        public static RightsGroup CreateExistingRightsGroup()
+        public static RightsGroup RightsGroupFromMemento()
         {
             return new RightsGroup(new RightsGroup.Memento()
                 {
@@ -83,10 +83,10 @@ namespace Tests
     {
         public ScopedRights GlobalAdminRights=new ScopedRights(ScopeId.Global,new[]{ScopedRights.GlobalAdmin});
         
-        public ScopedRights ScopedAdminRights=new ScopedRights(Setup.AScope,new[]{ScopedRights.ScopedAdmin});
+        public ScopedRights ScopedAdminRights=new ScopedRights(Setup.ARandomScope,new[]{ScopedRights.ScopedAdmin});
         public const short Right1 = 1;
         public const short Right2 = 3;
-        public ScopedRights SomeRights= new ScopedRights(new ScopeId(Setup.AnId), new short[]{Right1,Right2});
+        public ScopedRights FixedRights= new ScopedRights(new ScopeId(Setup.AFixedId), new short[]{Right1,Right2});
         
     }
 
@@ -94,13 +94,13 @@ namespace Tests
 
     public class SetupPassword
     {
-        public string Value = "pwd";
-        public PasswordHash Hash
+        public string FixedValue = "pwd";
+        public PasswordHash FixedHash
         {
             get
             {
                 var str = new CavemanHashStrategy();
-                return new PasswordHash(str.Hash(Value, "salt"), "salt");
+                return new PasswordHash(str.Hash(FixedValue, "salt"), "salt");
             }
         }
     }

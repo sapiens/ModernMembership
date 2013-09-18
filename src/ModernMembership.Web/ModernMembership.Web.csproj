@@ -56,7 +56,7 @@
     <Compile Include="IMemberSessionStorage.cs" />
     <Compile Include="MemberSessionData.cs" />
     <Compile Include="MemberSessionService.cs" />
-    <Compile Include="MemorySessionStorage.cs" />
+    <Compile Include="SessionMemoryStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionData.cs" />
     <Compile Include="SessionStorageData.cs" />

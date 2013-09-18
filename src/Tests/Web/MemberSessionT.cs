@@ -18,12 +18,12 @@ namespace Tests.Web
         {
             var data = new SessionStorageData()
                 {
-                    Id = Setup.AnId,
+                    Id = Setup.AFixedId,
                     MemberInfo = new MemberSessionData()
                         {
-                            MemberId = Setup.AnId,
+                            MemberId = Setup.AFixedId,
                             MemberName = "name",
-                            Rights = new[] { new ScopedRights(Setup.AScope, new short[] { SetupUserRights.Right1, SetupUserRights.Right2 }) }
+                            Rights = new[] { new ScopedRights(Setup.ARandomScope, new short[] { SetupUserRights.Right1, SetupUserRights.Right2 }) }
                         }
                 };
             _sut = new MemberSessionPrincipal(data);
@@ -38,7 +38,7 @@ namespace Tests.Web
         [Fact]
         public void session_has_unique_id()
         {
-            _sut.Info.Id.Should().Be(Setup.AnId);
+            _sut.Info.Id.Should().Be(Setup.AFixedId);
         }
 
         [Fact]
@@ -50,20 +50,20 @@ namespace Tests.Web
         [Fact]
         public void user_id_is_set()
         {
-            _sut.MemberId.Should().Be(Setup.AnId);
+            _sut.MemberId.Should().Be(Setup.AFixedId);
         }
 
         [Fact]
         public void has_a_scope_that_can_be_set()
         {
-            _sut.Scope = Setup.AScope;
-            _sut.Scope.Should().Be(Setup.AScope);
+            _sut.Scope = Setup.ARandomScope;
+            _sut.Scope.Should().Be(Setup.ARandomScope);
         }
 
         [Fact]
         public void has_all_the_rights_of_the_member()
         {
-            _sut.Scope = Setup.AScope;
+            _sut.Scope = Setup.ARandomScope;
             _sut.HasRight(SetupUserRights.Right1).Should().BeTrue();
             _sut.HasRight(SetupUserRights.Right2).Should().BeTrue();
         }
@@ -91,7 +91,7 @@ namespace Tests.Web
             public void when_current_scope_is_global_local_is_ignored()
             {
                 var sut =
-                    GetSut(new[] { new ScopedRights(ScopeId.Global, new short[] { 1 }), new ScopedRights(Setup.AScope, new short[] { 2 }), });
+                    GetSut(new[] { new ScopedRights(ScopeId.Global, new short[] { 1 }), new ScopedRights(Setup.ARandomScope, new short[] { 2 }), });
                 sut.Scope = ScopeId.Global;
                 sut.HasRight(2).Should().BeFalse();
                 sut.HasRight(1).Should().BeTrue();
@@ -111,10 +111,10 @@ namespace Tests.Web
             {
                 var data = new SessionStorageData()
                 {
-                    Id = Setup.AnId,
+                    Id = Setup.AFixedId,
                     MemberInfo = new MemberSessionData()
                     {
-                        MemberId = Setup.AnId,
+                        MemberId = Setup.AFixedId,
                         MemberName = "name",
                         Rights = rights
                     }

@@ -7,4 +7,6 @@ namespace ModernMembership.Authorization
     {
         IEnumerable<ScopedRights> GetRights(Guid userId);        
     }
+
+   
 }

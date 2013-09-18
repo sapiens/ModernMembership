@@ -155,7 +155,7 @@ namespace Tests.Repositories
                 {
                     Email = new Email("bla@hi.com"),
                     LoginId = member.Name,
-                    Password = Setup.APassword.Hash,
+                    Password = Setup.APassword.FixedHash,
                     Scope = ScopeId.Global
                 });
             _sut.Invoking(s => s.Add(m2)).ShouldThrow<DuplicateLoginNameException>();
@@ -170,7 +170,7 @@ namespace Tests.Repositories
             {
                 Email = member.Email,
                 LoginId = new LoginName("bla1234"),
-                Password = Setup.APassword.Hash,
+                Password = Setup.APassword.FixedHash,
                 Scope = ScopeId.Global
             });
 

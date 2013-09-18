@@ -20,7 +20,7 @@ namespace Tests.VirtualScenarios
        
         public void recover_password_needs_to_get_member_by_email()
         {
-            _localRepo.GetMember(Setup.SomeEmail);
+            _localRepo.GetMember(Setup.AFixedEmail);
         }
 
        
