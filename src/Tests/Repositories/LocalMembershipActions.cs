@@ -137,13 +137,30 @@ namespace Tests.Repositories
             members.Items.Any(m => m.Id == member2.Id).Should().BeTrue();
         }
 
+        [Fact]
+        public void get_paged_members_in_scope()
+        {
+            var member1 = Setup.ALocalMember(true, "member1");
+            var member2 = Setup.ALocalMember(false, "member2");
+            _sut.Add(member1);
+            _sut.Add(member2);
+
+            var members = _sut.GetMembers(0, 10,member2.Scope);
+            members.Count.Should().Be(1);
+            members.Items.Any(m => m.Id == member2.Id).Should().BeTrue();
+        }
         
         [Fact]
         public void when_adding_member_duplicate_id_throws()
         {
             var member = Setup.ALocalMember();
             _sut.Add(member);
-            _sut.Invoking(s => s.Add(member)).ShouldThrow<DuplicateMemberIdException>();
+
+
+            var meme = Setup.AMemento();
+            meme.Id = member.Id;
+            var m2 = new LocalMember(meme);
+            _sut.Invoking(s => s.Add(m2)).ShouldThrow<DuplicateMemberIdException>();
         }
 
         [Fact]
@@ -154,9 +171,10 @@ namespace Tests.Repositories
             var m2 = new LocalMember(new LocalMember.Memento()
                 {
                     Email = new Email("bla@hi.com"),
-                    LoginId = member.Name,
+                    Name = member.Name,
                     Password = Setup.APassword.FixedHash,
-                    Scope = ScopeId.Global
+                    Scope = ScopeId.Global,
+                    RegisteredOn = DateTime.UtcNow
                 });
             _sut.Invoking(s => s.Add(m2)).ShouldThrow<DuplicateLoginNameException>();
         }
@@ -169,9 +187,10 @@ namespace Tests.Repositories
             var m2 = new LocalMember(new LocalMember.Memento()
             {
                 Email = member.Email,
-                LoginId = new LoginName("bla1234"),
+                Name = new LoginName("bla1234"),
                 Password = Setup.APassword.FixedHash,
-                Scope = ScopeId.Global
+                Scope = ScopeId.Global,
+                RegisteredOn = DateTime.UtcNow
             });
 
             _sut.Invoking(s => s.Add(m2)).ShouldThrow<DuplicateEmailException>();
@@ -215,6 +234,24 @@ namespace Tests.Repositories
             var stats = _sut.GetStats();
             stats[LocalMember.DefaultStatus].Should().Be(1);
             stats[MemberStatus.Deleted].Should().Be(1);
+        }
+
+        [Fact]
+        public void purge_old_and_unactivated()
+        {
+            var local = new LocalMember(new LocalMember.Memento()
+                {
+                    Id=Guid.NewGuid(),
+                    Email = Setup.AFixedEmail,
+                    Name = LoginName.CreateRandomTestValue(),
+                    Password = Setup.APassword.FixedHash,
+                    RegisteredOn = DateTime.UtcNow.Subtract(TimeSpan.FromDays(31)),
+                    Scope = ScopeId.Global,
+                    Status = MemberStatus.NeedsActivation
+                });
+            _sut.Add(local);
+            _sut.PurgeUnactivatedMembers(TimeSpan.FromDays(30));
+            _sut.GetMember(local.Id).Should().BeNull();
         }
 
         protected void Write(object format, params object[] param)

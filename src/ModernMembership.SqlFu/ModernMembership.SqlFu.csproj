@@ -31,6 +31,22 @@
     <DocumentationFile>bin\Release\ModernMembership.SqlFu.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CavemanTools">
+      <HintPath>..\ModernMembership\bin\Debug\CavemanTools.dll</HintPath>
+    </Reference>
+    <Reference Include="CavemanTools.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ModernMembership\bin\Debug\CavemanTools.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="DomainBus.Concepts">
+      <HintPath>..\ModernMembership\bin\Debug\DomainBus.Concepts.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\ModernMembership\packages\Newtonsoft.Json.5.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SqlFu">
+      <HintPath>..\ModernMembership\packages\SqlFu.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,7 +56,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LocalMembersRepository.cs" />
+    <Compile Include="Models\LocalMemberData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serializer.cs" />
+    <Compile Include="SqlFuMembershipStorage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ModernMembership.Authorization\ModernMembership.Authorization.csproj">
+      <Project>{f3073b7c-8de2-4dd7-ad86-94994d900b45}</Project>
+      <Name>ModernMembership.Authorization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ModernMembership\ModernMembership.csproj">
+      <Project>{b254e7e0-3fd1-4cb3-b068-60ebed313c02}</Project>
+      <Name>ModernMembership</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

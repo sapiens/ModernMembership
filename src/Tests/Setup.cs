@@ -31,7 +31,18 @@ namespace Tests
             return new UserGroup(Guid.NewGuid());
         }
 
-
+        public static LocalMember.Memento AMemento()
+        {
+            var m = new LocalMember.Memento();
+            m.Id = Guid.NewGuid();
+            m.Name = new LoginName("valid-login-name");
+            m.Status = MemberStatus.Locked;
+            m.Email = new Email("bla@me.com");
+            m.Password = new PasswordHash("hash");
+            m.Scope = ScopeId.Global;
+            m.RegisteredOn = DateTime.UtcNow;
+            return m;
+        }
         public static LocalMember ALocalMember(bool globalScope=true,string name="")
         {
             if (name.IsNullOrEmpty())

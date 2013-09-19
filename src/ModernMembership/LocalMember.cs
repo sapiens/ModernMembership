@@ -16,7 +16,7 @@ namespace ModernMembership
         private Email _email;
         public const MemberStatus DefaultStatus=MemberStatus.NeedsActivation;
         public LocalMember(Memento state)
-            : this(state.Id, state.LoginId, state.Password, state.Email, state.Scope)
+            : this(state.Id, state.Name, state.Password, state.Email, state.Scope)
         {
             state.MustNotBeNull();
             DisplayName = state.DisplayName;
@@ -126,7 +126,7 @@ namespace ModernMembership
                     DisplayName = DisplayName,
                     Email = Email,
                     Id = Id,
-                    LoginId = Name,
+                    Name = Name,
                     Password = Password,
                     RegisteredOn = RegisteredOn,
                     Status = Status,
@@ -139,7 +139,7 @@ namespace ModernMembership
         {
             public Guid Id;
 
-            public LoginName LoginId;
+            public LoginName Name;
 
             public PasswordHash Password;
 

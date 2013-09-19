@@ -29,6 +29,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'SqlFuTesting|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\SqlFuTesting\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SqlFu</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CavemanTools">
       <HintPath>..\ModernMembership\packages\CavemanTools.dll</HintPath>
@@ -47,6 +56,9 @@
     </Reference>
     <Reference Include="Ploeh.AutoFixture">
       <HintPath>..\ModernMembership\packages\AutoFixture.3.6.0\lib\net40\Ploeh.AutoFixture.dll</HintPath>
+    </Reference>
+    <Reference Include="SqlFu">
+      <HintPath>..\ModernMembership\packages\SqlFu.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -80,6 +92,8 @@
     <Compile Include="Repositories\ExternalMembership.cs" />
     <Compile Include="Repositories\LocalMembershipActions.cs" />
     <Compile Include="Repositories\RightsGroups.cs" />
+    <Compile Include="Repositories\SqlFu\LocalMembershipRepo.cs" />
+    <Compile Include="Repositories\SqlFu\SqlFuConfig.cs" />
     <Compile Include="Repositories\UserGroups.cs" />
     <Compile Include="Repositories\UserRightsService.cs" />
     <Compile Include="VirtualScenarios\MembershipScenarios.cs" />
@@ -95,6 +109,10 @@
     <ProjectReference Include="..\ModernMembership.Authorization\ModernMembership.Authorization.csproj">
       <Project>{f3073b7c-8de2-4dd7-ad86-94994d900b45}</Project>
       <Name>ModernMembership.Authorization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ModernMembership.SqlFu\ModernMembership.SqlFu.csproj">
+      <Project>{22ACEAA9-362D-4B7D-9611-7513B69F78E9}</Project>
+      <Name>ModernMembership.SqlFu</Name>
     </ProjectReference>
     <ProjectReference Include="..\ModernMembership.Web\ModernMembership.Web.csproj">
       <Project>{dc623004-beed-438d-bd36-f60acc8d0fc0}</Project>

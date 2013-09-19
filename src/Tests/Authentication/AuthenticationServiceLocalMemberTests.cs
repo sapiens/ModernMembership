@@ -28,7 +28,7 @@ namespace Tests.Authentication
             var init = new LocalMember.Memento()
                 {
                     Id = Guid.NewGuid()
-                    ,LoginId = new LoginName(name)
+                    ,Name = new LoginName(name)
                     ,Email = Setup.AFixedEmail
                     ,Password = Setup.APassword.FixedHash
                     ,DisplayName = name+" display"
