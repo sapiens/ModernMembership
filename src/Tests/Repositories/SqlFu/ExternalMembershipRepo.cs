@@ -6,7 +6,7 @@ using System;
 
 namespace Tests.Repositories.SqlFu
 {
-    public class ExternalMembershipRepo:ExternalMembership,IDisposable
+    public class ExternalMembershipRepo:BaseExternalMembershipTests,IDisposable
     {
         public ExternalMembershipRepo()
         {

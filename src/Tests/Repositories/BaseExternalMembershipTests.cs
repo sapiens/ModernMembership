@@ -8,20 +8,12 @@ using FluentAssertions;
 
 namespace Tests.Repositories
 {
-    public class MemoryExternalmembership:ExternalMembership
-    {
-        protected override IExternalMembersRepository GetRepository()
-        {
-            return new ExternalMembersMemoryRepository();
-        }
-    }
-
-    public abstract class ExternalMembership
+    public abstract class BaseExternalMembershipTests
     {
         private Stopwatch _t = new Stopwatch();
         protected IExternalMembersRepository _sut;
 
-        public ExternalMembership()
+        public BaseExternalMembershipTests()
         {
             _sut = GetRepository();
         }

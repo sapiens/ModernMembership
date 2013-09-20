@@ -18,6 +18,7 @@ namespace ModernMembership.SqlFu
         {
            InitMembersStorage.Destroy(cnx);
            InitGroupStorage.Destroy(cnx);
+           InitSessionStorage.Destroy(cnx);
         }
     }
 
@@ -46,16 +47,26 @@ namespace ModernMembership.SqlFu
         }
     }
 
-
+    [Migration("1.0.0", SchemaName = Schema)]
     public class InitSessionStorage:AbstractMigrationTask
     {
+        internal const string Schema = "SqlFu.MemberSession";
         /// <summary>
         /// Task is executed automatically in a transaction
         /// </summary>
         /// <param name="db"/>
         public override void Execute(DbConnection db)
         {
-            throw new System.NotImplementedException();
+           db.CreateTable<SessionData>();
+        }
+
+        public static void Destroy(DbConnection cnx)
+        {
+            cnx.Drop<SessionData>();
+            DatabaseMigration.ConfigureFor(cnx)
+                .SearchCurrentAssembly()
+                .BuildAutomaticMigrator()
+                .Untrack(Schema);
         }
     }
 

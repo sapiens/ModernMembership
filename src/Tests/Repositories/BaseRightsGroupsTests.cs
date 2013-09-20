@@ -7,21 +7,12 @@ using FluentAssertions;
 
 namespace Tests.Repositories
 {
-    
-    public class MemoryRightsGroups:RightsGroups
-    {
-        protected override IRightsGroupsRepository GetRepo()
-        {
-            return new UserGroupsMemoryRepository();
-        }
-    }
-
-    public abstract class RightsGroups
+    public abstract class BaseRightsGroupsTests
     {
         private Stopwatch _t = new Stopwatch();
         private IRightsGroupsRepository _sut;
 
-        public RightsGroups()
+        public BaseRightsGroupsTests()
         {
             _sut = GetRepo();
         }

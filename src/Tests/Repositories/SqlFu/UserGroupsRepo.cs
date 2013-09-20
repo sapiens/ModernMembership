@@ -5,7 +5,7 @@ using ModernMembership.SqlFu;
 
 namespace Tests.Repositories.SqlFu
 {
-    public class UserGroupsRepo:UserGroups,IDisposable
+    public class UserGroupsRepo:BaseUserGroupsTests,IDisposable
     {
         public UserGroupsRepo()
         {

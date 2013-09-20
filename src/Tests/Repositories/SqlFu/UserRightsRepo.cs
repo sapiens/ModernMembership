@@ -5,7 +5,7 @@ using ModernMembership.SqlFu;
 
 namespace Tests.Repositories.SqlFu
 {
-    public class UserRightsRepo:UserRightsService,IDisposable
+    public class UserRightsRepo:BaseUserRightsServiceTests,IDisposable
     {
         private UserRightsRepository _service;
 

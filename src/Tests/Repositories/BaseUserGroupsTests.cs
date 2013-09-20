@@ -7,20 +7,12 @@ using Xunit;
 
 namespace Tests.Repositories
 {
-    public class MemoryUserGroups:UserGroups
-    {
-        protected override IUserGroupsRepository GetRepo()
-        {
-            return new UserGroupsMemoryRepository();
-        }
-    }
-
-    public abstract class UserGroups
+    public abstract class BaseUserGroupsTests
     {
         private Stopwatch _t = new Stopwatch();
         private IUserGroupsRepository _sut;
 
-        public UserGroups()
+        public BaseUserGroupsTests()
         {
             _sut = GetRepo();
         }

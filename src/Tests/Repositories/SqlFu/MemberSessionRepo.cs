@@ -1,22 +1,22 @@
 ﻿#if SqlFu
 using System;
-using ModernMembership.Authorization;
 using ModernMembership.SqlFu;
+using ModernMembership.Web;
 
 namespace Tests.Repositories.SqlFu
 {
-    public class RightsGroupsRepo:BaseRightsGroupsTests,IDisposable
+    public class MemberSessionRepo:BaseMemberSessionsTests,IDisposable
     {
-        public RightsGroupsRepo()
+        public MemberSessionRepo()
         {
             using (var db = SqlFuConfig.GetDb())
             {
                 SqlFuMembershipStorage.Init(db);
             }
         }
-        protected override IRightsGroupsRepository GetRepo()
+        protected override IMemberSessionStorage GetStorage()
         {
-            return new UserRightsRepository(SqlFuConfig.GetDb);
+            return new SessionStorage(SqlFuConfig.GetDb);
         }
 
         /// <summary>

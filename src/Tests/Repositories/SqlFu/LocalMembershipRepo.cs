@@ -8,7 +8,7 @@ using FluentAssertions;
 
 namespace Tests.Repositories.SqlFu
 {
-    public class LocalMembershipRepo:LocalMembershipActions,IDisposable
+    public class LocalMembershipRepo:BaseLocalMembershipTests,IDisposable
     {
         public LocalMembershipRepo()
         {
