@@ -15,7 +15,7 @@ namespace ModernMembership.Web
         public static string CookieDomain = "";
         
         public static string LoginRedirect = "";
-        public const string WebConfigLoginRedirectKey = "Caveman:LoginRedirect";
+        public const string WebConfigLoginRedirectKey = "Membership:LoginPage";
         
         
         public MemberSessionModule(Func<IMemberSessionsService> service)
