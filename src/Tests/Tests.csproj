@@ -92,6 +92,7 @@
     <Compile Include="Repositories\ExternalMembership.cs" />
     <Compile Include="Repositories\LocalMembershipActions.cs" />
     <Compile Include="Repositories\RightsGroups.cs" />
+    <Compile Include="Repositories\SqlFu\ExternalMembershipRepo.cs" />
     <Compile Include="Repositories\SqlFu\LocalMembershipRepo.cs" />
     <Compile Include="Repositories\SqlFu\SqlFuConfig.cs" />
     <Compile Include="Repositories\UserGroups.cs" />

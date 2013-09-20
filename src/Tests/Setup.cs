@@ -23,7 +23,7 @@ namespace Tests
 
         public static ExternalMember AnExternalMember()
         {
-            return new ExternalMember(Guid.NewGuid(), new ExternalMemberId("fdb", Guid.NewGuid().ToString()), ScopeId.Global);
+            return new ExternalMember(Guid.NewGuid(), new ExternalMemberId("fdb", Guid.NewGuid().ToString()), ScopeId.Global,DateTime.UtcNow);
         }
 
         public static UserGroup AnEmptyUserGroup()

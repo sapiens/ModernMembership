@@ -42,6 +42,15 @@ namespace Tests.ExternalMemberT
             Assert.Throws<FormatException>(() => new ExternalMemberId("fb", id));
         }
 
+        [Fact]
+        public void create_from_string()
+        {
+            var id = ExternalMemberId.RandomTestValue();
+            var data = id.ToString();
+            var id2 = ExternalMemberId.FromString(data);
+            id2.Should().Be(id);
+        }
+
         protected void Write(object format, params object[] param)
         {
             Console.WriteLine(format.ToString(), param);

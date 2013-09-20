@@ -52,5 +52,18 @@ namespace ModernMembership
             return ProviderPrefix + "-" + Value;
         }
 
+
+        public static ExternalMemberId FromString(string data)
+        {
+            data.MustNotBeEmpty();
+            var pos=data.IndexOf('-');
+            if (pos < 0)
+            {
+                throw new ArgumentException("Value is not an external member id");
+            }
+            var prefix = data.Substring(0,pos);
+            var exId = data.Remove(0, pos+1);//we need to skip the '-'
+            return new ExternalMemberId(prefix,exId);
+        }
     }
 }

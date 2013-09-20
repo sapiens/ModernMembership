@@ -14,6 +14,8 @@ namespace ModernMembership.SqlFu
     {
         private readonly Func<DbConnection> _getDb;
 
+        private const string Table = LocalMemberData.Table;
+
         public LocalMembersRepository(Func<DbConnection> cnxFactory)
         {
             _getDb = cnxFactory;
@@ -24,9 +26,9 @@ namespace ModernMembership.SqlFu
         {
             using (var db = _getDb())
             {
-                var all=db.Query<dynamic>("select Status,count(id) as Total from LocalMembers group by status");
+                var all = db.Query<dynamic>("select Status,count(id) as Total from {0} group by status".ToFormat(Table));
                 return all.ToDictionary(d => (MemberStatus)d.Status, d => (int)d.Total);
-            }            
+            }               
         }
 
         /// <summary>
@@ -149,7 +151,7 @@ namespace ModernMembership.SqlFu
         {
             using (var db = _getDb())
             {
-                var sql = @"select * from LocalMembers";
+                var sql = @"select * from {0}".ToFormat(Table);
                 var args = new List<object>();
                 if (scope != null)
                 {

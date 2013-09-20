@@ -6,7 +6,7 @@ using SqlFu.DDL;
 
 namespace ModernMembership.SqlFu.Models
 {
-    [Table("LocalMembers",CreationOptions = IfTableExists.DropIt)]
+    [Table(Table,CreationOptions = IfTableExists.DropIt)]
     [Index("MemberId",IsUnique = true,Name = UniqueIdIndex)]
     [Index("Name,Scope",IsUnique = true,Name = UniqueNameIndex)]
     [Index("Email,Scope",IsUnique = true,Name = UniqueEmailIndex)]
@@ -15,7 +15,9 @@ namespace ModernMembership.SqlFu.Models
         public const string UniqueIdIndex="uk_local_id";
         public const string UniqueNameIndex="uk_local_name";
         public const string UniqueEmailIndex="uk_local_email";
-        
+
+        public const string Table = "LocalMembers";
+
         public long Id { get; set; }
         public Guid MemberId { get; set; }
         [ColumnOptions(Size = "75")]
