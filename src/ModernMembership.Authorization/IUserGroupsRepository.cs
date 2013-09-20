@@ -6,7 +6,7 @@ namespace ModernMembership.Authorization
     public interface IUserGroupsRepository
     {
         /// <summary>
-        /// Duplicate id should be ignored
+        /// Duplicate id should be ignored. Empty groups are not saved
         /// </summary>
         /// <param name="group"></param>
         void Add(UserGroup group);

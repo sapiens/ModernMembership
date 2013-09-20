@@ -6,11 +6,11 @@ using SqlFu.DDL;
 
 namespace ModernMembership.SqlFu.Models
 {
-    [Table(Table,CreationOptions = IfTableExists.DropIt)]
+    [Table(Table,CreationOptions = IfTableExists.Ignore)]
     [Index("MemberId",IsUnique = true,Name = UniqueIdIndex)]
     [Index("Name,Scope",IsUnique = true,Name = UniqueNameIndex)]
     [Index("Email,Scope",IsUnique = true,Name = UniqueEmailIndex)]
-    public class LocalMemberData
+    internal class LocalMemberData
     {
         public const string UniqueIdIndex="uk_local_id";
         public const string UniqueNameIndex="uk_local_name";

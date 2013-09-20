@@ -4,10 +4,10 @@ using SqlFu.DDL;
 
 namespace ModernMembership.SqlFu.Models
 {
-    [Table(Table,CreationOptions = IfTableExists.DropIt)]
+    [Table(Table,CreationOptions = IfTableExists.Ignore)]
     [Index("MemberId", IsUnique = true, Name = UniqueIdIndex)]
     [Index("ExternalId,Scope", IsUnique = true, Name = UniqueNameIndex)]
-    public class ExternalMemberData
+    internal class ExternalMemberData
     {
         public const string UniqueIdIndex = "uk_external_id";
         public const string UniqueNameIndex = "uk_external_name";

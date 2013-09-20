@@ -60,7 +60,9 @@
     <Compile Include="LocalMembersRepository.cs" />
     <Compile Include="Models\ExternalMemberData.cs" />
     <Compile Include="Models\LocalMemberData.cs" />
+    <Compile Include="Models\RightsGroupData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserRightsRepository.cs" />
     <Compile Include="Serializer.cs" />
     <Compile Include="SqlFuMembershipStorage.cs" />
   </ItemGroup>

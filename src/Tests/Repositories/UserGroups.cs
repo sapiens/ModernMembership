@@ -30,10 +30,19 @@ namespace Tests.Repositories
         [Fact]
         public void add_get_group()
         {
-            var grp = Setup.AnEmptyUserGroup();
+            var grp = Setup.UserGroupWithARandomUser();
             _sut.Add(grp);
             var g2 = _sut.GetUserGroup(grp.Id);
             g2.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void an_empty_group_shouldnt_be_added()
+        {
+            var ug = new UserGroup(Guid.NewGuid());
+            _sut.Add(ug);
+            _sut.GetUserGroup(ug.Id).Should().BeNull();
+
         }
 
         [Fact]
@@ -45,7 +54,7 @@ namespace Tests.Repositories
         [Fact]
         public void delete()
         {
-            var grp = Setup.AnEmptyUserGroup();
+            var grp = Setup.UserGroupWithARandomUser();
             _sut.Add(grp);
             _sut.Delete(grp.Id);
             _sut.GetUserGroup(grp.Id).Should().BeNull();
@@ -54,25 +63,25 @@ namespace Tests.Repositories
         [Fact]
         public void save_group()
         {
-            var grp = Setup.AnEmptyUserGroup();
+            var grp = Setup.UserGroupWithARandomUser();
             _sut.Add(grp);
             var u2 = _sut.GetUserGroup(grp.Id);
             u2.AddUsers(Guid.NewGuid());
             _sut.Save(u2);
 
             var u3 = _sut.GetUserGroup(grp.Id);
-            u3.Users.Count().Should().Be(1);
+            u3.Users.Count().Should().Be(2);
         }
 
         [Fact]
         public void get_groups_for_user()
         {
-            var grp1 = Setup.AnEmptyUserGroup();
+            var grp1 = Setup.UserGroupWithARandomUser();
             var user = Guid.NewGuid();
             grp1.AddUsers(user);
             _sut.Add(grp1);
 
-            var grp2 = Setup.AnEmptyUserGroup();
+            var grp2 = Setup.UserGroupWithARandomUser();
             grp2.AddUsers(user);
             _sut.Add(grp2);
 

@@ -1,4 +1,7 @@
 ﻿using Newtonsoft.Json;
+using System;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 
 namespace ModernMembership.SqlFu
 {
@@ -21,6 +24,7 @@ namespace ModernMembership.SqlFu
                             DateTimeZoneHandling = DateTimeZoneHandling.Utc
                         };
                 }
+                
                 return _settings;
             }
         }
@@ -33,7 +37,13 @@ namespace ModernMembership.SqlFu
 
         internal static T Deserialize<T>(this string data)
         {
-            return (T)JsonConvert.DeserializeObject(data, Settings);
+            var tp = typeof (T);
+            var rez = JsonConvert.DeserializeObject(data, Settings);
+            if (tp.IsArray)
+            {
+                return rez.As<JArray>().ToObject<T>();
+            }
+            return (T)rez;
         }
 
      

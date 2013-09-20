@@ -15,6 +15,7 @@ namespace ModernMembership.Authorization
 
         public void Add(UserGroup @group)
         {
+            if (@group.Users.Count()==0) return;
             lock (_syncU)
             {
                if (_users.Any(d=>d.Id==@group.Id)) return;
@@ -41,13 +42,13 @@ namespace ModernMembership.Authorization
         /// 
         /// </summary>
         /// <exception cref="DuplicateGroupException">If name and scope match</exception>
-        /// <param name="group"></param>
-        public void Add(RightsGroup @group)
+        /// <param name="grp"></param>
+        public void Add(RightsGroup grp)
         {
             lock (_syncR)
             {
-                HandleDuplicate(@group);
-                _rights.Add(@group);
+                HandleDuplicate(grp);
+                _rights.Add(grp);
             }
         }
 
@@ -69,13 +70,13 @@ namespace ModernMembership.Authorization
         /// 
         /// </summary>
         /// <exception cref="DuplicateGroupException"></exception>
-        public void Save(RightsGroup @group)
+        public void Save(RightsGroup grp)
         {
             lock (_syncR)
             {
-                HandleDuplicate(@group,true);
-                _rights.RemoveAll(d => d.Id == @group.Id);
-                _rights.Add(@group);
+                HandleDuplicate(grp,true);
+                _rights.RemoveAll(d => d.Id == grp.Id);
+                _rights.Add(grp);
             }
         }
 

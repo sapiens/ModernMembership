@@ -26,9 +26,10 @@ namespace Tests
             return new ExternalMember(Guid.NewGuid(), new ExternalMemberId("fdb", Guid.NewGuid().ToString()), ScopeId.Global,DateTime.UtcNow);
         }
 
-        public static UserGroup AnEmptyUserGroup()
+        public static UserGroup UserGroupWithARandomUser()
         {
-            return new UserGroup(Guid.NewGuid());
+            var ug = new UserGroup(Guid.NewGuid(),new[]{Guid.NewGuid()});
+            return ug;
         }
 
         public static LocalMember.Memento AMemento()

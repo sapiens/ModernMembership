@@ -6,7 +6,7 @@ namespace ModernMembership.Authorization
 {
     public class ScopedRights
     {
-        private readonly IEnumerable<short> _rights;
+        private readonly IEnumerable<short> _rights=new short[0];
 
         /// <summary>
         /// Should be asigned only to global scope groups. Value can be changed
@@ -22,7 +22,7 @@ namespace ModernMembership.Authorization
             scope.MustNotBeNull();
             rights.MustNotBeNull();
             Scope = scope;
-            _rights = rights;
+            _rights = rights.ToArray();
         }
 
         public ScopeId Scope { get; private set; }

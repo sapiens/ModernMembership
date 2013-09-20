@@ -10,13 +10,13 @@ namespace ModernMembership.Authorization
         /// 
         /// </summary>
         /// <exception cref="DuplicateGroupException">If name and scope match</exception>
-        /// <param name="group"></param>
-        void Add(RightsGroup group);
+        /// <param name="grp"></param>
+        void Add(RightsGroup grp);
         ///<summary>
         /// 
         /// </summary>
         /// <exception cref="DuplicateGroupException"></exception>
-        void Save(RightsGroup group);
+        void Save(RightsGroup grp);
         RightsGroup GetRightsGroup(Guid id);
         IEnumerable<RightsGroup> GetRightsGroups(IEnumerable<Guid> ids);
 
