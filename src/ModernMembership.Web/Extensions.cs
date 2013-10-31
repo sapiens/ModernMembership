@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Security.Principal;
 using System.Web;
+using CavemanTools;
 
 
 namespace ModernMembership.Web
@@ -32,15 +33,16 @@ namespace ModernMembership.Web
             var usr = principal.GetMemberSession();
             usr.Scope = scopeId;
         }
-       
-        ///<summary>
-        /// Sets authenticated cookie
-        /// </summary>
+
+        /// <summary>
+        ///  Sets authenticated cookie
+        ///  </summary>
+        /// <param name="response"></param>
         /// <param name="id">Session id</param>
         /// <param name="valability">Null means browser session</param>
-        public static void SetSessionCookie(this HttpResponseBase response, Guid id, TimeSpan? valability = null)
+        public static void SetSessionCookie(this HttpResponseBase response, SessionId id, TimeSpan? valability = null)
         {
-            MemberSessionModule.SetAuthCookie(response.Cookies,id,valability);
+            MemberSessionModule.SetAuthCookie(response.Cookies,id,valability: valability);
         }
 
         /// <summary>

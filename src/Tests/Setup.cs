@@ -1,4 +1,5 @@
 ﻿using System;
+using CavemanTools;
 using CavemanTools.Model.ValueObjects;
 using CavemanTools.Web;
 using ModernMembership;
@@ -17,6 +18,8 @@ namespace Tests
         }
 
         public static Guid AFixedId=Guid.NewGuid();
+        
+        public static SessionId AFixedSessionId=SessionId.NewId();
 
         public static ScopeId ARandomScope=new ScopeId(Guid.NewGuid());
 

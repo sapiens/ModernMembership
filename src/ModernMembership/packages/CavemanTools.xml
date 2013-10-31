@@ -690,6 +690,15 @@
             <param name="defValue">Value to return if dictionary doesn't contain the key</param>
             <returns></returns>
         </member>
+        <member name="M:System.Collections.Generic.ListUtils.RemoveAll``1(System.Collections.Generic.IList{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Returns number of items removed
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="items"></param>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
         <member name="M:CavemanTools.Model.ValueObjects.AbstractValueObject`1.#ctor(`0)">
             <summary>
             
@@ -1065,6 +1074,14 @@
             <param name="instantiable">True to return only types that can be instantiated i.e no interfaces and no abstract classes</param>
             <returns></returns>
         </member>
+        <member name="M:System.Reflection.AssemblyExtensions.GetInstancesOfTypesDerivedFrom``1(System.Reflection.Assembly)">
+            <summary>
+            Searches and instantiate types derived from T
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="asm"></param>
+            <returns></returns>
+        </member>
         <member name="M:System.Reflection.AttributeUtils.GetCustomAttributes``1(System.Reflection.ICustomAttributeProvider)">
             <summary>
             Returns all custom attributes of specified type
@@ -1118,6 +1135,55 @@
             </summary>
             <param name="o"></param>
             <returns></returns>
+        </member>
+        <member name="M:CavemanTools.SessionId.ToString">
+            <summary>
+            Returns the fully qualified type name of this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> containing a fully qualified type name.
+            </returns>
+        </member>
+        <member name="M:CavemanTools.SessionId.Parse(System.String)">
+            <summary>
+            
+            </summary>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CavemanTools.SessionId.#ctor(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:CavemanTools.SessionId.Equals(CavemanTools.SessionId)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <returns>
+            true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
+            </returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:CavemanTools.SessionId.Equals(System.Object)">
+            <summary>
+            Indicates whether this instance and a specified object are equal.
+            </summary>
+            <returns>
+            true if <paramref name="obj"/> and this instance are the same type and represent the same value; otherwise, false.
+            </returns>
+            <param name="obj">Another object to compare to. </param>
+        </member>
+        <member name="M:CavemanTools.SessionId.GetHashCode">
+            <summary>
+            Returns the hash code for this instance.
+            </summary>
+            <returns>
+            A 32-bit signed integer that is the hash code for this instance.
+            </returns>
         </member>
         <member name="M:CavemanTools.SingletonsRegistry.Register``1(``0)">
             <summary>

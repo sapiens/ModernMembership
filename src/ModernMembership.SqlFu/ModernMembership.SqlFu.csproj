@@ -32,11 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CavemanTools">
-      <HintPath>..\ModernMembership\bin\Debug\CavemanTools.dll</HintPath>
+      <HintPath>..\ModernMembership\packages\CavemanTools.dll</HintPath>
     </Reference>
-    <Reference Include="CavemanTools.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ModernMembership\bin\Debug\CavemanTools.Web.dll</HintPath>
+    <Reference Include="CavemanTools.Web">
+      <HintPath>..\ModernMembership\packages\CavemanTools.Web.dll</HintPath>
     </Reference>
     <Reference Include="DomainBus.Concepts">
       <HintPath>..\ModernMembership\bin\Debug\DomainBus.Concepts.dll</HintPath>

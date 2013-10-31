@@ -2,7 +2,7 @@
 using System.Web;
 using System;
 using System.Web.Configuration;
-using CavemanTools.Extensions;
+using CavemanTools;
 
 namespace ModernMembership.Web
 {
@@ -10,7 +10,7 @@ namespace ModernMembership.Web
     {
         private readonly Func<IMemberSessionsService> _service;
 
-        public static string CookieName = "CaveSession";
+        public static string CookieName = "ModernSession";
         public static string CookiePath = "/";
         public static string CookieDomain = "";
         
@@ -92,21 +92,14 @@ namespace ModernMembership.Web
             return false;
         }
 
-        static Guid? GetSessionId(HttpCookie ck)
+        static SessionId? GetSessionId(HttpCookie ck)
         {
             if (ck != null)
             {
-                try
+                SessionId result;
+                if (SessionId.TryParse(ck.Value, out result))
                 {
-                    return new Guid(Convert.FromBase64String(ck.Value));
-                }
-                catch (FormatException)
-                {
-                    //invalid base64
-                }
-                catch (ArgumentException)
-                {
-                    //invalid guid
+                    return result;
                 }
             }
             return null;
@@ -129,9 +122,9 @@ namespace ModernMembership.Web
         /// <param name="cookies">Response cookies</param>
         /// <param name="id">Session id</param>
         /// <param name="valability">Null means browser session</param>
-        public static void SetAuthCookie(HttpCookieCollection cookies, Guid id, TimeSpan? valability = null)
+        public static void SetAuthCookie(HttpCookieCollection cookies, SessionId id, TimeSpan? valability = null)
         {
-            var ck = new HttpCookie(CookieName, id.ToBase64());
+            var ck = new HttpCookie(CookieName, id.ToString());
 
             if (valability != null)
             {

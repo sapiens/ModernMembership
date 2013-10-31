@@ -1,12 +1,13 @@
 ﻿using System;
+using CavemanTools;
 
 namespace ModernMembership.Web
 {
     public interface IMemberSessionStorage
     {
         void Add(SessionStorageData data);
-        SessionStorageData Get(Guid id);
+        SessionStorageData Get(SessionId id);
         void Update(SessionStorageData data);
-        void Delete(Guid id);
+        void Delete(SessionId id);
     }
 }

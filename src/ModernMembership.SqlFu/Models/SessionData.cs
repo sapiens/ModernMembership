@@ -12,7 +12,8 @@ namespace ModernMembership.SqlFu.Models
         internal const string Table = "MemberSessions";
 
         public long Id { get; set; }
-        public Guid SessionId { get; set; }
+        [ColumnOptions(IsNullable = false,Size = "28")]
+        public string SessionId { get; set; }
         public string Data { get; set; }
         public DateTime ExpiresOn { get; set; }
 
@@ -23,7 +24,7 @@ namespace ModernMembership.SqlFu.Models
 
         public SessionData(SessionStorageData data)
         {
-            SessionId = data.Id;
+            SessionId = data.Id.ToString();
             Data = data.Serialize();
             ExpiresOn = data.ExpiresOn;
         }

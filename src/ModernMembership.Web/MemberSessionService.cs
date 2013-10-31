@@ -1,4 +1,5 @@
 ﻿using System;
+using CavemanTools;
 using CavemanTools.Infrastructure;
 
 namespace ModernMembership.Web
@@ -21,7 +22,7 @@ namespace ModernMembership.Web
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public MemberSessionPrincipal Get(Guid id)
+        public MemberSessionPrincipal Get(SessionId id)
         {
             var key = GenerateCacheKey(id);
             //var expiration = DateTimeOffset.Now.Add(CacheDuration);
@@ -60,9 +61,9 @@ namespace ModernMembership.Web
         /// <param name="duration">Duration of the session</param>
         /// <param name="sliding">True to automatically extend session when it's close to the end</param>
         /// <returns></returns>
-        public Guid StartSession(MemberSessionData data, TimeSpan duration, bool sliding = true)
+        public SessionId StartSession(MemberSessionData data, TimeSpan duration, bool sliding = true)
         {
-            var id = Guid.NewGuid();
+            var id = SessionId.NewId();
             var sessionData = new SessionStorageData()
                 {
                     MemberInfo = data,Duration = duration, Id = id,IsSliding = sliding,ExpiresOn = DateTime.UtcNow.Add(duration)
@@ -75,14 +76,14 @@ namespace ModernMembership.Web
         /// Logout
         /// </summary>
         /// <param name="id"></param>
-        public void EndSession(Guid id)
+        public void EndSession(SessionId id)
         {
             _storage.Delete(id);
             _cache.Remove(GenerateCacheKey(id));
         }
 
 
-        static string GenerateCacheKey(Guid id)
+        static string GenerateCacheKey(SessionId id)
         {
             return id + "-auth";
         }

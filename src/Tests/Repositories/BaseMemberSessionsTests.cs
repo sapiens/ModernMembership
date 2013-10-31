@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using CavemanTools;
 using ModernMembership.Authorization;
 using ModernMembership.Web;
 using Xunit;
@@ -20,7 +21,7 @@ namespace Tests.Repositories
 
             _data = new SessionStorageData()
                 {
-                    Id=Guid.NewGuid(),
+                    Id=SessionId.NewId(),
                     ExpiresOn = DateTime.UtcNow,
                     MemberInfo = new MemberSessionData()
                         {
@@ -44,7 +45,7 @@ namespace Tests.Repositories
         [Fact]
         public void get_nonexisting_session_returns_null()
         {
-            _sut.Get(Guid.NewGuid()).Should().BeNull();
+            _sut.Get(SessionId.NewId()).Should().BeNull();
         }
 
         [Fact]

@@ -2,6 +2,7 @@
 using System.Data.Common;
 using ModernMembership.Web;
 using SqlFu;
+using CavemanTools;
 using SessionData = ModernMembership.SqlFu.Models.SessionData;
 
 namespace ModernMembership.SqlFu
@@ -25,11 +26,11 @@ namespace ModernMembership.SqlFu
             }
         }
 
-        public SessionStorageData Get(Guid id)
+        public SessionStorageData Get(SessionId id)
         {
             using (var db = _getDb())
             {
-                var data = db.GetColumnValue<SessionData, string>(d => d.Data, d => d.SessionId == id);
+                var data = db.GetColumnValue<SessionData, string>(d => d.Data, d => d.SessionId == id.ToString());
                 if (data == null)
                 {
                     return null;
@@ -46,16 +47,16 @@ namespace ModernMembership.SqlFu
                 db.Update<SessionData>()
                   .Set(d => d.Data, data.Serialize())
                   .Set(d => d.ExpiresOn, data.ExpiresOn)
-                  .Where(d => d.SessionId == data.Id)
+                  .Where(d => d.SessionId == data.Id.ToString())
                   .Execute();
             }
         }
 
-        public void Delete(Guid id)
+        public void Delete(SessionId id)
         {
             using (var db = _getDb())
             {
-                db.DeleteFrom<SessionData>(d => d.SessionId == id);
+                db.DeleteFrom<SessionData>(d => d.SessionId == id.ToString());
             }
         }
     }

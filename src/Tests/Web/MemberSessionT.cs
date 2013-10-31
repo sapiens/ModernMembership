@@ -18,7 +18,7 @@ namespace Tests.Web
         {
             var data = new SessionStorageData()
                 {
-                    Id = Setup.AFixedId,
+                    Id = Setup.AFixedSessionId,
                     MemberInfo = new MemberSessionData()
                         {
                             MemberId = Setup.AFixedId,
@@ -38,7 +38,7 @@ namespace Tests.Web
         [Fact]
         public void session_has_unique_id()
         {
-            _sut.Info.Id.Should().Be(Setup.AFixedId);
+            _sut.Info.Id.Should().Be(Setup.AFixedSessionId);
         }
 
         [Fact]
@@ -111,7 +111,7 @@ namespace Tests.Web
             {
                 var data = new SessionStorageData()
                 {
-                    Id = Setup.AFixedId,
+                    Id = Setup.AFixedSessionId,
                     MemberInfo = new MemberSessionData()
                     {
                         MemberId = Setup.AFixedId,

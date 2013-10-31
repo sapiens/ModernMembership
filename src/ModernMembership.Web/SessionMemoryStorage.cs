@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CavemanTools;
 
 namespace ModernMembership.Web
 {
@@ -7,7 +8,7 @@ namespace ModernMembership.Web
     {
         private static object sync = new Object();
 
-        static Dictionary<Guid,SessionStorageData> _list=new Dictionary<Guid, SessionStorageData>();
+        static Dictionary<SessionId,SessionStorageData> _list=new Dictionary<SessionId, SessionStorageData>();
         public void Add(SessionStorageData data)
         {
             lock (sync)
@@ -16,7 +17,7 @@ namespace ModernMembership.Web
             }            
         }
 
-        public SessionStorageData Get(Guid id)
+        public SessionStorageData Get(SessionId id)
         {
             SessionStorageData result=null;
             _list.TryGetValue(id, out result);
@@ -31,7 +32,7 @@ namespace ModernMembership.Web
             }
         }
 
-        public void Delete(Guid id)
+        public void Delete(SessionId id)
         {
             lock (sync)
             {
