@@ -1,0 +1,2 @@
+cscs host
+pause

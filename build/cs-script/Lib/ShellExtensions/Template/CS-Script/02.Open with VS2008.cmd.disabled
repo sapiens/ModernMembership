@@ -1,0 +1,1 @@
+csws.exe /c DebugVS9.0.cs %1
