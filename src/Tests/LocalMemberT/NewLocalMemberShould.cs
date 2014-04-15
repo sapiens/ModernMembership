@@ -1,4 +1,6 @@
-﻿using CavemanTools.Model.ValueObjects;
+﻿using System.Data.SqlTypes;
+using CavemanTools;
+using CavemanTools.Model.ValueObjects;
 using CavemanTools.Web;
 using ModernMembership;
 using Xunit;
@@ -18,7 +20,7 @@ namespace Tests.LocalMemberT
             LocalMember m;
             if (init == null)
             {
-                 m= new LocalMember(Guid.NewGuid(), new LoginName("test"), new PasswordHash("bla"), new Email("bla@yahoo.com"),new ScopeId(Guid.NewGuid()));
+                 m= new LocalMember(Guid.NewGuid(), new LoginName("test"), new PasswordHash("bla",Salt.Generate()), new Email("bla@yahoo.com"),new ScopeId(Guid.NewGuid()));
             }
             else
             {
@@ -31,7 +33,7 @@ namespace Tests.LocalMemberT
         [Fact]
         public void require_name_password_emailand_scope()
         {
-            var m = new LocalMember(Guid.NewGuid(),new LoginName("test12"), new PasswordHash("bla"), new Email("bla@yahoo.com"),new ScopeId(Guid.NewGuid()));
+            var m = new LocalMember(Guid.NewGuid(),new LoginName("test12"), new PasswordHash("bla",Salt.Generate()), new Email("bla@yahoo.com"),new ScopeId(Guid.NewGuid()));
             m.Name.Should().NotBeNull();
             m.Password.Should().NotBeNull();
             m.Email.Should().NotBeNull();

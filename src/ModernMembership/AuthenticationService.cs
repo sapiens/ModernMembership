@@ -1,4 +1,5 @@
-﻿using CavemanTools.Web;
+﻿using CavemanTools;
+using CavemanTools.Web;
 
 namespace ModernMembership
 {
@@ -11,7 +12,7 @@ namespace ModernMembership
             _repository = repository;
         }
 
-        public MemberSessionInfo Authenticate(string loginId, string pwd, IHashPassword hasher = null, ScopeId scope = null)
+        public MemberSessionInfo Authenticate(string loginId, string pwd, ScopeId scope = null)
         {
             if (scope == null) scope = ScopeId.Global;
             var member = _repository.GetMember(new LoginName(loginId),scope);
@@ -20,9 +21,7 @@ namespace ModernMembership
                 return null;
             }
 
-            if (hasher==null) hasher=new CavemanHashStrategy();
-            var hash = hasher.Hash(pwd, member.Password.Salt);
-            if (!member.Password.Matches(hash))
+            if (!member.Password.IsValidPassword(pwd))
             {
                 return new MemberSessionInfo(member.Id,MemberSessionInfoStatus.PasswordFailed,member.Status,scope);
             }

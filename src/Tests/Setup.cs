@@ -42,7 +42,7 @@ namespace Tests
             m.Name = new LoginName("valid-login-name");
             m.Status = MemberStatus.Locked;
             m.Email = new Email("bla@me.com");
-            m.Password = new PasswordHash("hash");
+            m.Password = new PasswordHash("hash",Salt.Generate()).ToString();
             m.Scope = ScopeId.Global;
             m.RegisteredOn = DateTime.UtcNow;
             return m;
@@ -53,7 +53,7 @@ namespace Tests
             {
                 name = "test"+Guid.NewGuid().ToString().Substring(4);
             }
-            return new LocalMember(Guid.NewGuid(), new LoginName(name), new PasswordHash("bla"), new Email("bla{0}@yahoo.com".ToFormat(Guid.NewGuid().ToString().Substring(4))), globalScope ? ScopeId.Global : new ScopeId(Guid.NewGuid()));
+            return new LocalMember(Guid.NewGuid(), new LoginName(name), new PasswordHash("bla",Salt.Generate()), new Email("bla{0}@yahoo.com".ToFormat(Guid.NewGuid().ToString().Substring(4))), globalScope ? ScopeId.Global : new ScopeId(Guid.NewGuid()));
         }
 
         public static MemberSessionPrincipal AnonymousMemberSession()
@@ -115,12 +115,12 @@ namespace Tests
     public class SetupPassword
     {
         public string FixedValue = "pwd";
+        public Salt salt = Salt.Generate();
         public PasswordHash FixedHash
         {
             get
             {
-                var str = new CavemanHashStrategy();
-                return new PasswordHash(str.Hash(FixedValue, "salt"), "salt");
+               return new PasswordHash(FixedValue, salt);
             }
         }
     }

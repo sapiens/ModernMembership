@@ -1,4 +1,5 @@
-﻿using CavemanTools.Model.ValueObjects;
+﻿using CavemanTools;
+using CavemanTools.Model.ValueObjects;
 using CavemanTools.Web;
 using ModernMembership;
 using ModernMembership.Events;
@@ -60,7 +61,7 @@ namespace Tests.LocalMemberT
         [Fact]
         public void changing_password_generates_event()
         {
-            var pwd = new PasswordHash("newh");
+            var pwd = new PasswordHash("newh",Salt.Generate());
             _sut.ChangePassword(pwd);
             _sut.Password.Should().Be(pwd);
             _sut.GetGeneratedEvents().First().Cast<MemberPasswordChanged>().Should().NotBeNull();

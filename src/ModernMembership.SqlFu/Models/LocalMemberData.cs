@@ -1,4 +1,5 @@
 ﻿using System;
+using CavemanTools;
 using CavemanTools.Model.ValueObjects;
 using CavemanTools.Web;
 using SqlFu;
@@ -45,7 +46,7 @@ namespace ModernMembership.SqlFu.Models
             RegisteredOn = member.RegisteredOn;
             Status = member.Status;
             DisplayName = member.DisplayName;
-            PasswordHash = member.Password.Serialize();
+            PasswordHash = member.Password;
         }
 
         public LocalMember.Memento ToMemento()
@@ -58,7 +59,7 @@ namespace ModernMembership.SqlFu.Models
             memento.RegisteredOn = RegisteredOn;
             memento.Status = Status;
             memento.DisplayName = DisplayName;
-            memento.Password = PasswordHash.Deserialize<PasswordHash>();
+            memento.Password = PasswordHash;
             return memento;
         }
     }

@@ -155,7 +155,7 @@ namespace Tests.Repositories
                 {
                     Email = new Email("bla@hi.com"),
                     Name = member.Name,
-                    Password = Setup.APassword.FixedHash,
+                    Password = Setup.APassword.FixedHash.ToString(),
                     Scope = ScopeId.Global,
                     RegisteredOn = DateTime.UtcNow
                 });
@@ -171,7 +171,7 @@ namespace Tests.Repositories
             {
                 Email = member.Email,
                 Name = new LoginName("bla1234"),
-                Password = Setup.APassword.FixedHash,
+                Password = Setup.APassword.FixedHash.ToString(),
                 Scope = ScopeId.Global,
                 RegisteredOn = DateTime.UtcNow
             });
@@ -227,7 +227,7 @@ namespace Tests.Repositories
                     Id=Guid.NewGuid(),
                     Email = Setup.AFixedEmail,
                     Name = LoginName.CreateRandomTestValue(),
-                    Password = Setup.APassword.FixedHash,
+                    Password = Setup.APassword.FixedHash.ToString(),
                     RegisteredOn = DateTime.UtcNow.Subtract(TimeSpan.FromDays(31)),
                     Scope = ScopeId.Global,
                     Status = MemberStatus.NeedsActivation

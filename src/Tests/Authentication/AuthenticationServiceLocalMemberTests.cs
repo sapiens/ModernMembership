@@ -30,7 +30,7 @@ namespace Tests.Authentication
                     Id = Guid.NewGuid()
                     ,Name = new LoginName(name)
                     ,Email = Setup.AFixedEmail
-                    ,Password = Setup.APassword.FixedHash
+                    ,Password = Setup.APassword.FixedHash.ToString()
                     ,DisplayName = name+" display"
                     ,Status = state
                     ,Scope = scope??ScopeId.Global
@@ -94,7 +94,7 @@ namespace Tests.Authentication
         public void authenticating_a_scoped_user_in_global_scope_returns_null()
         {
             A.CallTo(() => _repo.GetMember(new LoginName("scoped"), Setup.ARandomScope)).Returns(SetupMember("scoped", scope: Setup.ARandomScope));
-            _sut.Authenticate("scoped", Setup.APassword.FixedValue, scope:ScopeId.Global).Should().BeNull();
+            _sut.Authenticate("scoped", Setup.APassword.FixedValue, scope: ScopeId.Global).Should().BeNull();
         }
 
 

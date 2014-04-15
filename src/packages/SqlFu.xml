@@ -1,0 +1,835 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SqlFu</name>
+    </assembly>
+    <members>
+        <member name="M:SqlFu.CrudHelpers.Insert(System.Data.Common.DbConnection,System.String,System.Object,System.Boolean)">
+            <summary>
+            Inserts into database
+            </summary>
+            <param name="db"></param>
+            <param name="table">Table name</param>
+            <param name="data">Column and Values</param>
+            <param name="idIsIdentity">By default if the object has an Id property, it's considered to be autoincremented</param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.CrudHelpers.FillArgs(System.Collections.Generic.IDictionary{System.String,System.Object},SqlFu.Internals.TableInfo,SqlFu.IHaveDbProvider,System.Text.StringBuilder)">
+            <summary>
+            Write column names and returns values to be inserted
+            </summary>
+            <param name="arguments"></param>
+            <param name="tableInfo"></param>
+            <param name="provider"></param>
+            <param name="sb"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.CrudHelpers.Update(System.Data.Common.DbConnection,System.String,System.Object,System.Object)">
+            <summary>
+            If both poco has id property and the Id arg is specified, the arg is used
+            </summary>
+            <param name="db"></param>
+            <param name="table"></param>
+            <param name="data"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.CrudHelpers.Update``1(System.Data.Common.DbConnection,System.Object,System.Object)">
+            <summary>
+            If both poco has id property and the Id arg is specified, the arg is used
+            </summary>
+        </member>
+        <member name="M:SqlFu.CrudHelpers.Update``1(System.Data.Common.DbConnection)">
+            <summary>
+            Gets update table builder
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="db"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DatabaseUnitOfWork.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:SqlFu.DDL.DbEngineOptions.Get(System.String,SqlFu.DbEngine)">
+            <summary>
+            Returns null if option doesn't exist
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.DbEngineOptions.AddRange(System.Collections.Generic.IEnumerable{SqlFu.DDL.DbSpecificOption})">
+            <summary>
+            Adds a new option. If the option exists it's replaced
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:SqlFu.DDL.Generators.AbstractColumnChangesWriter.WriteColumnChanges(SqlFu.DDL.Internals.ColumnModifications)">
+            <summary>
+            type, size,collate, null
+            </summary>
+        </member>
+        <member name="M:SqlFu.DDL.Generators.CommonDDLWriter.GetEscapedNames(System.String,System.Func{System.String,System.String})">
+            <summary>
+            Escapes columns names using the specified formatter
+            </summary>
+            <param name="columns"></param>
+            <param name="formatter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.Generators.MySql.MySqlColumnChangesWriter.WriteColumnChanges(SqlFu.DDL.Internals.ColumnModifications)">
+            <summary>
+            type, size,collate, null
+            </summary>
+        </member>
+        <member name="M:SqlFu.DDL.ICreateDDL.GetCreateTableBuilder(System.String,SqlFu.DDL.IfTableExists)">
+            <summary>
+            Creates a fluent builder object to help you generate a Create Table script
+            </summary>
+            <param name="name">Table name</param>
+            <param name="option">What happens if table exists</param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.ICreateDDL.GetCreateTableBuilder``1">
+            <summary>
+            Creates a fluent builder object to help you generate a Create Table script, starting from an existing type.
+            You can customize it further
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.ICreateDDL.GetAlterTableBuilder(System.String)">
+            <summary>
+            Creates a fluent builder object to help you generate an Alter Table script
+            </summary>
+            <param name="name">Table name</param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.IDatabaseTools.GetPrimaryKeyName(System.String,System.String)">
+            <summary>
+            Returns null if there isn't any
+            </summary>
+            <param name="tableName"></param>
+            <param name="schema"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.Internals.CommonDatabaseTools.GetCreateTableBuilder``1">
+            <summary>
+            Creates a fluent builder object to help you generate a Create Table script, starting from an existing type.
+            You can customize it further
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.Generators.Postgresql.PostgresColumnChangesWriter.WriteColumnChanges(SqlFu.DDL.Internals.ColumnModifications)">
+            <summary>
+            type, size,collate, null
+            </summary>
+        </member>
+        <member name="M:SqlFu.DDL.Generators.Sqlite.SqliteColumnChangesWriter.WriteColumnChanges(SqlFu.DDL.Internals.ColumnModifications)">
+            <summary>
+            type, size,collate, null
+            </summary>
+        </member>
+        <member name="M:SqlFu.DDL.ISupportSpecificColumnsOptions.IfDatabaseIs(SqlFu.DbEngine)">
+            <summary>
+            Customize column for a specific database engine
+            </summary>
+            <param name="engine"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.IAddColumns.Add(System.String,System.Data.DbType,System.String,System.Boolean,System.String,System.String,System.Boolean)">
+            <summary>
+            Adds a new column to table
+            </summary>
+            <param name="name">Column name</param>
+            <param name="type">Column type</param>
+            <param name="size">leavy empty for max size</param>
+            <param name="isNullable"></param>
+            <param name="defaultValue"></param>
+            <param name="collation"> </param>
+            <param name="autoIncrement">identity column</param>
+            <returns></returns>
+        </member>
+        <member name="P:SqlFu.DDL.IIndexForCreateColumn.Item(System.String)">
+            <summary>
+            Gets columns options if the column has been defined in the builder
+            </summary>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException"></exception>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.IConfigureColumns.AsPrimaryKey(System.String)">
+            <summary>
+            Set the primary key constraint
+            </summary>
+            <param name="keyName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.IConfigureColumns.AsUnique(System.String)">
+            <summary>
+            Column has unique values
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.IConfigureColumns.WithCheck(System.String,System.String)">
+            <summary>
+            Column value must respect expression
+            </summary>
+            <param name="expression"></param>
+            <param name="constraintName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.IConfigureColumns.WithIndex(System.String,System.Boolean)">
+            <summary>
+            Create an index for column
+            </summary>
+            <param name="idxName"></param>
+            <param name="unique"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.IConfigureColumns.IsForeignKeyFrom(System.String,System.String,SqlFu.DDL.ForeignKeyRelationCascade,SqlFu.DDL.ForeignKeyRelationCascade,System.String)">
+            <summary>
+            Column values are foreign keys
+            </summary>
+            <param name="parentTable">Table containing values for the column</param>
+            <param name="parentColumns">Columns of the parent table</param>
+            <param name="onUpdate"></param>
+            <param name="onDelete"></param>
+            <param name="keyName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.IDefineSpecificColumnsOptions.RedefineColumnAs(System.String)">
+            <summary>
+            Column will be defined acording to the specfied definition.
+             </summary>
+            <param name="definition">Definition of the column excluding column name</param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.IDefineSpecificColumnsOptions.SetColumnOptions(SqlFu.DDL.DbSpecificOption[])">
+            <summary>
+            Set db engine specific options
+            </summary>
+            <param name="options"> </param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.ICompleteTableDefinition.GetSql">
+            <summary>
+            Generate DDL script
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.ICompleteTableDefinition.ExecuteDDL">
+            <summary>
+            Executes generated DDL script
+            </summary>
+        </member>
+        <member name="M:SqlFu.DDL.ISupportSpecificConstraintsOptions.IfDatabaseIs(SqlFu.DbEngine)">
+            <summary>
+            Customize options for a specific db engine
+            </summary>
+            <param name="engine"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.ICreateConstraints.AddPrimaryKeyOn(System.String,System.String)">
+            <summary>
+            If key name is missing it will default to PK_[table name]
+            </summary>
+            <param name="columnsNames">Format: column[,...column]</param>
+            <param name="keyName">Default is PK_[table name]</param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.ICreateConstraints.AddForeignKeyOn(System.String,System.String,System.String,SqlFu.DDL.ForeignKeyRelationCascade,SqlFu.DDL.ForeignKeyRelationCascade,System.String)">
+            <summary>
+            Creates a foreign key relation
+            </summary>
+            <param name="columnNames"> </param>
+            <param name="parentTable"></param>
+            <param name="parentColumns"> </param>
+            <param name="onUpdate"> </param>
+            <param name="onDelete"> </param>
+            <param name="keyName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.IDefineSpecificConstraintsOptions.AddConstraint(System.String)">
+            <summary>
+            Adds a new constraint when the specified db engine is used
+            </summary>
+            <param name="definition">Constraint definition ddl</param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.IDefineSpecificConstraintsOptions.Redefine(System.String)">
+            <summary>
+            Redefine the constraint for the specific db engine
+            </summary>
+            <param name="definition">Constraint definition ddl</param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.ISupportSpecificIndexOptions.IfDatabaseIs(SqlFu.DbEngine)">
+            <summary>
+            Customize index options for the specified db engine
+            </summary>
+            <param name="engine"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.ICreateIndexes.AddIndexOn(System.String,System.Boolean,System.String)">
+            <summary>
+            Specifies that an index will be created for the specified columns
+            </summary>
+            <param name="columnsNames"></param>
+            <param name="isUnique"></param>
+            <param name="indexName"></param>
+            <returns></returns>
+        </member>
+        <member name="P:SqlFu.DDL.ICreateIndexes.Item(System.String)">
+            <summary>
+            Gets index options by index name. Index MUST have been already defined in the builder
+            </summary>
+            <param name="idxName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.IDefineSpecificIndexOptions.SetOptions(SqlFu.DDL.DbSpecificOption[])">
+            <summary>
+            Set db engine specific options
+            </summary>
+            <param name="options"> </param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.IDefineSpecificIndexOptions.RedefineAs(System.String)">
+            <summary>
+            Use this definition to define the index
+            </summary>
+            <param name="definition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.IDefineSpecificIndexOptions.AddCustom(System.String)">
+            <summary>
+            Adds an index only for the specified db engine
+            </summary>
+            <param name="definition">Index definition ddl</param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.IDefineSpecificIndexOptions.AddCustom(SqlFu.DbEngine,System.String)">
+            <summary>
+            Adds an index only for the specified db engine
+            </summary>
+            <param name="engine">Db engine</param>
+            <param name="definition">Index definition ddl</param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.ISupportSpecificTableOptions`1.TableOptionsFor(SqlFu.DbEngine,SqlFu.DDL.DbSpecificOption[])">
+            <summary>
+            Set table options for the specified db engine
+            </summary>
+            <param name="engine"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="P:SqlFu.DDL.ICreateTable.Columns">
+            <summary>
+            Define table columns
+            </summary>
+        </member>
+        <member name="P:SqlFu.DDL.ICreateTable.Constraints">
+            <summary>
+            Define table constraints
+            </summary>
+        </member>
+        <member name="P:SqlFu.DDL.ICreateTable.Indexes">
+            <summary>
+            Define table indexes
+            </summary>
+        </member>
+        <member name="P:SqlFu.DDL.Internals.ColumnDefinition.IsNullable">
+            <summary>
+            Default is false
+            </summary>
+        </member>
+        <member name="P:SqlFu.DDL.Internals.ColumnModifications.Name">
+            <summary>
+            Gets the column's current name. It takes renaming into account 
+            </summary>
+        </member>
+        <member name="M:SqlFu.DDL.ISupportOptionsForDrop`1.WithoutOptions">
+            <summary>
+            No options for a db engine
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.DDL.Internals.Extensions.FilterEscape(System.String)">
+            <summary>
+            Removes characters used to escape identifiers.
+            Clears out [] " ` .
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="P:SqlFu.DDL.KeyValueOption.Symbol">
+            <summary>
+            Default is 1 space " " 
+            </summary>
+        </member>
+        <member name="P:SqlFu.DDL.PrimaryKeyAttribute.AutoIncrement">
+            <summary>
+            Default is true
+            </summary>
+        </member>
+        <member name="T:SqlFu.DDL.RedefineForAttribute">
+            <summary>
+            Tell SqlFu to use the provided definition when generating the column for a specific db engine
+            </summary>
+        </member>
+        <member name="P:SqlFu.DDL.ColumnOptionsAttribute.Ignore">
+            <summary>
+            Skip this column when generating table
+            </summary>
+        </member>
+        <member name="P:SqlFu.DDL.ColumnOptionsAttribute.IsNullable">
+            <summary>
+            Default is false
+            </summary>
+        </member>
+        <member name="P:SqlFu.DDL.ColumnOptionsAttribute.Size">
+            <summary>
+            Null means maximum size
+            </summary>
+        </member>
+        <member name="M:SqlFu.ToolsExtensions.Drop``1(System.Data.Common.DbConnection)">
+            <summary>
+            Drops table specified by type param
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="db"></param>
+        </member>
+        <member name="M:SqlFu.ToolsExtensions.Truncate``1(System.Data.Common.DbConnection)">
+            <summary>
+            Truncate table specified by type param
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="db"></param>
+        </member>
+        <member name="M:SqlFu.IMapComplexType.EmitMapping(System.Reflection.Emit.ILGenerator,System.Type,System.Data.IDataReader,System.Int32)">
+            <summary>
+            Emits IL to map a complex type from reader
+            Instance of poco is already pushed on the stack
+            </summary>
+            <param name="il"></param>
+            <param name="poco"> </param>
+            <param name="i"> </param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.IMapComplexType.MapType``1(``0,System.Data.IDataReader,System.Int32)">
+            <summary>
+            Maps a complex type from reader
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="poco"></param>
+            <param name="rd"></param>
+            <param name="idx"></param>
+        </member>
+        <member name="M:SqlFu.DefaultComplexTypeMapper.GetProperties(System.Type,System.String)">
+            <summary>
+            returns null if it's not a valid match
+            </summary>
+            <param name="poco"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.Expressions.ExpressionSqlBuilder`1.EndEnumeration">
+            <summary>
+            Removes comma after columns enumeration
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.Expressions.ExpressionWriter.HandleParameterSubProperty(System.Linq.Expressions.MemberExpression)">
+            <summary>
+            For properties of a parameter property.
+            Used to for properties that can be translated into db functions
+            </summary>
+            <param name="node"></param>
+        </member>
+        <member name="P:SqlFu.Expressions.ParametersManager.CurrentIndex">
+            <summary>
+            param position
+            </summary>
+        </member>
+        <member name="M:SqlFu.ControlledQueryStatement.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:SqlFu.IHaveDbProvider.FormatSql(System.String,System.String[])">
+            <summary>
+            Replaces @ with provider parameter prefix
+            </summary>
+            <param name="sql"></param>
+            <param name="paramNames"></param>
+            <returns></returns>
+        </member>
+        <member name="P:SqlFu.IHaveDbProvider.BuilderHelper">
+            <summary>
+            Gets expression query builder helpers for the rdbms.
+            Internal usage
+            </summary>
+        </member>
+        <member name="T:SqlFu.InsertAsStringAttribute">
+            <summary>
+            Any column with this attribute will be considered a string for insert/update purposes
+            </summary>
+        </member>
+        <member name="M:SqlFu.Migrations.IMigrationTask.Execute(System.Data.Common.DbConnection)">
+            <summary>
+            Task is executed automatically in a transaction
+            </summary>
+            <param name="db"></param>
+        </member>
+        <member name="P:SqlFu.Migrations.IMigrationTask.CurrentVersion">
+            <summary>
+            Gets semantic version to upgrade from
+            </summary>
+        </member>
+        <member name="P:SqlFu.Migrations.IMigrationTask.NextVersion">
+            <summary>
+            Gets semantic version to upgrade to
+            </summary>
+        </member>
+        <member name="M:SqlFu.Migrations.Automatic.IAutomaticMigration.Execute(System.String[])">
+            <summary>
+            Tries to install/update all the specified schemas.
+            If no schema is specified it tries to process all schemas found
+            </summary>
+            <param name="schemas"></param>
+        </member>
+        <member name="M:SqlFu.Migrations.Automatic.IAutomaticMigration.Untrack(System.String[])">
+            <summary>
+            Removes the specified schemas names form the tracking table.
+            It doesn't remove actual tables. 
+            Next time the automatic migrations are run, these schemas will be installed again.
+            Don't use it unless you have a good reason
+            </summary>
+            <param name="schemas"></param>
+        </member>
+        <member name="M:SqlFu.Migrations.Automatic.AutomaticMigrationSetupTask.Execute(System.Data.Common.DbConnection)">
+            <summary>
+            Task is executed automatically in a transaction
+            </summary>
+            <param name="db"/>
+        </member>
+        <member name="M:SqlFu.Migrations.IConfigureMigrationsRunner.PerformAutomaticMigrations(System.String[])">
+            <summary>
+            Tries to install/update all the specified schemas.
+            If no schema is specified it tries to process all schemas found
+            </summary>
+            <param name="schemas"></param>
+        </member>
+        <member name="P:SqlFu.Migrations.IMigrateSchema.Runner">
+            <summary>
+            Gets or sets the runner used to execute tasks
+            </summary>
+        </member>
+        <member name="M:SqlFu.Migrations.MigrationAttribute.#ctor(System.String)">
+            <summary>
+            Installs schema for the specified version
+            </summary>
+            <param name="currentVersion"></param>
+        </member>
+        <member name="P:SqlFu.Migrations.MigrationAttribute.SchemaName">
+            <summary>
+            Optional schema name
+            </summary>
+        </member>
+        <member name="P:SqlFu.Migrations.MigrationAttribute.Priority">
+            <summary>
+            Executed from highest to lowest
+            </summary>
+        </member>
+        <member name="P:SqlFu.Migrations.SchemaMigrationExecutor.Runner">
+            <summary>
+            Gets or sets the runner used to execute tasks
+            </summary>
+        </member>
+        <member name="M:SqlFu.PocoFactory.EmitGetColumnValue(System.Reflection.Emit.ILGenerator,System.Int32,System.Type)">
+            <summary>
+            Read value and puts it on the stack
+            </summary>
+            <param name="il"></param>
+            <param name="i"></param>
+            <param name="tp"></param>
+        </member>
+        <member name="P:SqlFu.Providers.AbstractProvider.BuilderHelper">
+            <summary>
+            Gets expression query builder helpers for the rdbms.
+            Internal usage
+            </summary>
+        </member>
+        <member name="P:SqlFu.Providers.MySqlProvider.BuilderHelper">
+            <summary>
+            Gets expression query builder helpers for the rdbms.
+            Internal usage
+            </summary>
+        </member>
+        <member name="P:SqlFu.Providers.PostgresProvider.BuilderHelper">
+            <summary>
+            Gets expression query builder helpers for the rdbms.
+            Internal usage
+            </summary>
+        </member>
+        <member name="P:SqlFu.Providers.SqliteProvider.BuilderHelper">
+            <summary>
+            Gets expression query builder helpers for the rdbms.
+            Internal usage
+            </summary>
+        </member>
+        <member name="P:SqlFu.Providers.SqlServer.SqlServerProvider.BuilderHelper">
+            <summary>
+            Gets expression query builder helpers for the rdbms.
+            Internal usage
+            </summary>
+        </member>
+        <member name="M:SqlFu.QueryHelpers.Get``1(System.Data.Common.DbConnection,System.Object,System.String,System.Object[])">
+            <summary>
+            Gets one object, selected by id and an optional predicate
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="db"></param>
+            <param name="id"></param>
+            <param name="additionalPredicate"></param>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.QueryHelpers.Get``1(System.Data.Common.DbConnection,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Selects first row matching criteria and maps it to poco
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="db"></param>
+            <param name="condition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.QueryHelpers.Query``1(System.Data.Common.DbConnection,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="db"></param>
+            <param name="condition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.QueryHelpers.GetColumnValue``2(System.Data.Common.DbConnection,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Returns only the specified column value
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="R"></typeparam>
+            <param name="db"></param>
+            <param name="selector">Column selector</param>
+            <param name="criteria">Selection criteria</param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.QueryHelpers.HasAnyRows``1(System.Data.Common.DbConnection,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Checks if the table has any rows with optional criteria
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="db"></param>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.SqlFuConnection.BeginDbTransaction(System.Data.IsolationLevel)">
+            <summary>
+            Starts a database transaction.
+            </summary>
+            <returns>
+            An object representing the new transaction.
+            </returns>
+            <param name="isolationLevel">Specifies the isolation level for the transaction.</param>
+        </member>
+        <member name="M:SqlFu.SqlFuConnection.Close">
+            <summary>
+            Closes the connection to the database. This is the preferred method of closing any open connection.
+            </summary>
+            <exception cref="T:System.Data.Common.DbException">The connection-level error that occurred while opening the connection. </exception>
+        </member>
+        <member name="M:SqlFu.SqlFuConnection.ChangeDatabase(System.String)">
+            <summary>
+            Changes the current database for an open connection.
+            </summary>
+            <param name="databaseName">Specifies the name of the database for the connection to use.</param>
+        </member>
+        <member name="M:SqlFu.SqlFuConnection.Open">
+            <summary>
+            Opens a database connection with the settings specified by the <see cref="P:System.Data.Common.DbConnection.ConnectionString"/>.
+            </summary>
+        </member>
+        <member name="M:SqlFu.SqlFuConnection.CreateDbCommand">
+            <summary>
+            Creates and returns a <see cref="T:System.Data.Common.DbCommand"/> object associated with the current connection.
+            </summary>
+            <returns>
+            A <see cref="T:System.Data.Common.DbCommand"/> object.
+            </returns>
+        </member>
+        <member name="P:SqlFu.SqlFuConnection.ConnectionString">
+            <summary>
+            Gets or sets the string used to open the connection.
+            </summary>
+            <returns>
+            The connection string used to establish the initial connection. The exact contents of the connection string depend on the specific data source for this connection. The default value is an empty string.
+            </returns>
+        </member>
+        <member name="P:SqlFu.SqlFuConnection.Database">
+            <summary>
+            Gets the name of the current database after a connection is opened, or the database name specified in the connection string before the connection is opened.
+            </summary>
+            <returns>
+            The name of the current database or the name of the database to be used after a connection is opened. The default value is an empty string.
+            </returns>
+        </member>
+        <member name="P:SqlFu.SqlFuConnection.State">
+            <summary>
+            Gets a string that describes the state of the connection.
+            </summary>
+            <returns>
+            The state of the connection. The format of the string returned depends on the specific type of connection you are using.
+            </returns>
+        </member>
+        <member name="P:SqlFu.SqlFuConnection.DataSource">
+            <summary>
+            Gets the name of the database server to which to connect.
+            </summary>
+            <returns>
+            The name of the database server to which to connect. The default value is an empty string.
+            </returns>
+        </member>
+        <member name="P:SqlFu.SqlFuConnection.ServerVersion">
+            <summary>
+            Gets a string that represents the version of the server to which the object is connected.
+            </summary>
+            <returns>
+            The version of the database. The format of the string returned depends on the specific type of connection you are using.
+            </returns>
+        </member>
+        <member name="M:SqlFu.SqlFuDao.QuerySingle``1(System.Data.Common.DbConnection,System.String,System.Object[])">
+            <summary>
+            Returns only the first row of result
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="cnx"></param>
+            <param name="sql"></param>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.SqlFuDao.Query``1(System.Data.Common.DbConnection)">
+            <summary>
+            Does a simple 'select * from T'
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="cnx"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.SqlFuDao.ExecuteLoggedReader(System.Data.Common.DbCommand)">
+            <summary>
+            Calls OnCommand and OnError 
+            </summary>
+            <param name="cmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.SqlFuDao.ExecuteStoredProcedure(System.Data.Common.DbConnection,System.String,System.Object)">
+            <summary>
+            Executes sproc
+            </summary>
+            <param name="cnx"></param>
+            <param name="sprocName"></param>
+            <param name="arguments">Arguments as an anonymous object, output parameters names must be prefixed with _ </param>
+            <example>
+            ExecuteStoredProcedure("sprocName",new{Id=1,_OutValue=""})
+            </example>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.SqlFuDao.GetRawValue(System.Data.Common.DbCommand)">
+            <summary>
+            Identically with ExecuteScalar but has logging enabled
+            </summary>
+            <param name="cmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.SqlFuDaoAsync.QuerySingleAsync``1(System.Data.Common.DbConnection,System.Threading.CancellationToken,System.String,System.Object[])">
+            <summary>
+            Returns only the first row of result
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="cnx"></param>
+            <param name="sql"></param>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.SqlFuDaoAsync.GetAsync``1(System.Data.Common.DbConnection,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Threading.CancellationToken)">
+            <summary>
+            Selects first row matching criteria and maps it to poco
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="db"></param>
+            <param name="condition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.SqlFuDaoAsync.GetAsync``1(System.Data.Common.DbConnection,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Selects first row matching criteria and maps it to poco
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="db"></param>
+            <param name="condition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.SqlFuDaoAsync.QueryAsync``1(System.Data.Common.DbConnection,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="db"></param>
+            <param name="condition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.SqlFuDaoAsync.GetColumnValueAsync``2(System.Data.Common.DbConnection,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Threading.CancellationToken)">
+            <summary>
+            Returns only the specified column value
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="R"></typeparam>
+            <param name="db"></param>
+            <param name="selector">Column selector</param>
+            <param name="criteria">Selection criteria</param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlFu.SqlFuDaoAsync.GetColumnValueAsync``2(System.Data.Common.DbConnection,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Returns only the specified column value
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="R"></typeparam>
+            <param name="db"></param>
+            <param name="selector">Column selector</param>
+            <param name="criteria">Selection criteria</param>
+            <returns></returns>
+        </member>
+        <member name="T:SqlFu.StoredProcedureResult">
+            <summary>
+            Contains return value and output parameter values
+            </summary>
+        </member>
+        <member name="P:SqlFu.TableAttribute.PrimaryKey">
+            <summary>
+            Primary key name
+            Default is Id
+            </summary>
+        </member>
+        <member name="P:SqlFu.TableAttribute.AutoGenerated">
+            <summary>
+            Gets or sets if the primary key is autogenerated (autoincrement,identity) by the database
+            Used by inserts only
+            Default is true
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:SqlFu.Utils.GetSingleAttribute``1(System.Reflection.ICustomAttributeProvider,System.Boolean)" -->
+    </members>
+</doc>

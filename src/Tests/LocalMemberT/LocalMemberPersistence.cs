@@ -1,4 +1,5 @@
-﻿using CavemanTools.Model.ValueObjects;
+﻿using CavemanTools;
+using CavemanTools.Model.ValueObjects;
 using CavemanTools.Web;
 using ModernMembership;
 using Ploeh.AutoFixture;
@@ -25,7 +26,7 @@ namespace Tests.LocalMemberT
             var state = m.GetMemento();
             state.Id.Should().Be(m.Id);
             state.Name.Should().Be(m.Name);
-            state.Password.Should().Be(m.Password);
+            state.Password.Should().Be(m.Password.ToString());
             state.Email.Should().Be(m.Email);
             state.Status.Should().Be(m.Status);
             state.DisplayName.Should().Be(m.DisplayName);
@@ -40,7 +41,7 @@ namespace Tests.LocalMemberT
             m.Name=new LoginName("valid-login-name");
             m.Status=MemberStatus.Locked;
             m.Email = new Email("bla@me.com");
-            m.Password=new PasswordHash("hash");
+            m.Password=new PasswordHash("hash",Salt.Generate()).ToString();
             m.Scope = ScopeId.Global;
             return m;
         }
@@ -52,7 +53,7 @@ namespace Tests.LocalMemberT
             var member = new LocalMember(m);
             member.Id.Should().Be(m.Id);
             member.Name.Should().Be(m.Name);
-            member.Password.Should().Be(m.Password);
+            member.Password.Should().Be(PasswordHash.FromHash(m.Password));
             member.Email.Should().Be(m.Email);
             member.DisplayName.Should().Be(m.DisplayName);
             member.Status.Should().Be(m.Status);
