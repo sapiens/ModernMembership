@@ -83,8 +83,9 @@
   <ItemGroup>
     <Compile Include="Authentication\AuthenticationServiceLocalMemberTests.cs" />
     <Compile Include="AuthorizationT\GroupNameTests.cs" />
+    <Compile Include="AuthorizationT\LocalScopedRightsTest.cs" />
     <Compile Include="AuthorizationT\RightsGroupT.cs" />
-    <Compile Include="AuthorizationT\ScopedRightsTests.cs" />
+    <Compile Include="AuthorizationT\GlobalScopedRightsTests.cs" />
     <Compile Include="AuthorizationT\UserGroupsT.cs" />
     <Compile Include="EventHandlers\WhenRightGroupIsDeleted.cs" />
     <Compile Include="EventHandlers\WhenRightsGroupIsCreated.cs" />
