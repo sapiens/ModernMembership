@@ -1,2 +1,0 @@
-cscs host
-pause

@@ -1,2 +1,0 @@
-css script.cs
-pause

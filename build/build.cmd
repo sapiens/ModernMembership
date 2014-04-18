@@ -1,4 +1,3 @@
 @echo off
-cls
-"fake\Fake.exe" build.fsx "%1"
+"..\src\packages\csake.1.1.0\tools\csake.exe" build.cs %1
 pause
