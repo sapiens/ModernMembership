@@ -20,11 +20,11 @@ namespace Tests.AuthorizationT
 
 
         [Fact]
-        public void when_has_global_admin_check_fails()
+        public void when_has_global_admin_check_passes()
         {
             var sut = new ScopedRights(Setup.ARandomScope, new int[] { ScopedRights.GlobalAdmin });
             
-            sut.HasRight(23).Should().BeFalse();
+            sut.HasRight(23).Should().BeTrue();
         }
     }
 }

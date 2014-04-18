@@ -17,12 +17,15 @@ namespace ModernMembership.Authorization
         /// </summary>
         public static int ScopedAdmin = int.MaxValue - 10;
 
+        private bool _isGlobalAdmin;
+
         public ScopedRights(ScopeId scope,IEnumerable<int> rights)
         {
             scope.MustNotBeNull();
             rights.MustNotBeNull();
             Scope = scope;
             _rights = rights.ToArray();
+            _isGlobalAdmin = rights.Any(r => r == GlobalAdmin);
         }
 
         public ScopeId Scope { get; private set; }
@@ -33,6 +36,7 @@ namespace ModernMembership.Authorization
         /// <returns></returns>
         public bool HasRight(params int[] rights)
         {
+            if (_isGlobalAdmin) return true;
             var admin = ScopedAdmin;
             if (Scope == ScopeId.Global)
             {
