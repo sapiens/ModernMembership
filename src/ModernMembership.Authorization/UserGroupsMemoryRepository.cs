@@ -138,13 +138,13 @@ namespace ModernMembership.Authorization
 
         public IEnumerable<ScopedRights> GetRights(Guid userId)
         {
-            var scoped = new Dictionary<ScopeId, List<short>>();
+            var scoped = new Dictionary<ScopeId, List<int>>();
             foreach (var grp in GetRightsGroupsForUser(userId))
             {
-                List<short> cRights;
+                List<int> cRights;
                 if (!scoped.TryGetValue(grp.Scope, out cRights))
                 {
-                    cRights=new List<short>();
+                    cRights=new List<int>();
                     scoped[grp.Scope] = cRights;
                 }
                 cRights.AddRange(grp.Rights);

@@ -39,7 +39,7 @@ namespace ModernMembership.SqlFu.Models
             var memento = new RightsGroup.Memento();
             memento.Id = GroupId;
             memento.Name=new GroupName(Name);
-            memento.Rights = Rights.Deserialize<short[]>();
+            memento.Rights = Rights.Deserialize<int[]>();
             memento.Scope=new ScopeId(Scope);
             return memento;
         }

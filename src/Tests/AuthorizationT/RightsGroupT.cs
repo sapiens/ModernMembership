@@ -66,7 +66,7 @@ namespace Tests.AuthorizationT
         {
             return new RightsGroup.Memento()
                 {
-                    Id=Guid.NewGuid(),Name = new GroupName("memento"),Rights = new short[]{1,3},Scope = new ScopeId(Guid.NewGuid())
+                    Id=Guid.NewGuid(),Name = new GroupName("memento"),Rights = new int[]{1,3},Scope = new ScopeId(Guid.NewGuid())
                 };
         }
 

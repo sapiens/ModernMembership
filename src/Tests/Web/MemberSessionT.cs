@@ -23,7 +23,7 @@ namespace Tests.Web
                         {
                             MemberId = Setup.AFixedId,
                             MemberName = "name",
-                            Rights = new[] { new ScopedRights(Setup.ARandomScope, new short[] { SetupUserRights.Right1, SetupUserRights.Right2 }) }
+                            Rights = new[] { new ScopedRights(Setup.ARandomScope, new int[] { SetupUserRights.Right1, SetupUserRights.Right2 }) }
                         }
                 };
             _sut = new MemberSessionPrincipal(data);
@@ -81,7 +81,7 @@ namespace Tests.Web
                 var scope = new ScopeId(Guid.NewGuid());
                 var sut =
                     GetSut(new[]
-                        {new ScopedRights(ScopeId.Global, new short[] {1}), new ScopedRights(scope, new short[] {2}),});
+                        {new ScopedRights(ScopeId.Global, new int[] {1}), new ScopedRights(scope, new int[] {2}),});
                 sut.Scope = scope;
                 sut.HasRight(1).Should().BeTrue();                
                 sut.HasRight(2).Should().BeTrue();                
@@ -91,7 +91,7 @@ namespace Tests.Web
             public void when_current_scope_is_global_local_is_ignored()
             {
                 var sut =
-                    GetSut(new[] { new ScopedRights(ScopeId.Global, new short[] { 1 }), new ScopedRights(Setup.ARandomScope, new short[] { 2 }), });
+                    GetSut(new[] { new ScopedRights(ScopeId.Global, new int[] { 1 }), new ScopedRights(Setup.ARandomScope, new int[] { 2 }), });
                 sut.Scope = ScopeId.Global;
                 sut.HasRight(2).Should().BeFalse();
                 sut.HasRight(1).Should().BeTrue();
@@ -102,7 +102,7 @@ namespace Tests.Web
             {
                 var scope = new ScopeId(Guid.NewGuid());
                 var sut =
-                    GetSut(new[] { new ScopedRights(ScopeId.Global, new short[] { 1 }), new ScopedRights(scope, new short[] { 2 }), });
+                    GetSut(new[] { new ScopedRights(ScopeId.Global, new int[] { 1 }), new ScopedRights(scope, new int[] { 2 }), });
                 sut.Scope=new ScopeId(Guid.NewGuid());
                 sut.HasRight(4, 2).Should().BeFalse();
             }

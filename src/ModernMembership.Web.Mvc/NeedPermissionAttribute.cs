@@ -10,14 +10,14 @@ namespace ModernMembership.Web.Mvc
     [AttributeUsage(AttributeTargets.Class|AttributeTargets.Method,AllowMultiple = true)]
     public class NeedPermissionAttribute:FilterAttribute,IAuthorizationFilter
     {
-        private short[] _rights;
+        private int[] _rights;
 
        
         /// <summary>
         /// The authorization succeeds if user has any of the specified rights
         /// </summary>
         /// <param name="rights"></param>
-        public NeedPermissionAttribute(params short[] rights)
+        public NeedPermissionAttribute(params int[] rights)
         {
             if (rights.Length==0) throw new InvalidOperationException("At least a right needs to be specified!");
             _rights = rights;

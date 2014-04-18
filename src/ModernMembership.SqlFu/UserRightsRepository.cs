@@ -274,11 +274,11 @@ select GroupId from {1} where MemberId=@0
 );
                if (data.IsNullOrEmpty()) Enumerable.Empty<RightsGroup>();
                
-               List<short> rights=new List<short>();
+               List<int> rights=new List<int>();
                List<ScopedRights> scoped=new List<ScopedRights>();
                foreach (var grp in data.GroupBy(d=>d.Scope))
                {
-                   grp.Select(d=>d.Rights.Deserialize<short[]>()).ForEach(r=>rights.AddRange(r));
+                   grp.Select(d=>d.Rights.Deserialize<int[]>()).ForEach(r=>rights.AddRange(r));
                    scoped.Add(new ScopedRights(new ScopeId(grp.Key),rights));
                    rights.Clear();
                }

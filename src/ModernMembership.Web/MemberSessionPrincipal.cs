@@ -78,7 +78,7 @@ namespace ModernMembership.Web
         /// </summary>
         /// <param name="rights">Collection of rights</param>
         /// <returns></returns>
-        public bool HasRight(params short[] rights)
+        public bool HasRight(params int[] rights)
         {
             return GetValidGroups().Any(sr=>sr.HasRight(rights));
         }

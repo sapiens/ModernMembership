@@ -6,18 +6,18 @@ namespace ModernMembership.Authorization
 {
     public class ScopedRights
     {
-        private readonly IEnumerable<short> _rights=new short[0];
+        private readonly IEnumerable<int> _rights=new int[0];
 
         /// <summary>
         /// Should be asigned only to global scope groups. Value can be changed
         /// </summary>
-        public static short GlobalAdmin = short.MaxValue - 5;
+        public static int GlobalAdmin = int.MaxValue - 5;
         /// <summary>
         /// Should be asigned only to scoped groups. Value can be changed
         /// </summary>
-        public static short ScopedAdmin = short.MaxValue - 10;
+        public static int ScopedAdmin = int.MaxValue - 10;
 
-        public ScopedRights(ScopeId scope,IEnumerable<short> rights)
+        public ScopedRights(ScopeId scope,IEnumerable<int> rights)
         {
             scope.MustNotBeNull();
             rights.MustNotBeNull();
@@ -31,7 +31,7 @@ namespace ModernMembership.Authorization
         /// </summary>
         /// <param name="rights"></param>
         /// <returns></returns>
-        public bool HasRight(params short[] rights)
+        public bool HasRight(params int[] rights)
         {
             var admin = ScopedAdmin;
             if (Scope == ScopeId.Global)

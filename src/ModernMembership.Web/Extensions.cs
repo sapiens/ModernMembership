@@ -19,7 +19,19 @@ namespace ModernMembership.Web
             {
                 return user.Identity as MemberSessionPrincipal;
             }
-            throw new NotSupportedException("Only caveman identity is supported");
+            throw new NotSupportedException("Only ModernMembership identity is supported");
+        }
+
+        /// <summary>
+        /// Checks is the current user has any of the specified rights
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="rights"></param>
+        /// <returns></returns>
+        public static bool HasRight(this IPrincipal user, params int[] rights)
+        {
+            var session = user.GetMemberSession();
+            return session.HasRight(rights);
         }
 
         /// <summary>

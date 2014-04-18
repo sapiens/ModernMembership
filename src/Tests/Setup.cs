@@ -104,9 +104,9 @@ namespace Tests
         public ScopedRights GlobalAdminRights=new ScopedRights(ScopeId.Global,new[]{ScopedRights.GlobalAdmin});
         
         public ScopedRights ScopedAdminRights=new ScopedRights(Setup.ARandomScope,new[]{ScopedRights.ScopedAdmin});
-        public const short Right1 = 1;
-        public const short Right2 = 3;
-        public ScopedRights FixedRights= new ScopedRights(new ScopeId(Setup.AFixedId), new short[]{Right1,Right2});
+        public const int Right1 = 1;
+        public const int Right2 = 3;
+        public ScopedRights FixedRights= new ScopedRights(new ScopeId(Setup.AFixedId), new int[]{Right1,Right2});
         
     }
 

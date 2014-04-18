@@ -10,7 +10,7 @@ namespace ModernMembership.Authorization
     {
         private Guid _id;
         private GroupName _name;
-        private List<short> _rights;
+        private List<int> _rights;
 
         public RightsGroup(Memento init):this(init.Id,init.Name,init.Scope)
         {
@@ -28,7 +28,7 @@ namespace ModernMembership.Authorization
             if (scope == null) scope = ScopeId.Global;
             _id = id;
             _name = name;
-            _rights = new List<short>();
+            _rights = new List<int>();
             Scope = scope;
             _events.Add(new RightsGroupCreated(this));
         }
@@ -49,7 +49,7 @@ namespace ModernMembership.Authorization
             }
         }
 
-        public List<short> Rights
+        public List<int> Rights
         {
             get { return _rights; }
         }
@@ -68,7 +68,7 @@ namespace ModernMembership.Authorization
 
         public class Memento
         {
-            public IEnumerable<short> Rights;
+            public IEnumerable<int> Rights;
             public Guid Id;
             public GroupName Name;
             public ScopeId Scope;
